@@ -1,8 +1,13 @@
+$(document).ready(function(){
+
+    // hide all submit buttons
+    $("[id^='submit']").hide();
+})
+
 function addQuestionMultiple(questionType){
 
     let question = document.getElementById("questionContainer");
     question.innerHTML = "";
-    //let questionNumber = question.children().length+1;
 
     // add question form
     question.innerHTML = `<form id='` + questionType + `' >
@@ -31,7 +36,11 @@ function addQuestionMultiple(questionType){
                            </form>`;
 
     
-    question.innerHTML += `<button type="button" class="btn btn-info" onclick="addAnswerQuestionMultiple()">Add another answer</button>`;
+    question.innerHTML += `<button type="button" id="addAnswerMultiple" class="btn btn-info" onclick="addAnswerQuestionMultiple()">Add another answer</button>`;
+
+    $("#submitQuestionMultiple").show();
+
+    $(":button").not("#addAnswerMultiple, #submitQuestionMultiple").hide();
 }
 
 function addAnswerQuestionMultiple(){
@@ -51,14 +60,13 @@ function addAnswerQuestionMultiple(){
                                                 <input class="form-check-input" type="radio" name="answerRadio`+answerNumber+`" id="noRadio" value="0">
                                                 <label class="form-check-label" for="noRadio">No</label>
                                             </div>
-                                            <input type="text" name="answerText`+answerNumber+`" class="form-control" placeholder="Answer is...">`);
+                                            <input type="text" name="answerText`+answerNumber+`" class="form-control" placeholder="Answer is...">
+                               `);
 }
 
-function submitQuestion(){
+function submitQuestionMultiple(){
 
     let form = $("#QuestionTypeMultiple").serializeArray();
-
-    //console.log(form);
 
     let data = {};
     data["question"] = form[0].value;
@@ -83,11 +91,110 @@ function submitQuestion(){
 
     data["answers"] = answers;
 
-    //console.log(JSON.stringify(data));
-
     $.ajax({
         method: "POST",
         url: "https://wt82.fei.stuba.sk/Forward_the_Foundation/router/question/multiple",
+        data: data,
+        dataType: "text",
+        success: function(data){
+ 
+            console.log(data);
+        }
+    });
+
+    resetArea();
+}
+
+function addQuestionConnect(questionType){
+
+    let question = document.getElementById("questionContainer");
+    question.innerHTML = "";
+
+    // add question form
+    question.innerHTML = `<form id='` + questionType + `' >
+                            <div class="form-group">
+                                <label for="questionText">Question</label>
+                                <textarea id="questionText" name="questionText" placeholder="Your question"></textarea>
+
+                            </div>
+                            <h4>Make pairs</h4>
+                            <div id="answers" class="form-group">
+
+                                <div class="form-row">
+                                    <div class="col">
+                                        <label>Question</label>
+                                        <input type="text" name="questionTextPair1" class="form-control" placeholder="Question">
+                                    </div>
+                                    <div class="col">
+                                        <label>Answer</label>
+                                        <input type="text" name="answerTextPair1" class="form-control" placeholder="Answer">
+                                    </div>
+                                </div>
+                                
+                            </div>
+                           </form>`;
+
+    question.innerHTML += `<button type="button" id="addAnswerConnect" class="btn btn-info" onclick="addQuestionConnectPair()">Add another pair</button>`;
+
+    $("#submitQuestionConnect").show();
+
+    $(":button").not("#addAnswerConnect, #submitQuestionConnect").hide();
+}
+
+function addQuestionConnectPair(){
+
+    let answers = document.getElementById("answers");
+
+    // number of answers so far + 1
+    let answerNumber = $("#answers > input").length+1;
+
+    // add another answer
+    answers.insertAdjacentHTML('beforeend',`<div class="form-row">
+                                                <div class="col">
+                                                    <label>Question</label>
+                                                    <input type="text" name="questionTextPair`+answerNumber+`" class="form-control" placeholder="Question">
+                                                </div>
+                                                <div class="col">
+                                                    <label>Answer</label>
+                                                    <input type="text" name="answerTextPair`+answerNumber+`" class="form-control" placeholder="Answer">
+                                                </div>
+                                            </div>
+                              `);
+}
+
+function submitQuestionConnect(){
+
+    let form = $("#QuestionTypeConnect").serializeArray();
+
+    console.log(form);
+
+    let data = {};
+    data["question"] = form[0].value;
+    //data["points"] = form[1].value;
+
+    let pairs = [];
+    let pair = {};
+
+    // 0 is question text (don't want this here)
+    for(i = 1; i<form.length; i++){
+
+        if(i%2 !==0){
+            
+            pair.question = form[i].value;
+        }
+        else{
+            pair.answer = form[i].value;
+            pairs.push(pair);
+            pair = {};
+        }
+    }
+
+    data["pairs"] = pairs;
+
+    console.log(data);
+    $.ajax({
+        method: "POST",
+        url: "https://wt82.fei.stuba.sk/Forward_the_Foundation/router/question/connect",
         data: data,
         dataType: "text",
         success: function(data){
@@ -95,4 +202,18 @@ function submitQuestion(){
             console.log(data);
         }
     });
+
+    resetArea();
+}
+
+function resetArea(){
+
+    // show all available question buttons
+    $("button[id^='add']").show();
+
+    // hide all submit buttons
+    $("button[id^='submit']").hide();
+
+    // clear question container
+    $("#questionContainer").html("");
 }

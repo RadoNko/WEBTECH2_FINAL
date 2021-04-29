@@ -10,38 +10,16 @@ class QuestionMultipleController{
         $this->conn = (new Database())->getConnection();
     }
 
-    private function insertTeacher($teacher){
+    private function insertExam($exam){
         
         try{
 
-            $sql = "INSERT INTO Teacher(username, password)
-                                VALUES(?, ?)";
+            $sql = "INSERT INTO Exam(name)
+                                VALUES(?)";
 
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmnt = $this->conn->prepare($sql);
-            $stmnt->execute([$teacher, "heslo"]);
-
-            return $this->conn->lastInsertId();
-
-        }
-        catch(PDOException $e){
-            echo "<div class='alert alert-danger' role='alert'>
-                        Sorry, there was an error. " . $e->getMessage()."
-                    </div>";
-        }
-
-    }
-
-    private function insertExam($exam, $teacher){
-        
-        try{
-
-            $sql = "INSERT INTO Exam(name, teacher_fk)
-                                VALUES(?, ?)";
-
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmnt = $this->conn->prepare($sql);
-            $stmnt->execute([$exam, $teacher]);
+            $stmnt->execute([$exam]);
 
             return $this->conn->lastInsertId();
 
@@ -100,28 +78,23 @@ class QuestionMultipleController{
 
     public function insertQuestionAndAnswers($data){
 
-        //$teacherId = $this->insertTeacher("ucitel");
-        //$examId = $this->insertExam(1, $teacherId);
+        $examId = $this->insertExam(1);
         
         foreach($data as $key => $value){
 
             if($key === "question"){
 
-                $questionId = $this->insertQuestion($value, 2);
+                $questionId = $this->insertQuestion($value, $examId);
             }
 
             if($key === "answers"){
+
                 foreach($value as $ansKey => $answer){
 
                     $this->insertAnswer($answer["name"], $answer["correct"], $questionId);
-                    
                 }
-                
-            }
-            //echo $key;
-            
+            }            
         }
-        //var_dump(json_decode($data));
     }
 }
 

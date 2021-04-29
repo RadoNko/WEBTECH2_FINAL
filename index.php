@@ -16,8 +16,11 @@
     <div id="questionContainer">
     </div>
 
-    <button type="button" class="btn btn-primary" value="QuestionTypeMultiple" onclick="addQuestionMultiple(this.value)">Add question with multiple choices</button>
-    <button type="button" class="btn btn-primary" value="QuestionTypeMultiple" onclick="submitQuestion()">Submit question with answers</button>
+    <button type="button" class="btn btn-primary" id="addQuestionMultiple" value="QuestionTypeMultiple" onclick="addQuestionMultiple(this.value)">Add question with multiple choices</button>
+    <button type="button" class="btn btn-primary" id="submitQuestionMultiple" onclick="submitQuestionMultiple()">Submit question with answers</button>
+
+    <button type="button" class="btn btn-primary" id="addQuestionConnect" value="QuestionTypeConnect" onclick="addQuestionConnect(this.value)">Add question with pairs</button>
+    <button type="button" class="btn btn-primary" id="submitQuestionConnect" onclick="submitQuestionConnect()">Submit question with answers</button>
 
     <script src="js/script.js"></script>
 </body>
