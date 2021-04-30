@@ -1,4 +1,6 @@
-function addQuestionMultiple(questionType){
+function addQuestionMultiple(){
+
+    let questionType = "questionTypeMultiple";
 
     let questions = document.getElementById("questionContainer");
 
@@ -101,7 +103,9 @@ function submitQuestionMultiple(id){
     });*/
 }
 
-function addQuestionConnect(questionType){
+function addQuestionConnect(){
+
+    let questionType = "questionTypeConnect";
 
     let questions = document.getElementById("questionContainer");
 
