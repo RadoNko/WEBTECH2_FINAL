@@ -96,6 +96,60 @@ class QuestionMultipleController{
             }            
         }
     }
+
+    private function findExamQuestions($examId){
+        
+        try{
+
+            $sql = "SELECT id, name AS 'question'
+                    FROM QuestionTypeMultiple
+                    WHERE exam_fk = ?";
+
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute([$examId]);
+
+            return $stmnt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $e){
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage()."
+                    </div>";
+        }
+
+    }
+
+    public function getExamQuestions($examId){
+        
+        $questions = $this->findExamQuestions($examId);
+
+        // questions with answers
+        $data = [];
+
+        foreach($questions as $question){
+
+            try{
+
+                $sql = "SELECT answer
+                        FROM OptionTypeMultiple
+                        WHERE question_type_fk = ?";
+
+                $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmnt = $this->conn->prepare($sql);
+                $stmnt->execute([$question["id"]]);
+
+                $data[$question["question"]] = $stmnt->fetchAll(PDO::FETCH_ASSOC);
+            
+            }
+            catch(PDOException $e){
+                echo "<div class='alert alert-danger' role='alert'>
+                            Sorry, there was an error. " . $e->getMessage()."
+                        </div>";
+            }
+        }
+
+        return $data;
+    }
 }
 
 ?>

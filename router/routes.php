@@ -2,6 +2,7 @@
 
     require_once("../controllers/QuestionMultipleController.php");
     require_once("../controllers/QuestionConnectController.php");
+    require_once("../controllers/ExamController.php");
    
     use Pecee\SimpleRouter\SimpleRouter as Router;
 
@@ -22,6 +23,8 @@
         $questionConnectController->insertQuestionAndAnswers($input);
         //return  json_encode($input);
     });
+
+    Router::get("Forward_the_Foundation/router/exam/{id}", "ExamController@getExam");
 
     // set session based on ip and gps permission
     //Router::post("Forward_the_Foundation/question/multiple", "QuestionMultipleController@insertQuestionAndAnswers");
