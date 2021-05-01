@@ -11,12 +11,14 @@
 <body>
 
     <h1 style="margin-left: 40%">Question text</h1><br>
-    <div id="mainQuestionForm" style="margin-left: 40%">
-        <button type="button" class="btn btn-primary" id="addQuestionText" onclick="addQuestionText()">Pridaj otázku</button>
-        <button style="display: none" type="button" class="btn btn-primary" id="addTextAnswer" onclick="addTextAnswer()">Pridaj odpoveď</button><br>
+    <div id="mainQuestionDiv" style="margin-left: 40%">
+<!--        <button type="button" class="btn btn-primary" id="addQuestionText" onclick="addQuestionText()">Pridaj otázku</button>-->
+<!--        <button style="display: none" type="button" class="btn btn-primary" id="addTextAnswer" onclick="addTextAnswer()">Pridaj odpoveď</button><br>-->
     </div>
+    <button type="button" class="btn btn-primary" id="addQuestionMultiple" onclick="addQuestionText()">Add question</button>
+<!--    <button type="button" class="btn btn-primary" id="addQuestionConnect"  onclick="addQuestionConnect()">Add question with pairs</button>-->
+    <button type="button" class="btn btn-primary" id="submitTest" onclick="submitTest()">Submit test</button>
 
-    <button style="margin-left: 45%; top:80%; position: absolute" type="button" class="btn btn-success" onclick="saveTest()">Ulož test</button>
 
 <script src="js/custom.js"></script>
 </body>

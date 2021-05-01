@@ -7,11 +7,13 @@ require_once("../php/QuestionText.php");
 
 use Pecee\SimpleRouter\SimpleRouter as Router;
 
-Router::post("skuska/WEBTECH2_FINAL/router/question/addNew", function(){
-//    $input = input()->all();
-//    return json_encode($input);
-    $cicky=new Foo();
-    return $cicky->getCicky();
+Router::post("skuska/WEBTECH2_FINAL/router/question/addNewQuestionText", function(){
+    $input = input()->all();
+    $questionText=new QuestionText();
+    $questionText->addQuestion($input);
+
+//    $cicky=new Foo();
+//    return $cicky->getCicky();
 
 });
 
