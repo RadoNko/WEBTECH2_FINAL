@@ -64,4 +64,24 @@ class Student{
         }
     }
 
+    public function insertStudentExam($data){
+        try{
+            //ziskaj FK idčka testu do nasledujuceho insertu
+            $sql="SELECT id FROM Exam WHERE code=?";
+            $stm = $this->connection->prepare($sql);
+            $stm->execute([$data["testCode"]["testCode"]]);
+            $examID=$stm->fetch();
+
+            $sql = "INSERT INTO Student_Exam (student_fk, exam_fk,is_finished) VALUES (?,?,?)";
+            $stm = $this->connection->prepare($sql);
+            $stm->execute([$data["id"],$examID["id"],0]);
+            return "studentExamInserted";
+        }
+        catch(PDOException $e){
+                echo "<div class='alert alert-danger' role='alert'>
+                            Sorry, there was an error. " . $e->getMessage()."
+                        </div>";
+            }
+
+    }
 }

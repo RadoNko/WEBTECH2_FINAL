@@ -29,7 +29,12 @@ Router::post("skuska/WEBTECH2_FINAL/router/logins/verifyTestCode", function() {
 Router::post("skuska/WEBTECH2_FINAL/router/logins/sendStudentNameSurname", function() {
     $input = input()->all();
     $student=new Student();
-    return json_encode($student->insertStudentData($input));
+    $result=$student->insertStudentData($input);
+    if($result=="verified" || $result=="inserted")
+        return json_encode($student->insertStudentExam($input));
+    else
+        return "Something went wrong";
+
 })
 
 ?>

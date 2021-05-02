@@ -2,6 +2,19 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
+require_once "../../../Database.php";
+$connection=(new Database())->getConnection();
+
+
+//$sql="SELECT id FROM Exam WHERE code=?";
+//$stm = $connection->prepare($sql);
+//$stm->execute(["abc"]);
+//$examID=$stm->fetch();
+//echo $examID["id"];
+//
+//$sql = "INSERT INTO Student_Exam (student_fk, exam_fk,is_finished) VALUES (?,?,?)";
+//$stm = $connection->prepare($sql);
+//$stm->execute(["123",$examID["id"],0]);
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +42,7 @@ error_reporting(E_ALL);
         <input id="studentName" type="text" name="studentName" required>
         <h4>Priezvisko</h4>
         <input id="studentSurname" type="text" name="studentSurname" required><br><br>
-        <button type="button" class="btn btn-primary" onclick="sendStudentName()">Prihlísiť sa do testu</button>
+        <button type="button" class="btn btn-primary" onclick="sendStudentName()">Prihlásiť sa do testu</button>
     </div>
 
 <script src="../../js/login.js"></script>

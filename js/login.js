@@ -1,6 +1,10 @@
-
+var testCode;
+function saveTest(code){
+    testCode=code;
+}
 
 function verifyTestCode(){
+    testCode=null;
     var code={
         "testCode": document.getElementById("testCode").value
     };
@@ -12,6 +16,7 @@ function verifyTestCode(){
         success: function(data){
             console.log("som spat "+data);
             if(data==="true"){
+                saveTest(code);
                 document.getElementById("studentLogin").style.display="none";
                 document.getElementById("studentDetails").style.display="block";
             }else{
@@ -39,7 +44,8 @@ function sendStudentName(){
         var data = {
             "id":id,
             "name": name,
-            "surname": surname
+            "surname": surname,
+            "testCode":testCode
         };
         $.ajax({
             method: "POST",
