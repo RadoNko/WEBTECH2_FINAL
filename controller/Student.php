@@ -35,23 +35,33 @@ class Student{
 
     public function insertStudentData($data){
         // $data["surname"];
-//        try{
-//            $sql = "SELECT * FROM Exam WHERE code=?";
-//            $stm = $this->connection->prepare($sql);
-//            $stm->execute([$code["testCode"]]);
-//            $count = $stm->rowCount();
-//            if($count!=0){
-//                return "true";
-//            }else{
-//                return "false";
-//            }
-//
-//        }
-//        catch(PDOException $e){
-//            echo "<div class='alert alert-danger' role='alert'>
-//                        Sorry, there was an error. " . $e->getMessage()."
-//                    </div>";
-//        }
+        try{
+            $sql = "SELECT * FROM Student WHERE ais_id=?";
+            $stm = $this->connection->prepare($sql);
+            $stm->execute([$data["id"]]);
+            $count = $stm->rowCount();
+            $result=$stm->fetch();
+
+            //je už v db alebo nie?
+            if($count!=0){
+                if($result["name"]==$data["name"] && $result["surname"]==$data["surname"])      //kontrola či sa pod rovnakym ais id neloguje ine meno
+                    return "verified";
+                else
+                    return "wrongData";
+            }else{
+                //nie je v table, urob insert
+                $sql = "INSERT INTO Student (ais_id, name, surname) VALUES (?,?,?)";
+                $stm = $this->connection->prepare($sql);
+                $stm->execute([$data["id"],$data["name"],$data["surname"]]);
+                return "inserted";
+            }
+
+        }
+        catch(PDOException $e){
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage()."
+                    </div>";
+        }
     }
 
 }
