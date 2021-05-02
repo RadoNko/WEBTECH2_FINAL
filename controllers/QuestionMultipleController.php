@@ -130,7 +130,7 @@ class QuestionMultipleController{
 
             try{
 
-                $sql = "SELECT answer
+                $sql = "SELECT id, answer
                         FROM OptionTypeMultiple
                         WHERE question_type_fk = ?";
 
@@ -138,7 +138,8 @@ class QuestionMultipleController{
                 $stmnt = $this->conn->prepare($sql);
                 $stmnt->execute([$question["id"]]);
 
-                $data[$question["question"]] = $stmnt->fetchAll(PDO::FETCH_ASSOC);
+                $data[$question["question"]]["id"] = $question["id"];
+                $data[$question["question"]]["answers"] = $stmnt->fetchAll(PDO::FETCH_ASSOC);
             
             }
             catch(PDOException $e){

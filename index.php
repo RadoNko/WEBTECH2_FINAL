@@ -21,9 +21,6 @@
 
     <button type="button" class="btn btn-primary" id="submitQuestionConnect" onclick="submitTest()">Submit test</button>
 
-    <div id="drag" draggable="true" ondragstart="drag(event)" style="width: 100px; height: 100px; background-color: blue"></div>
-    <div ondrop="drop(event)" ondragover="allowDrop(event)" style="width: 100px; height: 100px; border: 1px dashed red; margin-top: 50px;"></div>
-
     <script src="js/script.js"></script>
 </body>
 </html>
