@@ -10,21 +10,46 @@
 </head>
 <body>
 
-    <input type="button" class="btn btn-primary"  onclick="location.href='login/student';" value="Som študent" />
-    <input type="button" class="btn btn-primary"  onclick="location.href='login/teacher/';" value="Som učiteľ" />
+<!--    --><?php
+            session_start();
+            if($_SESSION["student"]==true){
+                echo "student: ".$_SESSION["logged_id"];
+                echo "<button onclick='logOut()'>Log out</button><br>";
+                echo"Tu sa zobrazi test";
+            }elseif($_SESSION["teacher"]==true){
+                echo "teacher: ".$_SESSION["logged_id"];
+                echo "<button onclick='logOut()'>Log out</button>";
+                echo '<div id="teacherSide">
+                        <h1 style="margin-left: 40%">Question type text</h1><br>
+                        <div id="mainQuestionDiv" style="margin-left: 40%">
+                        </div>';
+            }else{
+                echo "login menu";
+                echo "    <div id='loginButtons'>
+                        <input type='button' class='btn btn-primary'  onclick='location.href=\"login/student\"' value='Som študent' />
+                        <input type='button' class='btn btn-primary'  onclick='location.href=\"login/teacher\"' value='Som učiteľ' />
+                    </div>";
+            }
+//    ?>
 
+    <button style="display:none;" type='button' class='btn btn-primary' id='logOut' onclick=destroySession('student')>Log out</button>
 
+<!--    <div id="teacherSide">-->
+<!--        <h1 style="margin-left: 40%">Question type text</h1><br>-->
+<!--        <div id="mainQuestionDiv" style="margin-left: 40%">-->
+<!--        </div>-->
+<!---->
+<!--        <button type="button" class="btn btn-primary" id="addQuestionMultiple" onclick="addQuestionText()">Add question</button>-->
+<!--        <button type="button" class="btn btn-primary" id="submitTest" onclick="submitTest()">Submit test</button>-->
+<!--    </div>-->
 
-    <div style="display:none;" id="teacherSide">
-        <h1 style="margin-left: 40%">Question type text</h1><br>
-        <div id="mainQuestionDiv" style="margin-left: 40%">
-       </div>
-
-        <button type="button" class="btn btn-primary" id="addQuestionMultiple" onclick="addQuestionText()">Add question</button>
-        <button type="button" class="btn btn-primary" id="submitTest" onclick="submitTest()">Submit test</button>
-    </div>
+<!--    <div id="loginButtons">-->
+<!--        <input type='button' class='btn btn-primary'  onclick='location.href="login/student"' value='Som študent' />-->
+<!--        <input type='button' class='btn btn-primary'  onclick='location.href="login/teacher"' value='Som učiteľ' />-->
+<!--    </div>-->
 
 <script src="js/questionText.js"></script>
+<script src="js/login.js"></script>
 </body>
 </html>
 

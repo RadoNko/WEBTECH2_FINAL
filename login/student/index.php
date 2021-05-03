@@ -29,21 +29,44 @@ $connection=(new Database())->getConnection();
 </head>
 <body>
 
-    <div id="studentLogin" class="form-group">
+    <?php
+        session_start();
+        if($_SESSION["student"]==false){
+            echo'  <div id="studentLogin" class="form-group">
         <h4>Zadajte kód testu</h4>
         <input id="testCode" name="testCode" placeholder="Code is...">
         <button type="button" class="btn btn-primary" onclick="verifyTestCode()">Overiť kód</button>
-    </div>
-
-    <div style="display:none;" id="studentDetails" class="form-group">
-        <h4>Ais ID</h4>
-        <input id="aisID" type="number" name="aisID" required>
-        <h4>Meno</h4>
-        <input id="studentName" type="text" name="studentName" required>
-        <h4>Priezvisko</h4>
-        <input id="studentSurname" type="text" name="studentSurname" required><br><br>
-        <button type="button" class="btn btn-primary" onclick="sendStudentName()">Prihlásiť sa do testu</button>
-    </div>
+        </div>
+    
+        <div style="display:none;" id="studentDetails" class="form-group">
+            <h4>Ais ID</h4>
+            <input id="aisID" type="number" name="aisID" required>
+            <h4>Meno</h4>
+            <input id="studentName" type="text" name="studentName" required>
+            <h4>Priezvisko</h4>
+            <input id="studentSurname" type="text" name="studentSurname" required><br><br>
+            <button type="button" class="btn btn-success" onclick="sendStudentName()">Prihlásiť sa do testu</button>
+        </div>';
+        }
+        else{
+            echo "už si prihlaseny";
+        }
+    ?>
+<!--    <div id="studentLogin" class="form-group">-->
+<!--        <h4>Zadajte kód testu</h4>-->
+<!--        <input id="testCode" name="testCode" placeholder="Code is...">-->
+<!--        <button type="button" class="btn btn-primary" onclick="verifyTestCode()">Overiť kód</button>-->
+<!--    </div>-->
+<!---->
+<!--    <div style="display:none;" id="studentDetails" class="form-group">-->
+<!--        <h4>Ais ID</h4>-->
+<!--        <input id="aisID" type="number" name="aisID" required>-->
+<!--        <h4>Meno</h4>-->
+<!--        <input id="studentName" type="text" name="studentName" required>-->
+<!--        <h4>Priezvisko</h4>-->
+<!--        <input id="studentSurname" type="text" name="studentSurname" required><br><br>-->
+<!--        <button type="button" class="btn btn-success" onclick="sendStudentName()">Prihlásiť sa do testu</button>-->
+<!--    </div>-->
 
 <script src="../../js/login.js"></script>
 </body>

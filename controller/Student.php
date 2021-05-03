@@ -44,8 +44,13 @@ class Student{
 
             //je už v db alebo nie?
             if($count!=0){
-                if($result["name"]==$data["name"] && $result["surname"]==$data["surname"])      //kontrola či sa pod rovnakym ais id neloguje ine meno
+                if($result["name"]==$data["name"] && $result["surname"]==$data["surname"]){      //kontrola či sa pod rovnakym ais id neloguje ine meno
+                    session_start();
+                    $_SESSION["student"]=true;
+                    $_SESSION["teacher"]=false;
+                    $_SESSION["logged_id"]=$data["id"];
                     return "verified";
+                }
                 else
                     return "wrongData";
             }else{
@@ -53,6 +58,10 @@ class Student{
                 $sql = "INSERT INTO Student (ais_id, name, surname) VALUES (?,?,?)";
                 $stm = $this->connection->prepare($sql);
                 $stm->execute([$data["id"],$data["name"],$data["surname"]]);
+                session_start();
+                $_SESSION["student"]=true;
+                $_SESSION["teacher"]=false;
+                $_SESSION["logged_id"]=$data["id"];
                 return "inserted";
             }
 
@@ -75,6 +84,7 @@ class Student{
             $sql = "INSERT INTO Student_Exam (student_fk, exam_fk,is_finished) VALUES (?,?,?)";
             $stm = $this->connection->prepare($sql);
             $stm->execute([$data["id"],$examID["id"],0]);
+
             return "studentExamInserted";
         }
         catch(PDOException $e){

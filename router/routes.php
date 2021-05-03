@@ -33,8 +33,19 @@ Router::post("skuska/WEBTECH2_FINAL/router/logins/sendStudentNameSurname", funct
     if($result=="verified" || $result=="inserted")
         return json_encode($student->insertStudentExam($input));
     else
-        return "Something went wrong";
+        return json_encode("wrongData");
 
-})
+});
+
+Router::post("skuska/WEBTECH2_FINAL/router/logins/destroySession", function() {
+//    $input = input()->all();
+    session_start();
+    $_SESSION["student"]=false;
+    $_SESSION["teacher"]=false;
+    header("location:http://147.175.98.72/skuska/WEBTECH2_FINAL/");
+    return json_encode($_SESSION["student"]);
+
+
+});
 
 ?>

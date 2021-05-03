@@ -55,9 +55,23 @@ function sendStudentName(){
                 console.log(data);
                 if(data==="wrongData")
                     studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Ais ID nesedí so zadanými údajmi</div>`);
-                //else
-                    //chod na index a vykresli text
+                else{
+                    location.href = 'http://147.175.98.72/skuska/WEBTECH2_FINAL/';
+                }
+
             }
         });
     }
 }
+
+function logOut(){
+    $.ajax({
+        method: "POST",
+        url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/logins/destroySession",
+        data: {},
+        success: function (data) {
+            location.href = 'http://147.175.98.72/skuska/WEBTECH2_FINAL/';
+        }
+    });
+}
+
