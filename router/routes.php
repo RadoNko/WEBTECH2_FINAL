@@ -38,14 +38,26 @@ Router::post("skuska/WEBTECH2_FINAL/router/logins/sendStudentNameSurname", funct
 });
 
 Router::post("skuska/WEBTECH2_FINAL/router/logins/destroySession", function() {
-//    $input = input()->all();
     session_start();
     $_SESSION["student"]=false;
     $_SESSION["teacher"]=false;
     header("location:http://147.175.98.72/skuska/WEBTECH2_FINAL/");
-    return json_encode($_SESSION["student"]);
+//    return json_encode($_SESSION["student"]);
+});
+
+Router::post("skuska/WEBTECH2_FINAL/router/logins/registerNewTeacher", function() {
+    $input = input()->all();
+    $teacher=new Teacher();
+    $result=$teacher->registerTeacher($input);
+    return json_encode($result);
+});
 
 
+Router::post("skuska/WEBTECH2_FINAL/router/logins/verifyTeacherLogin", function() {
+    $input = input()->all();
+    $teacher=new Teacher();
+    $result=$teacher->verifyTeacherLogin($input);
+    return json_encode($result);
 });
 
 ?>
