@@ -72,13 +72,20 @@ $(document).ready(function () {
 
   // onClick of toggleExamButton send ajax request to toggle exam activity
   $(document).on("click", "#toggleExamButton", function () {
-    console.log("exam_id: " + $(this).attr("exam_id"));
+    let examId = $(this).attr("exam_id");
     $.ajax({
       method: "PUT",
-      url: origin + "/Final/router/exam/toggle/" + $(this).attr("exam_id"),
+      url: origin + "/Final/router/exam/toggle/" + examId,
       dataType: "json",
       success: function (response) {
-        console.log(response);
+        // If toggle was successfull, change button from active to inactive and reveres
+        let active =
+          $("#" + examId + " > div > small > button").text() == "active"
+            ? "inactive"
+            : "active";
+        console.log(active);
+        $("#" + examId + " > div > small > button").text(active);
+        $("#toggleExamModal").modal("hide");
       },
     });
   });
