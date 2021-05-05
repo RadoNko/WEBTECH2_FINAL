@@ -8,6 +8,8 @@ require_once("../controllers/AnswerConnectController.php");
 
 require_once("../controllers/ExamController.php");
 
+require_once("../controllers/TeacherController.php");
+
 use Pecee\SimpleRouter\SimpleRouter as Router;
 
 Router::post("Final/router/question/multiple", function () {
@@ -45,6 +47,8 @@ Router::post("Final/router/exam/insertAnswersConnect", function () {
 Router::get("Final/router/exam/{id}", "ExamController@getExam");
 
 Router::get("Final/router/exam", "ExamController@getAll");
+
+Router::get("Final/router/teacher/{id}", "TeacherController@getUsernameById");
 
     // set session based on ip and gps permission
     //Router::post("Forward_the_Foundation/question/multiple", "QuestionMultipleController@insertQuestionAndAnswers");
