@@ -73,5 +73,13 @@ $(document).ready(function () {
   // onClick of toggleExamButton send ajax request to toggle exam activity
   $(document).on("click", "#toggleExamButton", function () {
     console.log("exam_id: " + $(this).attr("exam_id"));
+    $.ajax({
+      method: "PUT",
+      url: origin + "/Final/router/exam/toggle/" + $(this).attr("exam_id"),
+      dataType: "json",
+      success: function (response) {
+        console.log(response);
+      },
+    });
   });
 });
