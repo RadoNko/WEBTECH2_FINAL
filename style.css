@@ -1,0 +1,34 @@
+
+/* npx tailwindcss-cli@latest build style.css -o tailwind.css */   /*build after changes in style.css file*/
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.logoColourText{
+    color: #17CF97;;
+}
+
+.logoColourBackground{
+    background-color: #17CF97;;
+}
+
+.myButtonStyle{
+    background-color: #17CF97;
+    @apply hover:bg-green-700;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-1;
+    @apply px-2;
+    @apply border;
+    @apply border-green-700;
+    @apply rounded;
+}
+
+.a4-width{
+    width: 21cm;
+}
+
+.a4-height{
+    height: 29.7cm;
+}

@@ -1,0 +1,49 @@
+<header class="h-screen col-span-2 bg-gray-600 flex flex-col justify-between sticky top-0 shadow-2xl">
+  <div class="flex-col">
+    <div class="flex flex-row items-center w-full logoColourBackground p-4">
+      <div>
+        <p class="text-white">Logged In:</p>
+        <p class="text-white">Anon Anonymous</p>
+      </div>
+    </div>
+    <div id="myDIV" class="px-6 pt-4 pb-8">
+      <a href="/spolocne/index.php" class="block px-2 py-1 text-white font-semibold rounded hover:bg-gray-500">Show exam</a>
+      <a href="/spolocne/formula-sheet.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500">Formula sheets</a>
+      <a href="/spolocne/drawing-demo.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500">Drawing tool</a>
+      <a href="#" class="block px-2 py-1 mt-1 text-white font-semibold rounded ">Scan work</a>
+      <a href="#" class="block px-2 py-1 mt-1 text-white font-semibold rounded ">Submit exam</a>
+      <a href="/spolocne/views/createTest.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded opacity-50">Debug Page</a>
+    </div>
+  </div>
+  <div class="grid ">
+    <p class="font-bold text-5xl justify-self-center">00:00</p>
+  </div>
+  <a href="#" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500 self-end">Logout</a>
+</header>
+
+<script>
+
+  window.addEventListener('DOMContentLoaded', (event) => {
+    const elements = document.getElementById('myDIV').childNodes
+    for (const element of elements){
+      if (window.location.href === element.href){
+        if (element.href != null){
+          element.className += " logoColourBackground";
+          return
+        }
+      }
+    }
+  });
+
+  function myFunction1() {
+    let elements = document.getElementsByClassName("buttonImg")
+    for(let element of elements){
+      element.classList.toggle("hidden")
+    }
+  }
+  function myFunction() {
+    var element = document.getElementById("myDIV");
+    element.classList.toggle("hidden");
+  }
+</script>
+
