@@ -12,21 +12,21 @@
 
 <body class="container">
     <div id=listBody></div>
-    <div class="modal" tabindex="-1" id="deleteApprovalModal">
+    <div class="modal" tabindex="-1" id="toggleExamModal">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="deleteApprovalTitle"></h5>
+                    <h5 class="modal-title" id="toggleExamTitle"></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="deleteApprovalBody">
-                    <p id="deleteApprovalBody">Modal body text goes here.</p>
+                <div class="modal-body" id="toggleExamApprovalBody">
+                    <p id="toggleExamBody">Modal body text goes here.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="toggleExamButton">Save changes</button>
                 </div>
             </div>
         </div>
