@@ -12,7 +12,6 @@
 
 <body class="container">
     <div id=listBody></div>
-    Hello from Exam overview site!
     <script src="../js/examOverview.js"></script>
 </body>
 
