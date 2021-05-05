@@ -48,6 +48,8 @@ Router::get("Final/router/exam/{id}", "ExamController@getExam");
 
 Router::get("Final/router/exam", "ExamController@getAll");
 
+Router::put("Final/router/exam/toggle/{id}", "ExamController@toggle");
+
 Router::get("Final/router/teacher", "TeacherController@getAll");
 
     // set session based on ip and gps permission
