@@ -48,7 +48,7 @@ Router::get("Final/router/exam/{id}", "ExamController@getExam");
 
 Router::get("Final/router/exam", "ExamController@getAll");
 
-Router::get("Final/router/teacher/getUsernameById/{id}", "TeacherController@getUsernameById");
+Router::get("Final/router/teacher", "TeacherController@getAll");
 
     // set session based on ip and gps permission
     //Router::post("Forward_the_Foundation/question/multiple", "QuestionMultipleController@insertQuestionAndAnswers");

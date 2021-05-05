@@ -12,14 +12,14 @@ class TeacherController
     }
 
 
-    public function getUsernameById($teacherId)
+    public function getAll()
     {
         try {
-            $sql = "SELECT username FROM Teacher WHERE id = ?";
+            $sql = "SELECT id,username,password FROM Teacher";
 
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmnt = $this->conn->prepare($sql);
-            $stmnt->execute([$teacherId]);
+            $stmnt->execute();
 
             return json_encode($stmnt->fetchAll(PDO::FETCH_ASSOC), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         } catch (PDOException $e) {
