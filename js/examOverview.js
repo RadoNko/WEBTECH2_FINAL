@@ -83,7 +83,6 @@ $(document).ready(function () {
           $("#" + examId + " > div > small > button").text() == "active"
             ? "inactive"
             : "active";
-        console.log(active);
         $("#" + examId + " > div > small > button").text(active);
         $("#toggleExamModal").modal("hide");
       },
