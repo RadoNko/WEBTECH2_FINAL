@@ -8,24 +8,25 @@ $(document).ready(function () {
       let items = [];
       $.each(data, function (key, val) {
         console.log(key, val);
+        let active = val["is_active"] == 0 ? "active" : "not active";
         items.push(
-          "<li id='" +
-            key +
-            "'>ID: " +
+          "<li class='list-group-item list-group-item-action' id='" +
             val["id"] +
-            " name: " +
+            "'><div class='d-flex w-100 justify-content-between'><h5 class='mb-1'>" +
             val["name"] +
-            " code: " +
+            "</h5><small>" +
+            active +
+            "</small></div><small>Teacher id:" +
+            val["teacher_fk"] +
+            "</small><br><small>Code:" +
             val["code"] +
-            " is_active: " +
-            val["is_active"] +
-            "</li>"
+            "</small></li>"
         );
       });
       $("<ul/>", {
-        class: "my-new-list",
+        class: "list-group list-group-flush",
         html: items.join(""),
-      }).appendTo("body");
+      }).appendTo("#listBody");
     },
   });
 });
