@@ -21,6 +21,6 @@
 
     <button type="button" class="btn btn-primary" id="submitQuestionConnect" onclick="submitTest()">Submit test</button>
 
-    <script src="js/script.js"></script>
+    <script src="js/addQuestions.js"></script>
 </body>
 </html>

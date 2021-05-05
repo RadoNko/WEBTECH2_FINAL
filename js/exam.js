@@ -2,9 +2,11 @@ $(document).ready(function(){
 
     let examId = 1;
 
+    let origin = $(location).attr('origin');
+
     $.ajax({
         method: "GET",
-        url: "https://wt82.fei.stuba.sk/Forward_the_Foundation/router/exam/"+examId,
+        url: origin + "/Final/router/exam/" + examId,
         dataType: "json",
         success: function(data){
           
@@ -136,9 +138,11 @@ function submitQuestionConnect(id){
 
     data["pairs"] = pairs;
 
+    let origin = $(location).attr('origin');
+
     /*$.ajax({
         method: "POST",
-        url: "https://wt82.fei.stuba.sk/Forward_the_Foundation/router/exam/insertAnswersConnect",
+        url: origin + "/Final/router/exam/insertAnswersConnect",
         data: data,
         dataType: "text",
         success: function(data){
@@ -176,9 +180,11 @@ function submitQuestionMultiple(id){
 
     data["answers"] = answers;
 
+    let origin = $(location).attr('origin');
+
     /*$.ajax({
         method: "POST",
-        url: "https://wt82.fei.stuba.sk/Forward_the_Foundation/router/exam/insertAnswersMultiple",
+        url: origin + "/Final/router/exam/insertAnswersMultiple",
         data: data,
         dataType: "text",
         success: function(data){

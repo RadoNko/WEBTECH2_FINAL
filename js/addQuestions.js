@@ -91,9 +91,11 @@ function submitQuestionMultiple(id){
 
     data["answers"] = answers;
 
+    let origin = $(location).attr('origin');
+
     /*$.ajax({
         method: "POST",
-        url: "https://wt82.fei.stuba.sk/Forward_the_Foundation/router/question/multiple",
+        url: origin + "/Final/router/question/multiple",
         data: data,
         dataType: "text",
         success: function(data){
@@ -192,10 +194,13 @@ function submitQuestionConnect(id){
 
     data["pairs"] = pairs;
 
-    /*console.log(data);
-    $.ajax({
+    let origin = $(location).attr('origin');
+
+    //console.log(data);
+
+    /*$.ajax({
         method: "POST",
-        url: "https://wt82.fei.stuba.sk/Forward_the_Foundation/router/question/connect",
+        url: origin + "/Final/router/question/connect",
         data: data,
         dataType: "text",
         success: function(data){
