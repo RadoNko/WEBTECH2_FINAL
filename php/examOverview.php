@@ -12,11 +12,11 @@
 </head>
 
 <body class="container">
-    <button id="addNewExamButton">
-        <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="plus" class="svg-inline--fa fa-plus fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <a href="https://www.youtube.com/watch?v=K8BnhF2WgHU&ab_channel=MarekVnen%C4%8D%C3%A1k" id="addNewExamAnchor">
+        <svg width="40px" height="40px" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
             <path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>
         </svg>
-    </button>
+    </a>
     <div id=listBody></div>
     <div class="modal" tabindex="-1" id="toggleExamModal">
         <div class="modal-dialog">

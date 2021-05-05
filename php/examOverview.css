@@ -1,18 +1,19 @@
-#addNewExamButton {
+#addNewExamAnchor {
   height: 40px;
   width: 40px;
   border: none;
   background: none;
   cursor: pointer;
+  color: black;
 }
-#addNewExamButton:focus {
+#addNewExamAnchor:focus {
   outline: 0px;
 }
-#addNewExamButton:hover > svg {
+#addNewExamAnchor:hover > svg {
   transform: scale(1.05);
 }
 
-#addNewExamButton > svg {
+#addNewExamAnchor > svg {
   outline: none;
   transition: transform 0.2s linear;
 }
