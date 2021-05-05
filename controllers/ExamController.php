@@ -4,11 +4,13 @@ require_once("Database.php");
 require_once("QuestionConnectController.php");
 require_once("QuestionMultipleController.php");
 
-class ExamController{
+class ExamController
+{
 
     private PDO $conn;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->conn = (new Database())->getConnection();
     }
 
@@ -21,7 +23,8 @@ class ExamController{
         The whole exam is returned as string in json format, so make sure that you follow the template in if(...) below.
         Exam keys (question types) MUST start with an uppercase letter because of javascript functionality on frontend.
     */
-    public function getExam($examId){
+    public function getExam($examId)
+    {
 
         $exam = [];
 
@@ -31,16 +34,36 @@ class ExamController{
         $questionsConnect = $questionConnectController->getExamQuestions($examId);
         $questionsMultiple = $questionMultipleController->getExamQuestions($examId);
 
-        if(!empty($questionsConnect)){
+        if (!empty($questionsConnect)) {
 
             $exam["QuestionTypeConnect"] = $questionsConnect;
         }
 
-        if(!empty($questionsMultiple)){
+        if (!empty($questionsMultiple)) {
 
             $exam["QuestionTypeMultiple"] = $questionsMultiple;
         }
-        
+
         return json_encode($exam, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+    public function getAll()
+    {
+
+        try {
+            $sql = "SELECT id, name, teacher_fk, code, is_active FROM Exam";
+
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute();
+
+            return json_encode($stmnt->fetchAll(PDO::FETCH_ASSOC), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } catch (PDOException $e) {
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage() . "
+                    </div>";
+        }
+
+        return json_encode($stmnt, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 }

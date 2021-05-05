@@ -12,6 +12,7 @@
 
 <body class="container">
     Hello from Exam overview site!
+    <script src="../js/examOverview.js"></script>
 </body>
 
 </html>

@@ -44,5 +44,7 @@ Router::post("Final/router/exam/insertAnswersConnect", function () {
 
 Router::get("Final/router/exam/{id}", "ExamController@getExam");
 
+Router::get("Final/router/exam", "ExamController@getAll");
+
     // set session based on ip and gps permission
     //Router::post("Forward_the_Foundation/question/multiple", "QuestionMultipleController@insertQuestionAndAnswers");
