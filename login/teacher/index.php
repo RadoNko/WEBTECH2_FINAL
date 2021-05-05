@@ -11,7 +11,7 @@
 <body>
     <?php
     session_start();
-    if($_SESSION["teacher"]==false){
+    if(!isset($_SESSION["teacher"]) ||$_SESSION["teacher"]==false){
         echo'  <div id="teacherLogin" class="form-group">
             <h4>Prihláste sa</h4>
             <input id="teacherNickname" name="teacherNickname" placeholder="Váš login...">

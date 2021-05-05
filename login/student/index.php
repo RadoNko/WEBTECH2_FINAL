@@ -31,7 +31,7 @@ $connection=(new Database())->getConnection();
 
     <?php
         session_start();
-        if($_SESSION["student"]==false){
+        if(!isset($_SESSION["student"]) || $_SESSION["student"]==false){
             echo'  <div id="studentLogin" class="form-group">
         <h4>Zadajte kód testu</h4>
         <input id="testCode" name="testCode" placeholder="Code is...">
