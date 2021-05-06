@@ -1,5 +1,6 @@
 $(document).ready(function () {
   let existingExams;
+  $("#nameHelp").show();
 
   /*Render basic website list with all exams*/
   $.ajax({
@@ -106,8 +107,10 @@ $(document).ready(function () {
         undefined
       ) {
         $("#createExamButton").prop("disabled", false);
+        $("#nameHelp").hide();
       } else {
         $("#createExamButton").prop("disabled", true);
+        $("#nameHelp").show();
       }
     } else {
       $("#createExamButton").prop("disabled", true);
@@ -122,8 +125,10 @@ $(document).ready(function () {
         existingExams.find((exam) => exam.name == $(this).val()) == undefined
       ) {
         $("#createExamButton").prop("disabled", false);
+        $("#nameHelp").hide();
       } else {
         $("#createExamButton").prop("disabled", true);
+        $("#nameHelp").show();
       }
     } else {
       $("#createExamButton").prop("disabled", true);

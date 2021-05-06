@@ -55,8 +55,9 @@ echo "examId: " . $_SESSION["exam_id"] . "<br>";
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="nameInput">Time to work</label>
+                        <label for="nameInput">Exam name</label>
                         <input id="nameInput" type="text" class="form-control" placeholder="Exam title" aria-label="Exam title" aria-describedby="basic-addon2" required>
+                        <small id="nameHelp" class="form-text text-muted">You can not choose this name. Exam with provided name already exists.</small>
                     </div>
                     <div class="form-group">
                         <label for="timeInput">Time to work</label>
