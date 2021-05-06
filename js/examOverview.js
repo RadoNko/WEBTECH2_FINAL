@@ -12,7 +12,7 @@ $(document).ready(function () {
         success: function (data) {
           let items = [];
           $.each(data, function (key, val) {
-            let active = val["is_active"] == 0 ? "active" : "inactive";
+            let active = val["is_active"] == 0 ? "inactive" : "active";
             let teacher = teachers.find((t) => t.id === val["teacher_fk"]);
             let teacherName = teacher ? teacher.username : "undefined";
             items.push(
