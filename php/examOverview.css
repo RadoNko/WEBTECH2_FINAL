@@ -1,0 +1,19 @@
+#addNewExamAnchor {
+  height: 40px;
+  width: 40px;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: black;
+}
+#addNewExamAnchor:focus {
+  outline: 0px;
+}
+#addNewExamAnchor:hover > svg {
+  transform: scale(1.05);
+}
+
+#addNewExamAnchor > svg {
+  outline: none;
+  transition: transform 0.2s linear;
+}
