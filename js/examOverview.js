@@ -1,4 +1,6 @@
 $(document).ready(function () {
+  let existingExams;
+
   /*Render basic website list with all exams*/
   $.ajax({
     method: "GET",
@@ -11,6 +13,7 @@ $(document).ready(function () {
         dataType: "json",
         success: function (data) {
           let items = [];
+          existingExams = data;
           $.each(data, function (key, val) {
             let active = val["is_active"] == 0 ? "inactive" : "active";
             let teacher = teachers.find((t) => t.id === val["teacher_fk"]);
@@ -97,7 +100,15 @@ $(document).ready(function () {
   // validation of inputs, do not allow empty
   $("#timeInput").on("input", function (e) {
     if ($(this).val().length > 0 && $("#nameInput").val().length > 0) {
-      $("#createExamButton").prop("disabled", false);
+      // do not allow exam with existing name
+      if (
+        existingExams.find((exam) => exam.name == $("#nameInput").val()) ==
+        undefined
+      ) {
+        $("#createExamButton").prop("disabled", false);
+      } else {
+        $("#createExamButton").prop("disabled", true);
+      }
     } else {
       $("#createExamButton").prop("disabled", true);
     }
@@ -106,7 +117,14 @@ $(document).ready(function () {
   // validation of inputs, do not allow empty
   $("#nameInput").on("input", function (e) {
     if ($(this).val().length > 0 && $("#timeInput").val().length > 0) {
-      $("#createExamButton").prop("disabled", false);
+      // do not allow exam with existing name
+      if (
+        existingExams.find((exam) => exam.name == $(this).val()) == undefined
+      ) {
+        $("#createExamButton").prop("disabled", false);
+      } else {
+        $("#createExamButton").prop("disabled", true);
+      }
     } else {
       $("#createExamButton").prop("disabled", true);
     }
