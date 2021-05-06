@@ -51,8 +51,14 @@ session_start();
                     </button>
                 </div>
                 <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="Exam title" aria-label="Exam title" aria-describedby="basic-addon2">
+                    <div class="form-group">
+                        <label for="nameInput">Time to work</label>
+                        <input id="nameInput" type="text" class="form-control" placeholder="Exam title" aria-label="Exam title" aria-describedby="basic-addon2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="timeInput">Time to work</label>
+                        <input id="timeInput" type="number" class="form-control" aria-label="Time to work" aria-describedby="basic-addon2" value="60" required>
+                        <small id="timeHelp" class="form-text text-muted">Set time in minutes.</small>
                     </div>
                 </div>
                 <div class="modal-footer">
