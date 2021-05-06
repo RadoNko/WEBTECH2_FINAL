@@ -50,6 +50,14 @@ Router::get("Final/router/exam", "ExamController@getAll");
 
 Router::put("Final/router/exam/toggle/{id}", "ExamController@toggle");
 
+Router::post("Final/router/exam", function () {
+
+    $examController = new ExamController();
+    $input = input()->all();
+
+    $examController->create($input["name"], $input["time"], $input["code"]);
+});
+
 Router::get("Final/router/teacher", "TeacherController@getAll");
 
     // set session based on ip and gps permission

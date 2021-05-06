@@ -3,6 +3,7 @@
 require_once("Database.php");
 require_once("QuestionConnectController.php");
 require_once("QuestionMultipleController.php");
+session_start();
 
 class ExamController
 {
@@ -45,6 +46,23 @@ class ExamController
         }
 
         return json_encode($exam, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
+
+    public function create($name, $time, $code)
+    {
+        try {
+            $sql = "INSERT INTO Exam(name,teacher_fk,code,is_active, time) VALUES (?,?,?,0,?)";
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute([$name, $_SESSION["logged_id"], $code, $time]);
+
+            echo $_SESSION["exam_id"] = $this->conn->lastInsertId();
+            return json_encode($stmnt->fetchAll(PDO::FETCH_ASSOC), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } catch (PDOException $e) {
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage() . "
+                    </div>";
+        }
     }
 
     public function getAll()

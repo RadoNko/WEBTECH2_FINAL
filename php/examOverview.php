@@ -1,5 +1,8 @@
 <?php
 session_start();
+$_SESSION["logged_id"] = 1;
+echo "loggedId: " . $_SESSION["logged_id"] . "<br>";
+echo "testId: " . $_SESSION["test_id"] . "<br>";
 ?>
 
 <!DOCTYPE html>
