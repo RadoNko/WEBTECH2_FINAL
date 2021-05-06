@@ -6,20 +6,20 @@
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="tailwind.css">
-    <link rel="stylesheet" href="mathquill-0.10.1/mathquill.css" />
-    <link rel="stylesheet" href="drawingboard.js/drawingboard.min.css">
+    <link rel="stylesheet" href="../tailwind.css">
+    <link rel="stylesheet" href="../mathquill-0.10.1/mathquill.css" />
+    <link rel="stylesheet" href="../drawingboard.js/drawingboard.min.css">
 </head>
 
 <body class="grid grid-cols-12 bg-gray-200 min-h-screen">
-    <?php include "views/partials/navbar.html" ?>
+    <?php include "partials/navbar.html" ?>
     <main class="col-span-10 flex justify-center pt-10">
-        <?php include "views/partials/debug.test.html" ?>
+        <?php include "partials/debug.test.html" ?>
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="mathquill-0.10.1/mathquill.js"></script>
-    <script src="drawingboard.js/drawingboard.min.js"></script>
+    <script src="../mathquill-0.10.1/mathquill.js"></script>
+    <script src="../drawingboard.js/drawingboard.min.js"></script>
     <script>
         let MQ = MathQuill.getInterface(2);
     </script>

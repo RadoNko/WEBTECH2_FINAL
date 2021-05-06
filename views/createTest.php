@@ -27,6 +27,30 @@
             display: inline;
         }
 
+        form{
+            counter-reset: choices;
+        }
+        [id^="answersMultiple"] > label::before{
+            @apply font-semibold;
+            position: absolute;
+            transform: translate(-100%);
+            padding-right: 0.5rem;
+            content: counter(choices, lower-alpha) ")";
+            counter-increment: choices;
+        }
+
+        form{
+            counter-reset: options;
+        }
+        [id^="answersMultiple"] > label::before{
+            @apply font-semibold;
+            position: absolute;
+            transform: translate(-100%);
+            padding-right: 0.5rem;
+            content: counter(options, lower-alpha) ")";
+            counter-increment: options;
+        }
+
     </style>
 
 </head>
@@ -37,8 +61,9 @@
         <div class="sticky top-0 p-4 z-10 bg-gray-100 border border-gray-200">
             <button type="button" class="green-button" id="addQuestionMultiple" onclick="addQuestionMultiple()">Add question with multiple choices</button>
             <button type="button" class="green-button" id="addQuestionConnect"  onclick="addQuestionConnect()">Add question with pairs</button>
-            <button type="button" class="green-button" id="addQuestionConnect"  onclick="addDrawingQuestion()">Add drawing Question</button>
-            <button type="button" class="green-button" id="addQuestionConnect"  onclick="addMathQuestion()">Add math Question</button>
+            <button type="button" class="green-button" id="addQuestionDrawing"  onclick="addDrawingQuestion()">Add drawing Question</button>
+            <button type="button" class="green-button" id="addQuestionMath"  onclick="addMathQuestion()">Add math Question</button>
+            <button type="button" class="green-button" id="addQuestionText"  onclick="addQuestionText()">Add text Question</button>
 
             <button type="button" class="purple-button" id="submitQuestionConnect" onclick="submitTest()">Submit test</button>
         </div>
@@ -58,5 +83,6 @@
     <script src="../js/addDrawingQuestion.js"></script>
     <script src="../mathquill-0.10.1/mathquill.js"></script>
     <script src="../js/addMathQuestion.js"></script>
+    <script src="../js/questionText.js"></script>
 </body>
 </html>

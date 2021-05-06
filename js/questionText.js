@@ -60,7 +60,7 @@ function addQuestionText(){
 
     let questionType = "questionTypeText";
 
-    let questions = document.getElementById("mainQuestionDiv");
+    let questions = document.getElementById("questionContainer");
 
     let questionTypeNumber = getQuestionNumber(questionType);
     console.log(questionType+questionTypeNumber);
@@ -68,9 +68,11 @@ function addQuestionText(){
     // add new question to question container
     questions.insertAdjacentHTML('beforeend', `<form id='` + questionType + questionTypeNumber +`' >
                                     <div class="form-group">                                        
-                                        <h4>Question</h4>
-                                        <textarea id="questionText" name="questionText" placeholder="Question is..."></textarea><br>
-                                        <h4>Points</h4> 
+                                        <h3>Text Question</h3>
+                                        <label for="questionText">Question</label>
+                                        <textarea id="questionText" name="questionText" placeholder="Question is..."></textarea>
+                                        
+                                        <label>Points</label> 
                                         <input type="number" name="questionPoints" min="1" step="1">
                                         <button type="button" class="btn btn-danger" value='` + questionType + questionTypeNumber +`' onclick='deleteQuestion(this.value)'>Delete</button>
 
