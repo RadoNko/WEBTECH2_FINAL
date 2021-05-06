@@ -56,7 +56,7 @@ class ExamController
             $stmnt = $this->conn->prepare($sql);
             $stmnt->execute([$name, $_SESSION["logged_id"], $code, $time]);
 
-            echo $_SESSION["exam_id"] = $this->conn->lastInsertId();
+            $_SESSION["exam_id"] = $this->conn->lastInsertId();
             return json_encode($stmnt->fetchAll(PDO::FETCH_ASSOC), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         } catch (PDOException $e) {
             echo "<div class='alert alert-danger' role='alert'>
