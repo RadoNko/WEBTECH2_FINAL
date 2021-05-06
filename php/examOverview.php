@@ -64,7 +64,7 @@ echo "examId: " . $_SESSION["exam_id"] . "<br>";
                     <div class="form-group">
                         <label for="timeInput">Time to work</label>
                         <input id="timeInput" type="number" class="form-control" aria-label="Time to work" aria-describedby="basic-addon2" value="60" required>
-                        <small id="timeHelp" class="form-text text-muted">Set time in minutes.</small>
+                        <small id="timeHelp" class="form-text text-muted">Set time in minutes between 1 and 1660.</small>
                     </div>
                 </div>
                 <div class="modal-footer">

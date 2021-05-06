@@ -100,26 +100,19 @@ $(document).ready(function () {
 
   // validation of inputs, do not allow empty
   $("#timeInput").on("input", function (e) {
-    if ($(this).val().length > 0 && $("#nameInput").val().length > 0) {
-      // do not allow exam with existing name
-      if (
-        existingExams.find((exam) => exam.name == $("#nameInput").val()) ==
-        undefined
-      ) {
-        $("#createExamButton").prop("disabled", false);
-        $("#nameHelp").hide();
-      } else {
-        $("#createExamButton").prop("disabled", true);
-        $("#nameHelp").show();
-      }
-    } else {
-      $("#createExamButton").prop("disabled", true);
+    if ($("#timeInput").val() > 1660) {
+      $("#timeInput").val(1660);
+    } else if ($("#timeInput").val() < 1) {
+      $("#timeInput").val(1);
     }
   });
 
   // validation of inputs, do not allow empty
   $("#nameInput").on("input", function (e) {
-    if ($(this).val().length > 0 && $("#timeInput").val().length > 0) {
+    if ($("#nameInput").val().length == 0) {
+      $("#createExamButton").prop("disabled", true);
+      $("#nameHelp").show();
+    } else if ($(this).val().length > 0 && $("#timeInput").val().length > 0) {
       // do not allow exam with existing name
       if (
         existingExams.find((exam) => exam.name == $(this).val()) == undefined
