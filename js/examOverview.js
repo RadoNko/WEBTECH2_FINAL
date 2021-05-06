@@ -94,7 +94,25 @@ $(document).ready(function () {
     $("#createExamModal").modal("show");
   });
 
-  $("#createExamButton").click(function () {
+  // validation of inputs, do not allow empty
+  $("#timeInput").on("input", function (e) {
+    if ($(this).val().length > 0 && $("#nameInput").val().length > 0) {
+      $("#createExamButton").prop("disabled", false);
+    } else {
+      $("#createExamButton").prop("disabled", true);
+    }
+  });
+
+  // validation of inputs, do not allow empty
+  $("#nameInput").on("input", function (e) {
+    if ($(this).val().length > 0 && $("#timeInput").val().length > 0) {
+      $("#createExamButton").prop("disabled", false);
+    } else {
+      $("#createExamButton").prop("disabled", true);
+    }
+  });
+
+  $("#createExamButton").click(function (e) {
     console.log("test");
   });
 });
