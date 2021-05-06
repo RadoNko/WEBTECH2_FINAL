@@ -32223,6 +32223,34 @@ form:nth-child(even){
   border-radius: 0.25rem;
 }
 
+.form-control{
+  display: block;
+}
+
+.form-check-inline {
+  display: inline;
+}
+
+form{
+  counter-reset: choices pairs;
+}
+
+[id^="answersMultiple"] > label::before{
+  position: absolute;
+  transform: translate(-100%);
+  padding-right: 0.5rem;
+  content: counter(choices, lower-alpha) ")";
+  counter-increment: choices;
+}
+
+[id^="answersPairs"] > .form-row::before{
+  position: absolute;
+  transform: translate(-100%);
+  padding-right: 0.5rem;
+  content: counter(pairs) ":";
+  counter-increment: pairs;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

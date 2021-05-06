@@ -14,42 +14,6 @@
     <link rel="stylesheet" href="../mathquill-0.10.1/mathquill.css"/>
 
     <style>
-        /*.form-check-inline:before {*/
-        /*    content: "\A";*/
-        /*    white-space: pre;*/
-        /*}*/
-
-        .form-control{
-            display: block;
-        }
-
-        .form-check-inline {
-            display: inline;
-        }
-
-        form{
-            counter-reset: choices;
-        }
-        [id^="answersMultiple"] > label::before{
-            @apply font-semibold;
-            position: absolute;
-            transform: translate(-100%);
-            padding-right: 0.5rem;
-            content: counter(choices, lower-alpha) ")";
-            counter-increment: choices;
-        }
-
-        form{
-            counter-reset: options;
-        }
-        [id^="answersMultiple"] > label::before{
-            @apply font-semibold;
-            position: absolute;
-            transform: translate(-100%);
-            padding-right: 0.5rem;
-            content: counter(options, lower-alpha) ")";
-            counter-increment: options;
-        }
 
     </style>
 

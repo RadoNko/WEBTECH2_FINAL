@@ -77,9 +77,9 @@ function addQuestionText(){
                                         <button type="button" class="btn btn-danger" value='` + questionType + questionTypeNumber +`' onclick='deleteQuestion(this.value)'>Delete</button>
 
                                     </div>
-                                    <h4>Correct answer</h4>
-                                    <div id="answersMultiple`+ questionTypeNumber +`" class="form-group">
-        
+                                    
+                                    <div id="answersText`+ questionTypeNumber +`" class="form-group">
+                                        <label>Correct answer</label>
                                         <input type="text" name="answer`+ questionTypeNumber +`Text1" class="form-control" placeholder="Answer is...">
                                         
                                     </div>
