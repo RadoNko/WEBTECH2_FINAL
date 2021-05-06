@@ -181,3 +181,10 @@ form{
     content: counter(pairs) ":";
     counter-increment: pairs;
 }
+
+.col{
+    display: inline;
+}
+.col input{
+    display: inline;
+}

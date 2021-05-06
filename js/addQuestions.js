@@ -100,42 +100,42 @@ function addAnswerQuestionMultiple(number) {
   );
 }
 
-function submitQuestionMultiple(id) {
-  let form = $("#" + id).serializeArray();
-
-  let data = {};
-  data["question"] = form[0].value;
-  data["points"] = form[1].value;
-
-  let answers = [];
-  let answer = {};
-
-  // 0, 1 are question text and points (don't want those here)
-  for (i = 2; i < form.length; i++) {
-    if (i % 2 == 0) {
-      answer.correct = form[i].value;
-    } else {
-      answer.name = form[i].value;
-      answers.push(answer);
-      answer = {};
-    }
-  }
-
-  data["answers"] = answers;
-
-  let origin = $(location).attr("origin");
-
-  /*$.ajax({
-        method: "POST",
-        url: origin + "/Final/router/question/multiple",
-        data: data,
-        dataType: "text",
-        success: function(data){
- 
-            console.log(data);
-        }
-    });*/
-}
+// function submitQuestionMultiple(id) {
+//   let form = $("#" + id).serializeArray();
+//
+//   let data = {};
+//   data["question"] = form[0].value;
+//   data["points"] = form[1].value;
+//
+//   let answers = [];
+//   let answer = {};
+//
+//   // 0, 1 are question text and points (don't want those here)
+//   for (i = 2; i < form.length; i++) {
+//     if (i % 2 == 0) {
+//       answer.correct = form[i].value;
+//     } else {
+//       answer.name = form[i].value;
+//       answers.push(answer);
+//       answer = {};
+//     }
+//   }
+//
+//   data["answers"] = answers;
+//
+//   let origin = $(location).attr("origin");
+//
+//   /*$.ajax({
+//         method: "POST",
+//         url: origin + "/Final/router/question/multiple",
+//         data: data,
+//         dataType: "text",
+//         success: function(data){
+//
+//             console.log(data);
+//         }
+//     });*/
+// }
 
 function addQuestionConnect() {
   let questionType = "questionTypeConnect";
@@ -217,64 +217,64 @@ function addQuestionConnectPair(number) {
   );
 }
 
-function submitQuestionConnect(id) {
-  let form = $("#" + id).serializeArray();
+// function submitQuestionConnect(id) {
+//   let form = $("#" + id).serializeArray();
+//
+//   let data = {};
+//   data["question"] = form[0].value;
+//   //data["points"] = form[1].value;
+//
+//   let pairs = [];
+//   let pair = {};
+//
+//   // 0 is question text (don't want this here)
+//   for (i = 1; i < form.length; i++) {
+//     if (i % 2 !== 0) {
+//       pair.question = form[i].value;
+//     } else {
+//       pair.answer = form[i].value;
+//       pairs.push(pair);
+//       pair = {};
+//     }
+//   }
+//
+//   data["pairs"] = pairs;
+//
+//   let origin = $(location).attr("origin");
+//
+//   //console.log(data);
+//
+//   /*$.ajax({
+//         method: "POST",
+//         url: origin + "/Final/router/question/connect",
+//         data: data,
+//         dataType: "text",
+//         success: function(data){
+//
+//             console.log(data);
+//         }
+//     });*/
+// }
 
-  let data = {};
-  data["question"] = form[0].value;
-  //data["points"] = form[1].value;
-
-  let pairs = [];
-  let pair = {};
-
-  // 0 is question text (don't want this here)
-  for (i = 1; i < form.length; i++) {
-    if (i % 2 !== 0) {
-      pair.question = form[i].value;
-    } else {
-      pair.answer = form[i].value;
-      pairs.push(pair);
-      pair = {};
-    }
-  }
-
-  data["pairs"] = pairs;
-
-  let origin = $(location).attr("origin");
-
-  //console.log(data);
-
-  /*$.ajax({
-        method: "POST",
-        url: origin + "/Final/router/question/connect",
-        data: data,
-        dataType: "text",
-        success: function(data){
-          
-            console.log(data);
-        }
-    });*/
-}
-
-// checks for question types in test and sends each question to its submit function
-function submitTest() {
-  let questionTypeConnectIds = $("[id^='questionTypeConnect']");
-  let questionTypeMultipleIds = $("[id^='questionTypeMultiple']");
-
-  if (questionTypeConnectIds.length > 0) {
-    questionTypeConnectIds.each(function () {
-      submitQuestionConnect(this.id);
-    });
-  }
-
-  if (questionTypeMultipleIds.length > 0) {
-    questionTypeMultipleIds.each(function () {
-      submitQuestionMultiple(this.id);
-    });
-  }
-
-  resetArea();
-}
+// // checks for question types in test and sends each question to its submit function
+// function submitTest() {
+//   let questionTypeConnectIds = $("[id^='questionTypeConnect']");
+//   let questionTypeMultipleIds = $("[id^='questionTypeMultiple']");
+//
+//   if (questionTypeConnectIds.length > 0) {
+//     questionTypeConnectIds.each(function () {
+//       submitQuestionConnect(this.id);
+//     });
+//   }
+//
+//   if (questionTypeMultipleIds.length > 0) {
+//     questionTypeMultipleIds.each(function () {
+//       submitQuestionMultiple(this.id);
+//     });
+//   }
+//
+//   resetArea();
+// }
 
 function getQuestionNumber(questionType) {
   // get the id last questionType present in questionContainer
@@ -297,10 +297,10 @@ function deleteQuestion(id) {
   $("#" + id).remove();
 }
 
-function resetArea() {
-  // show all available question buttons
-  $("button[id^='add']").show();
-
-  // clear question container
-  $("#questionContainer").html("");
-}
+// function resetArea() {
+//   // show all available question buttons
+//   $("button[id^='add']").show();
+//
+//   // clear question container
+//   $("#questionContainer").html("");
+// }

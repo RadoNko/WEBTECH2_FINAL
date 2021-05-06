@@ -91,55 +91,55 @@ function addQuestionText(){
 
 
 
-function submitQuestionText(id){
-
-    let form = $("#"+id).serializeArray();
-
-    let data = {};
-    data["question"] = form[0].value;
-    data["points"] = form[1].value;
-    // console.log("question "+form[0].value);
-    // console.log("points "+form[1].value);
-    // console.log("answer "+form[2].value);
-
-
-    // let answers = [];
-    let question={
-        "question":form[0].value,
-        "answer":form[2].value,
-        "points":form[1].value,
-        "exam":"QuestionTypeText"
-    }
-
-    $.ajax({
-        method: "POST",
-        url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/question/addNewQuestionText",
-        data: question,
-        success: function(data){
-            console.log("som spat"+data);
-            resetArea();
-        }
-    });
-}
+// function submitQuestionText(id){
+//
+//     let form = $("#"+id).serializeArray();
+//
+//     let data = {};
+//     data["question"] = form[0].value;
+//     data["points"] = form[1].value;
+//     // console.log("question "+form[0].value);
+//     // console.log("points "+form[1].value);
+//     // console.log("answer "+form[2].value);
+//
+//
+//     // let answers = [];
+//     let question={
+//         "question":form[0].value,
+//         "answer":form[2].value,
+//         "points":form[1].value,
+//         "exam":"QuestionTypeText"
+//     }
+//
+//     $.ajax({
+//         method: "POST",
+//         url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/question/addNewQuestionText",
+//         data: question,
+//         success: function(data){
+//             console.log("som spat"+data);
+//             resetArea();
+//         }
+//     });
+// }
 
 
 // checks for question types in test and sends each question to its submit function
-function submitTest(){
-
-    let questionTypeTextIds = $("[id^='questionTypeText']");
-
-
-    if(questionTypeTextIds.length > 0){
-
-        questionTypeTextIds.each(function(){
-            console.log("id: "+this.id);
-            submitQuestionText(this.id);
-        })
-    }
-
-
-    resetArea();
-}
+// function submitTest(){
+//
+//     let questionTypeTextIds = $("[id^='questionTypeText']");
+//
+//
+//     if(questionTypeTextIds.length > 0){
+//
+//         questionTypeTextIds.each(function(){
+//             console.log("id: "+this.id);
+//             submitQuestionText(this.id);
+//         })
+//     }
+//
+//
+//     resetArea();
+// }
 
 function getQuestionNumber(questionType){
 
@@ -164,11 +164,11 @@ function deleteQuestion(id){
     $("#"+id).remove();
 }
 
-function resetArea(){
-
-    // show all available question buttons
-    $("button[id^='add']").show();
-
-    // clear question container
-    $("#mainQuestionDiv").html("");
-}
+// function resetArea(){
+//
+//     // show all available question buttons
+//     $("button[id^='add']").show();
+//
+//     // clear question container
+//     $("#mainQuestionDiv").html("");
+// }

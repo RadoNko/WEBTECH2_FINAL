@@ -32251,6 +32251,14 @@ form{
   counter-increment: pairs;
 }
 
+.col{
+  display: inline;
+}
+
+.col input{
+  display: inline;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
