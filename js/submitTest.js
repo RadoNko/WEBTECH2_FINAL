@@ -160,7 +160,7 @@ function submitQuestionConnect(id) {
 
     //console.log(data);
 
-    /*$.ajax({
+    $.ajax({
           method: "POST",
           url: origin + "/Final/router/question/connect",
           data: data,
@@ -169,7 +169,7 @@ function submitQuestionConnect(id) {
 
               console.log(data);
           }
-      });*/
+      });
 }
 
 //kovacik
@@ -198,16 +198,15 @@ function submitQuestionMultiple(id) {
 
     let origin = $(location).attr("origin");
 
-    /*$.ajax({
+    $.ajax({
           method: "POST",
           url: origin + "/Final/router/question/multiple",
           data: data,
           dataType: "text",
           success: function(data){
-
               console.log(data);
           }
-      });*/
+      });
 }
 
 

@@ -1,8 +1,11 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-require_once("../controller/QuestionText.php");
-require_once("../controller/Teacher.php");
-require_once("../controller/Student.php");
+require_once("../controllers/QuestionText.php");
+require_once("../controllers/Teacher.php");
+require_once("../controllers/Student.php");
 
 require_once("../controllers/QuestionMultipleController.php");
 require_once("../controllers/QuestionConnectController.php");

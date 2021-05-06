@@ -49,5 +49,6 @@
     <script src="../mathquill-0.10.1/mathquill.js"></script>
     <script src="../js/addMathQuestion.js"></script>
     <script src="../js/questionText.js"></script>
+    <script src="../js/submitTest.js" ></script>
 </body>
 </html>
