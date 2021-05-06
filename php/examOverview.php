@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,7 +31,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="toggleExamApprovalBody">
+                <div class="modal-body">
                     <p id="toggleExamBody">Modal body text goes here.</p>
                 </div>
                 <div class="modal-footer">
@@ -41,17 +45,19 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createExamTitle"></h5>
+                    <h5 class="modal-title">Create Exam</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" id="toggleExamApprovalBody">
-                    <p id="createExamBody">Modal body text goes here.</p>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Exam title" aria-label="Exam title" aria-describedby="basic-addon2">
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="createExamButton">Save changes</button>
+                    <button type="button" class="btn btn-primary" id="createExamButton">Create</button>
                 </div>
             </div>
         </div>

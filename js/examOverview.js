@@ -38,6 +38,7 @@ $(document).ready(function () {
       });
     },
   });
+
   // Action to show modal on activity button click
   $(document).on("click", ".activity-button", function () {
     let active = $(this).text() == "active" ? "active" : "inactive";
@@ -87,5 +88,13 @@ $(document).ready(function () {
         $("#toggleExamModal").modal("hide");
       },
     });
+  });
+
+  $("#addNewExamButton").click(function () {
+    $("#createExamModal").modal("show");
+  });
+
+  $("#createExamButton").click(function () {
+    console.log("test");
   });
 });
