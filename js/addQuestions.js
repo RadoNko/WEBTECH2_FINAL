@@ -9,7 +9,6 @@ function addQuestionMultiple(){
     // add new question to question container
     questions.insertAdjacentHTML('beforeend', `<form id='` + questionType + questionTypeNumber +`' >
                                     <div class="form-group">
-                                        <hr>
                                         <h3>Multiple Answer Question</h3>
                                         <label for="questionText">Question</label>
                                         <textarea id="questionText" name="questionText" placeholder="Your question"></textarea>
@@ -118,7 +117,6 @@ function addQuestionConnect(){
     // add new question to question container
     questions.insertAdjacentHTML('beforeend', `<form id='` + questionType + questionTypeNumber +`' >
                                         <div class="form-group">
-                                            <hr>
                                             <h3>Connect Question</h3>
                                             <label for="questionText">Question</label>
                                             <textarea id="questionText" name="questionText" placeholder="Your question"></textarea>

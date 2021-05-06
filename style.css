@@ -5,6 +5,25 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+body{
+    counter-reset: form;
+}
+form{
+    padding: 1rem 5rem;
+}
+
+form::before{
+    @apply font-semibold;
+    position: absolute;
+    transform: translate(-100%);
+    padding-right: 1.5rem;
+    content: counter(form) ")";
+    counter-increment: form;
+}
+form:nth-child(even){
+   @apply bg-gray-200;
+}
+
 .logoColourText{
     color: #17CF97;;
 }
@@ -13,9 +32,46 @@
     background-color: #17CF97;;
 }
 
-.myButtonStyle{
+
+
+.inputStyle{
+    @apply border-2;
+    @apply border-gray-400;
+    @apply bg-gray-200;
+    @apply rounded;
+    @apply mb-0.5;
+    @apply hover:bg-gray-100;
+    @apply hover:shadow-sm;
+    @apply focus:bg-gray-100;
+    @apply focus:shadow-sm;
+}
+
+.a4-width{
+    width: 21cm;
+}
+
+.a4-height{
+    height: 29.7cm;
+}
+
+.form-group h3{
+    @apply font-semibold;
+}
+
+.form-group textarea,
+.math-answer{
+    @apply inputStyle;
+    display: block;
+    width: 100%;
+}
+.form-group input{
+    @apply inputStyle;
+}
+
+.green-button{
     background-color: #17CF97;
     @apply hover:bg-green-700;
+    @apply focus:bg-green-700;
     @apply text-white;
     @apply font-bold;
     @apply py-1;
@@ -25,10 +81,78 @@
     @apply rounded;
 }
 
-.a4-width{
-    width: 21cm;
+.green-button-small{
+    background-color: #17CF97;
+    @apply text-sm;
+    @apply hover:bg-green-700;
+    @apply focus:bg-green-700;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-0.5;
+    @apply px-1;
+    @apply border;
+    @apply border-green-700;
+    @apply rounded;
 }
 
-.a4-height{
-    height: 29.7cm;
+.red-button{
+    @apply bg-red-500;
+    @apply hover:bg-red-700;
+    @apply focus:bg-red-700;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-1;
+    @apply px-2;
+    @apply border;
+    @apply border-red-700;
+    @apply rounded;
+}
+
+.red-button-small{
+    @apply bg-red-500;
+    @apply text-sm;
+    @apply hover:bg-red-700;
+    @apply focus:bg-red-700;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-0.5;
+    @apply px-1;
+    @apply border;
+    @apply border-red-700;
+    @apply rounded;
+}
+
+.btn-danger{
+    @apply red-button-small;
+}
+
+.purple-button{
+    @apply bg-purple-500;
+    @apply hover:bg-purple-700;
+    @apply focus:bg-purple-700;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-1;
+    @apply px-2;
+    @apply border;
+    @apply border-purple-700;
+    @apply rounded;
+}
+
+.purple-button-small{
+    @apply bg-purple-500;
+    @apply text-sm;
+    @apply hover:bg-purple-700;
+    @apply focus:bg-purple-700;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-0.5;
+    @apply px-1;
+    @apply border;
+    @apply border-purple-700;
+    @apply rounded;
+}
+
+.btn-info{
+    @apply purple-button-small;
 }

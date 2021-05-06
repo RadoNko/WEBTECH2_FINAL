@@ -9,7 +9,6 @@ function addMathQuestion(){
     // add new question to question container
     questions.insertAdjacentHTML('beforeend', `<form id='` + questionType + questionTypeNumber +`' >
                                     <div class="form-group">
-                                        <hr>
                                         <h3>Math Question</h3>
                                         <label for="questionText">Question</label>
                                         <span class="math-answer" id="answer-2"></span> <!--span as input for rendering math expressions-->
