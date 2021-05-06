@@ -13,7 +13,7 @@ $(document).ready(function () {
           let items = [];
           $.each(data, function (key, val) {
             let active = val["is_active"] == 0 ? "active" : "inactive";
-            let teacher = teachers.find((t) => t.id === val["id"]);
+            let teacher = teachers.find((t) => t.id === val["teacher_fk"]);
             let teacherName = teacher ? teacher.username : "undefined";
             items.push(
               "<li class='list-group-item list-group-item-action' id='" +
@@ -113,6 +113,18 @@ $(document).ready(function () {
   });
 
   $("#createExamButton").click(function (e) {
-    console.log("test");
+    let data = {};
+    data["name"] = $("#nameInput").val();
+    data["time"] = $("#timeInput").val();
+    data["code"] = Math.random().toString(36).substring(2, 7);
+    $.ajax({
+      method: "POST",
+      url: origin + "/Final/router/exam",
+      data: data,
+      dataType: "json",
+      success: function (response) {
+        $("#createExamModal").modal("hide");
+      },
+    });
   });
 });
