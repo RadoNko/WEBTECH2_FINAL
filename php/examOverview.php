@@ -1,8 +1,10 @@
 <?php
 session_start();
+// TODO this is only testing code, remove if not needed
 $_SESSION["logged_id"] = 1;
 echo "loggedId: " . $_SESSION["logged_id"] . "<br>";
 echo "examId: " . $_SESSION["exam_id"] . "<br>";
+// END
 ?>
 
 <!DOCTYPE html>

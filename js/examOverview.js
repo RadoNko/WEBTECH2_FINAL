@@ -146,6 +146,7 @@ $(document).ready(function () {
       data: data,
       dataType: "json",
       success: function (response) {
+        // TODO redirect to proper exam creation site
         $("#createExamModal").modal("hide");
       },
     });
