@@ -64,7 +64,6 @@ class QuestionMathController{
                 $questionId = $this->insertQuestion($data["question"], $examId, $data["points"]);
             }
         }
-        $questionId =999999999;
         return json_encode($questionId);
     }
 }

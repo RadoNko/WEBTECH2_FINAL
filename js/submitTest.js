@@ -48,24 +48,14 @@ function submitQuestionMath(id){
     let data = {};
     data["points"] = form[0].value;
     data["question"] = form[1].value;
-    // console.log("question "+form[0].value);
-    // console.log("points "+form[1].value);
-    // console.log("answer "+form[2].value);
 
-
-    // let answers = [];
     let question={
         "question":form[0].value,
         "points":form[1].value,
         "exam":"QuestionTypeMath"
     }
-    console.log("data: ", data)
-    console.log("question :", question)
 
-
-    let origin = $(location).attr("origin");
-
-    //console.log(data);
+    const origin = $(location).attr("origin");
 
     $.ajax({
         method: "POST",
@@ -73,7 +63,6 @@ function submitQuestionMath(id){
         data: data,
         dataType: "text",
         success: function(data){
-
             console.log(data);
         }
     });
