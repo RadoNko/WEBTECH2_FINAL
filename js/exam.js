@@ -68,6 +68,52 @@ function renderQuestionTypeMultiple(question, answers) {
     );
   });
 }
+function renderQuestionTypeMath(question, answers){
+  const exam = document.getElementById("examContainer");
+  const questionType = "questionTypeMath";
+
+  // this is the ID from db; it will be extracted upon test submit
+  let questionTypeNumber = answers["id"];
+  exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
+                                    <div class="form-group">
+                                        <p><span class="math-expression">` + question + `</span></p>
+                                    </div>
+                                    <div id="answersMath`+ questionTypeNumber +`" class="form-group">
+                                        
+                                    </div>
+                                </form>
+                                `);
+  const answersContainer = document.getElementById("answersMath" + questionTypeNumber);
+  answersContainer.insertAdjacentHTML('beforeend', `<div class="form-check">
+                                                                    <span class="math-answer" id="answer-2"></span> <!--span as input for rendering math expressions-->
+                                                                    <input type="hidden" name="answer" value='' class="form-check-input"> <!--have to be last child of thid div element-->
+                                                                 </div>
+            
+    
+                                             `)
+  const MQ = MathQuill.getInterface(2);
+
+  //render static math fields //TODO bad preformance due to looping through already rendered fields
+  const mathExpressions = document.getElementsByClassName('math-expression')
+  for (const expression of mathExpressions){
+    MQ.StaticMath(expression)
+  }
+
+  //init answer math field
+  const answerSpans = answersContainer.getElementsByClassName('math-answer')
+  for (const span of answerSpans){
+    const answerMathField = MQ.MathField(span,{
+      handlers: {
+        edit: function() {
+          let enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
+          const questionInput = span.parentElement.lastElementChild;
+          questionInput.value = enteredMath;
+        }
+      }
+    })
+  }
+}
+
 
 function renderQuestionTypeConnect(question, data) {
   let exam = document.getElementById("examContainer");

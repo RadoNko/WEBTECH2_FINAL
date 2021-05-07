@@ -6,19 +6,19 @@ error_reporting(E_ALL);
 require_once "Database.php";
 
 class QuestionMathController{
-    public $connection;
+    private PDO $conn;
 
-    function __construct() {
-        $this->connection=(new Database())->getConnection();
+    public function __construct(){
+        $this->conn = (new Database())->getConnection();
     }
 
     private function insertQuestion($name, $exam, $maxPoints){
         try{
             $sql = "INSERT INTO QuestionTypeMath(name, exam_fk, max_points) VALUES(?,?,?)";
-            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stm = $this->connection->prepare($sql);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stm = $this->conn->prepare($sql);
             $stm->execute([$name, $exam, $maxPoints]);
-            return $this->connection->lastInsertId();
+            return $this->conn->lastInsertId();
 
         }
         catch(PDOException $e){
