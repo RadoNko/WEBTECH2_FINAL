@@ -7,6 +7,7 @@ require_once("Database.php");
 require_once("QuestionConnectController.php");
 require_once("QuestionMultipleController.php");
 require_once("QuestionMathController.php");
+require_once("QuestionDrawingController.php");
 
 class ExamController
 {
@@ -40,7 +41,11 @@ class ExamController
 
         //fullajtar
         $questionMathController = new QuestionMathController();
+        $questionDrawingController = new QuestionDrawingController();
+
         $questionsMath = $questionMathController->getExamQuestions($examId);
+        $questionsDrawing = $questionDrawingController->getExamQuestions($examId);
+
 
         if (!empty($questionsConnect)) {
 
@@ -56,6 +61,13 @@ class ExamController
 
             $exam["QuestionTypeMath"] = $questionsMath;
         }
+
+        if (!empty($questionsDrawing)) { //fullajtar
+
+            $exam["QuestionTypeDrawing"] = $questionsDrawing;
+        }
+
+
 
         return json_encode($exam, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }

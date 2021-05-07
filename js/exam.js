@@ -9,7 +9,7 @@ $(document).ready(function () {
     url: origin + "/Final/router/exam/" + examId,
     dataType: "json",
     success: function (data) {
-      console.log("AHOJsuccess");
+      console.log("AHOJsuccess: ", data);
 
       $.each(data, function (questionType, questions) {
         $.each(questions, function (question, answers) {
@@ -20,6 +20,49 @@ $(document).ready(function () {
     },
   });
 });
+
+function renderQuestionTypeDrawing(question, answers){
+  const exam = document.getElementById("examContainer");
+  const questionType = "questionTypeDrawing";
+
+  // this is the ID from db; it will be extracted upon test submit
+  let questionTypeNumber = answers["id"];
+  exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
+                                    <div class="form-group">
+                                        <p>` + question + `</p>
+                                    </div>
+                                    <div id="answersMath`+ questionTypeNumber +`" class="form-group">
+                                        
+                                    </div>
+                                </form>
+                                `);
+  const answersContainer = document.getElementById("answersMath" + questionTypeNumber);
+  answersContainer.insertAdjacentHTML('beforeend', `<div class="form-check">
+                                                                    <div class="w-full h-96" id='answer`+ questionType + questionTypeNumber +`'></div>
+                                                                 </div>
+            
+    
+                                             `)
+
+  //init drawingBoard
+  var myBoard = new DrawingBoard.Board('answer'+ questionType + questionTypeNumber);
+  $('.drawing-form').on('submit', function(e) {
+    //get drawingboard content
+    var img = myBoard.getImg();
+
+    //we keep drawingboard content only if it's not the 'blank canvas'
+    var imgInput = (myBoard.blankCanvas == img) ? '' : img;
+
+    //put the drawingboard content in the form field to send it to the server
+    $(this).find('input[name=image]').val(imgInput);
+
+    //we can also assume that everything goes well server-side
+    //and directly clear webstorage here so that the drawing isn't shown again after form submission
+    //but the best would be to do when the server answers that everything went well
+    myBoard.clearWebStorage();
+
+  });
+}
 
 function renderQuestionTypeMultiple(question, answers) {
   let exam = document.getElementById("examContainer");

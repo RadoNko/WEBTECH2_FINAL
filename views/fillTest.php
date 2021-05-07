@@ -8,6 +8,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="../tailwind.css">
     <link rel="stylesheet" href="../mathquill-0.10.1/mathquill.css"/>
+    <link rel="stylesheet" href="../drawingboard.js/drawingboard.min.css">
+    <style>
+    </style>
 
 </head>
 <body class="grid grid-cols-12 bg-gray-200 min-h-screen">
@@ -24,6 +27,8 @@
 
 
     <script src="../mathquill-0.10.1/mathquill.js"></script>
+    <script src="../drawingboard.js/drawingboard.min.js"></script>
+
     <script src="../js/exam.js"></script>
     <script src="../js/initializeMathFields.js"></script>
 </body>
