@@ -38,4 +38,40 @@ class QuestionMathController{
         }
         return json_encode($questionId);
     }
+
+    private function findExamQuestions($examId){
+
+        try{
+
+            $sql = "SELECT id, name AS 'question'
+                    FROM QuestionTypeMath
+                    WHERE exam_fk = ?";
+
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute([$examId]);
+
+            return $stmnt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $e){
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage()."
+                    </div>";
+        }
+
+    }
+
+    public function getExamQuestions($examId){
+
+        $questions = $this->findExamQuestions($examId);
+
+        // questions with options (left side) and answers (right side)
+        $data = [];
+
+        foreach($questions as $question){
+            $data[$question["question"]]["id"] = $question["id"];
+        }
+
+        return $data;
+    }
 }

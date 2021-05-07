@@ -1,8 +1,12 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 require_once("Database.php");
 require_once("QuestionConnectController.php");
 require_once("QuestionMultipleController.php");
+require_once("QuestionMathController.php");
 
 class ExamController
 {
@@ -34,6 +38,10 @@ class ExamController
         $questionsConnect = $questionConnectController->getExamQuestions($examId);
         $questionsMultiple = $questionMultipleController->getExamQuestions($examId);
 
+        //fullajtar
+        $questionMathController = new QuestionMathController();
+        $questionsMath = $questionMathController->getExamQuestions($examId);
+
         if (!empty($questionsConnect)) {
 
             $exam["QuestionTypeConnect"] = $questionsConnect;
@@ -42,6 +50,11 @@ class ExamController
         if (!empty($questionsMultiple)) {
 
             $exam["QuestionTypeMultiple"] = $questionsMultiple;
+        }
+
+        if (!empty($questionsMath)) { //fullajtar
+
+            $exam["QuestionTypeMath"] = $questionsMath;
         }
 
         return json_encode($exam, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
