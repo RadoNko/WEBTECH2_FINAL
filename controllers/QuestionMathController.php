@@ -56,6 +56,10 @@ class QuestionMathController{
 
     public function addQuestion($data){
 
+        echo "<div class='alert alert-danger' role='alert'>
+                        HERE BYACH!
+                    </div>";
+
        $examId = 1;//TODO //$this->insertExam(1);
 
         foreach($data as $key => $value){
@@ -64,6 +68,7 @@ class QuestionMathController{
                 $questionId = $this->insertQuestion($data["question"], $examId, $data["points"]);
             }
         }
+        $questionId =999999999;
         return json_encode($questionId);
     }
 }

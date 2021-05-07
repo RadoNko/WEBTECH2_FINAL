@@ -26,14 +26,13 @@ function submitTest() {
     }
 
     if(questionTypeMathIds.length > 0){ //fullajtar
-        questionTypeTextIds.each(function(){
-            console.log("id: "+this.id);
+        questionTypeMathIds.each(function(){
             submitQuestionMath(this.id);
         })
     }
 
     if(questionTypeDrawingIds.length > 0){ //fullajtar
-        questionTypeTextIds.each(function(){
+        questionTypeDrawingIds.each(function(){
             console.log("id: "+this.id);
             submitQuestionDrawing(this.id);
         })
@@ -47,8 +46,8 @@ function submitQuestionMath(id){
     let form = $("#"+id).serializeArray();
 
     let data = {};
-    data["question"] = form[0].value;
-    data["points"] = form[1].value;
+    data["points"] = form[0].value;
+    data["question"] = form[1].value;
     // console.log("question "+form[0].value);
     // console.log("points "+form[1].value);
     // console.log("answer "+form[2].value);
@@ -60,12 +59,14 @@ function submitQuestionMath(id){
         "points":form[1].value,
         "exam":"QuestionTypeMath"
     }
-
+    console.log("data: ", data)
+    console.log("question :", question)
     $.ajax({
         method: "POST",
-        url: "",
+        url: "/Final/router/question/math",
         data: question,
         success: function(data){
+            console.log(data)
             resetArea();
         }
     });

@@ -17,7 +17,20 @@ require_once("../controllers/ExamController.php");
 
 require_once("../controllers/TeacherController.php");
 
+require_once("../controllers/QuestionMathController.php");//fullajtar
+
 use Pecee\SimpleRouter\SimpleRouter as Router;
+
+Router::post("Final/router/question/math", function () {
+    var_dump(input()->all());
+    $questionMathController = new QuestionMathController();
+    $input = 1;
+    $input = input()->all();
+    var_dump($input);
+
+    $questionMathController->addQuestion($input);
+
+});
 
 Router::post("Final/router/question/multiple", function () {
 
