@@ -33,7 +33,6 @@ function submitTest() {
 
     if(questionTypeDrawingIds.length > 0){ //fullajtar
         questionTypeDrawingIds.each(function(){
-            console.log("id: "+this.id);
             submitQuestionDrawing(this.id);
         })
     }
@@ -63,7 +62,6 @@ function submitQuestionMath(id){
         data: data,
         dataType: "text",
         success: function(data){
-            console.log(data);
         }
     });
 }
@@ -75,24 +73,21 @@ function submitQuestionDrawing(id){
     let data = {};
     data["question"] = form[0].value;
     data["points"] = form[1].value;
-    // console.log("question "+form[0].value);
-    // console.log("points "+form[1].value);
-    // console.log("answer "+form[2].value);
 
-
-    // let answers = [];
     let question={
         "question":form[0].value,
         "points":form[1].value,
         "exam":"QuestionTypeMath"
     }
 
+    const origin = $(location).attr("origin");
+
     $.ajax({
         method: "POST",
-        url: "",
-        data: question,
+        url: origin + "/Final/router/question/drawing",
+        data: data,
+        dataType: "text",
         success: function(data){
-            resetArea();
         }
     });
 }

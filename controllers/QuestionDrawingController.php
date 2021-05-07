@@ -5,7 +5,7 @@ error_reporting(E_ALL);
 
 require_once "Database.php";
 
-class QuestionMathController{
+class QuestionDrawingController{
     public $connection;
 
     function __construct() {
@@ -13,11 +13,15 @@ class QuestionMathController{
     }
 
     private function insertQuestion($name, $exam, $maxPoints){
+
         try{
-            $sql = "INSERT INTO QuestionTypeMath(name, exam_fk, max_points) VALUES(?,?,?)";
+
+            $sql = "INSERT INTO QuestionTypePicture(name, exam_fk, max_points) VALUES(?,?,?)";
+
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stm = $this->connection->prepare($sql);
             $stm->execute([$name, $exam, $maxPoints]);
+
             return $this->connection->lastInsertId();
 
         }
@@ -26,10 +30,13 @@ class QuestionMathController{
                         Sorry, there was an error. " . $e->getMessage()."
                     </div>";
         }
+
     }
 
     public function addQuestion($data){
-       $examId = 1;//TODO //$this->insertExam(1);
+
+        $examId = 1;//TODO //$this->insertExam(1);
+
         foreach($data as $key => $value){
 
             if($key === "question"){
