@@ -61,13 +61,20 @@ function submitQuestionMath(id){
     }
     console.log("data: ", data)
     console.log("question :", question)
+
+
+    let origin = $(location).attr("origin");
+
+    //console.log(data);
+
     $.ajax({
         method: "POST",
-        url: "/Final/router/question/math",
-        data: question,
+        url: origin + "/Final/router/question/math",
+        data: data,
+        dataType: "text",
         success: function(data){
-            console.log(data)
-            resetArea();
+
+            console.log(data);
         }
     });
 }

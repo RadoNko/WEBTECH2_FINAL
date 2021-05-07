@@ -56,10 +56,6 @@ class QuestionMathController{
 
     public function addQuestion($data){
 
-        echo "<div class='alert alert-danger' role='alert'>
-                        HERE BYACH!
-                    </div>";
-
        $examId = 1;//TODO //$this->insertExam(1);
 
         foreach($data as $key => $value){
