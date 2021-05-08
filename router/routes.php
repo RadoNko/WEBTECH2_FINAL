@@ -26,7 +26,7 @@
         $questionConnectController->insertQuestionAndAnswers($input);
     });
 
-    Router::post("Final/router/exam/insertAnswersMultiple", function(){
+    Router::post("Final/router/exam/answer/multiple", function(){
 
         $answerMultipleController = new AnswerMultipleController();
         $input = input()->all();

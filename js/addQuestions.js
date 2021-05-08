@@ -99,8 +99,7 @@ function submitQuestionMultiple(id){
         data: data,
         dataType: "text",
         success: function(data){
- 
-            console.log(data);
+
         }
     });*/
 }
@@ -173,15 +172,15 @@ function submitQuestionConnect(id){
 
     let data = {};
     data["question"] = form[0].value;
-    //data["points"] = form[1].value;
+    data["points"] = form[1].value;
 
     let pairs = [];
     let pair = {};
 
-    // 0 is question text (don't want this here)
-    for(i = 1; i<form.length; i++){
+    // 0, 1 are question text and points (don't want those here)
+    for(i = 2; i<form.length; i++){
 
-        if(i%2 !==0){
+        if(i%2==0){
             
             pair.question = form[i].value;
         }
@@ -196,16 +195,13 @@ function submitQuestionConnect(id){
 
     let origin = $(location).attr('origin');
 
-    //console.log(data);
-
     /*$.ajax({
         method: "POST",
         url: origin + "/Final/router/question/connect",
         data: data,
         dataType: "text",
         success: function(data){
-          
-            console.log(data);
+
         }
     });*/
 }

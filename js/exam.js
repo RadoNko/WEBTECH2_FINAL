@@ -10,7 +10,7 @@ $(document).ready(function(){
         dataType: "json",
         success: function(data){
           
-            //console.log(data);
+            console.log(data);
 
             $.each(data, function(questionType, questions){
                 $.each(questions, function(question, answers){
@@ -36,6 +36,7 @@ function renderQuestionTypeMultiple(question, answers){
     exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
                                     <div class="form-group">
                                         <p><b>` + question + `</b></p>
+                                        <span>`+ answers["points"] +`</span>
                                     </div>
                                     <div id="answersMultiple`+ questionTypeNumber +`" class="form-group">
                                         
@@ -68,6 +69,7 @@ function renderQuestionTypeConnect(question, data){
     exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
                                             <div class='form-group'>
                                                 <p><b>` + question + `</b></p>
+                                                <span>`+ data["points"] +`</span>
                                             </div>
                                             <div id='answersConnect`+ questionTypeNumber +`' class='form-group'>
                                                 <div class='row'>
@@ -163,7 +165,7 @@ function submitQuestionMultiple(id){
     // CHANGE ! these are dummy values for testing
     data["examId"] = 1;
     data["studentId"] = 1;
-    data["studentExamId"] = 1;
+    data["studentExamId"] = 3;
 
     data["questionId"] = questionId;
 
@@ -182,15 +184,16 @@ function submitQuestionMultiple(id){
 
     let origin = $(location).attr('origin');
 
-    /*$.ajax({
+    $.ajax({
         method: "POST",
-        url: origin + "/Final/router/exam/insertAnswersMultiple",
+        url: origin + "/Final/router/exam/answer/multiple",
         data: data,
         dataType: "text",
         success: function(data){
 
+            console.log(data);
         }
-    });*/
+    });
 }
 
 /*  checks for question types in test and sends each question to its submit function
