@@ -9,9 +9,10 @@ function verifyTestCode(){
         "testCode": document.getElementById("testCode").value
     };
 
+    const origin = $(location).attr("origin");
     $.ajax({
         method: "POST",
-        url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/logins/verifyTestCode",
+        url: origin + "/Final/router/logins/verifyTestCode",
         data: code,
         success: function(data){
             console.log("som spat "+data);
@@ -47,16 +48,17 @@ function sendStudentName(){
             "surname": surname,
             "testCode":testCode
         };
+        const origin = $(location).attr("origin");
         $.ajax({
             method: "POST",
-            url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/logins/sendStudentNameSurname",
+            url: origin + "/Final/router/logins/sendStudentNameSurname",
             data: data,
             success: function (data) {
                 console.log(data);
                 if(data==="wrongData")
                     studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Ais ID nesedí so zadanými údajmi</div>`);
                 else if(data==="studentExamInserted"){
-                    location.href = 'http://147.175.98.72/skuska/WEBTECH2_FINAL/';
+                    location.href = origin;
                 }else if(data==="alreadyFinished"){
                     studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Tento test si už dopísal</div>`);
                 }
@@ -76,16 +78,17 @@ function registerNewTeacher(){
     var psw=document.getElementById("teacherRegistrationPassword").value;
     var psw2=document.getElementById("teacherRegistrationPasswordAgain").value;
     if(psw===psw2){
+        const origin = $(location).attr("origin");
         $.ajax({
             method: "POST",
-            url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/logins/registerNewTeacher",
+            url: origin + "/Final/router/logins/registerNewTeacher",
             data: {nickname:nickname,password:psw},
             success: function(data){
                 console.log(data);
                 if(data==="alreadyRegistered"){
                     document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Účet už existuje</div>`);
                 }else
-                    location.href = 'http://147.175.98.72/skuska/WEBTECH2_FINAL/';
+                    location.href = origin + '/Final/';
             }
         });
     }else{
@@ -98,29 +101,30 @@ function verifyTeacherLogin(){
         "nickname":document.getElementById("teacherNickname").value,
         "password":document.getElementById("teacherPassword").value
     };
-
+    const origin = $(location).attr("origin");
     $.ajax({
         method: "POST",
-        url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/logins/verifyTeacherLogin",
+        url: origin + "/Final/router/logins/verifyTeacherLogin",
         data: data,
         success: function(data){
             console.log("som spat "+data);
             if(data==="wrongPassword"){
                 document.getElementById("teacherLogin").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Nesprávne heslo</div>`);
             }else
-                location.href = 'http://147.175.98.72/skuska/WEBTECH2_FINAL/';
+                location.href = origin;
         }
     });
 }
 
 
 function logOut(){
+    const origin = $(location).attr("origin");
     $.ajax({
         method: "POST",
-        url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/logins/destroySession",
+        url: origin+"/Final/router/logins/destroySession",
         data: {},
         success: function (data) {
-            location.href = 'http://147.175.98.72/skuska/WEBTECH2_FINAL/';
+            location.href = origin;
         }
     });
 }
