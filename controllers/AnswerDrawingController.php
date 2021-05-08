@@ -19,12 +19,12 @@ class AnswerDrawingController{
         $data = base64_decode($img);
 
         //create the image png file with the given name
-        file_put_contents('/home/xfullajtar/public_html/Final/drawings/'. str_replace(' ', '_', $question_fk).'.png', $data);
+        file_put_contents('/home/xfullajtar/public_html/Final/drawings/'. str_replace(' ', '_', $student_exam_fk.'-'.$question_fk).'.png', $data);
 
         try{
             $sql = "INSERT INTO AnswerTypePicture(question_type_fk, answer, student_exam_fk) VALUES(?, ?, ?)";
             $stm = $this->conn->prepare($sql);
-            $stm->execute([$question_fk,$answer,$student_exam_fk]);
+            $stm->execute([$question_fk,'check FK values',$student_exam_fk]);
 
             //return $this->conn->lastInsertId();
         }
