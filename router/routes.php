@@ -42,11 +42,9 @@
         $answerConnectController = new AnswerConnectController();
         $input = input()->all();
 
-        $answerConnectController->insertAnswers($input["studentExamId"], $input["questionId"], $input["pairs"]);
+        $answerConnectController->insertAnswers($input["questionId"], $input["studentExamId"], $input["pairs"]);
     });
 
+    //                             /id has to be here cuz Router is domyleny bez toho
     Router::get("Final/router/exam/id/{id}", "ExamController@getExam");
-
-    // set session based on ip and gps permission
-    //Router::post("Forward_the_Foundation/question/multiple", "QuestionMultipleController@insertQuestionAndAnswers");
 ?>

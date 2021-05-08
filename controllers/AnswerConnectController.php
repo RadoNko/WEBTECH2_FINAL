@@ -80,7 +80,7 @@ class AnswerConnectController{
 
     } 
 
-    public function insertAnswers($studentExamId, $questionId, $pairs){
+    public function insertAnswers($questionId, $studentExamId, $pairs){
 
         $answerTypeId = null;
 
