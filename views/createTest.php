@@ -30,7 +30,7 @@
             <button type="button" class="green-button" id="addQuestionMath"  onclick="addMathQuestion()">Add math Question</button>
             <button type="button" class="green-button" id="addQuestionText"  onclick="addQuestionText()">Add text Question</button>
 
-            <button type="button" class="purple-button" id="submitQuestionConnect" onclick="submitTest()">Submit test</button>
+            <button type="button" class="purple-button" id="submitQuestionConnect" onclick="submitExamQuestions()">Submit test</button>
         </div>
 
 
@@ -48,7 +48,7 @@
     <script src="../js/addDrawingQuestion.js"></script>
     <script src="../mathquill-0.10.1/mathquill.js"></script>
     <script src="../js/addMathQuestion.js"></script>
-    <script src="../js/questionText.js"></script>
-    <script src="../js/submitTest.js" ></script>
+    <script src="../js/addTextQuestion.js"></script>
+    <script src="../js/submitExamQuestions.js" ></script>
 </body>
 </html>

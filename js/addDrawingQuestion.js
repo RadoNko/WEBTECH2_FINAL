@@ -1,9 +1,6 @@
 function addDrawingQuestion(){
-
     let questionType = "questionTypeDrawing";
-
     let questions = document.getElementById("questionContainer");
-
     let questionTypeNumber = getQuestionNumber(questionType);
 
     // add new question to question container

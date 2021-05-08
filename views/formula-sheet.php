@@ -29,7 +29,6 @@
                     let enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
                     const questionInput = span.parentElement.lastElementChild;
                     questionInput.value = enteredMath;
-                    console.log(questionInput)
                 }
             }
         })

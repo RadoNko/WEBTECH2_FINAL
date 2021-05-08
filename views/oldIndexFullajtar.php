@@ -48,7 +48,6 @@
                         let enteredMath = answerMathField.latex(); // Get entered math in LaTeX format
                         const questionInput = span.parentElement.lastElementChild;
                         questionInput.value = enteredMath;
-                        console.log(questionInput)
                     }
                 }
             })
@@ -57,7 +56,6 @@
     <script>
         var myBoard = new DrawingBoard.Board('zbeubeu');
         $('.drawing-form').on('submit', function(e) {
-            console.log("thid: ", this)
             //get drawingboard content
             var img = myBoard.getImg();
 

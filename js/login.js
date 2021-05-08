@@ -15,7 +15,6 @@ function verifyTestCode(){
         url: origin + "/Final/router/logins/verifyTestCode",
         data: code,
         success: function(data){
-            console.log("som spat "+data);
             if(data==="true"){
                 saveTest(code);
                 document.getElementById("studentLogin").style.display="none";
@@ -54,7 +53,6 @@ function sendStudentName(){
             url: origin + "/Final/router/logins/sendStudentNameSurname",
             data: data,
             success: function (data) {
-                console.log(data);
                 if(data==="wrongData")
                     studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Ais ID nesedí so zadanými údajmi</div>`);
                 else if(data==="studentExamInserted"){
@@ -84,7 +82,6 @@ function registerNewTeacher(){
             url: origin + "/Final/router/logins/registerNewTeacher",
             data: {nickname:nickname,password:psw},
             success: function(data){
-                console.log(data);
                 if(data==="alreadyRegistered"){
                     document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Účet už existuje</div>`);
                 }else
@@ -107,7 +104,6 @@ function verifyTeacherLogin(){
         url: origin + "/Final/router/logins/verifyTeacherLogin",
         data: data,
         success: function(data){
-            console.log("som spat "+data);
             if(data==="wrongPassword"){
                 document.getElementById("teacherLogin").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Nesprávne heslo</div>`);
             }else

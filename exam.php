@@ -11,7 +11,7 @@
 <body>
     <div id="examContainer">
     </div>
-    <button type="button" class="btn btn-primary" id="submitQuestionConnect" onclick="submitTest()">Submit test</button>
+    <button type="button" class="btn btn-primary" id="submitQuestionConnect" onclick="submitExamQuestions()">Submit test</button>
 
     <script src="js/displayQuestionText.js"></script>
 </body>

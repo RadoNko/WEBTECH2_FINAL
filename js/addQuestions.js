@@ -208,7 +208,7 @@ function submitQuestionConnect(id){
 
 
 // checks for question types in test and sends each question to its submit function
-// function submitTest(){
+// function submitExamQuestions(){
 //
 //     let questionTypeConnectIds = $("[id^='questionTypeConnect']");
 //     let questionTypeMultipleIds = $("[id^='questionTypeMultiple']");

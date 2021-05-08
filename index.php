@@ -25,7 +25,7 @@
                         <h1 style="margin-left: 40%">Question type text</h1><br>
                         <div id="mainQuestionDiv" style="margin-left: 40%">
                         </div>
-                        <button type="button" class="btn btn-success" onclick="submitTest()">Ulož test</button>';
+                        <button type="button" class="btn btn-success" onclick="submitExamQuestions()">Ulož test</button>';
             }else{
                 echo "    <div id='loginButtons'>
                         <input type='button' class='btn btn-primary'  onclick='location.href=\"login/student\"' value='Som študent' />
@@ -48,7 +48,7 @@
 <!--        <input type='button' class='btn btn-primary'  onclick='location.href="login/teacher"' value='Som učiteľ' />-->
 <!--    </div>-->
 
-<script src="js/questionText.js"></script>
+<script src="js/addTextQuestion.js"></script>
 <script src="js/login.js"></script>
 </body>
 </html>

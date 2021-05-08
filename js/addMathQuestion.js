@@ -1,9 +1,6 @@
 function addMathQuestion(){
-
     let questionType = "questionTypeMath";
-
     let questions = document.getElementById("questionContainer");
-
     let questionTypeNumber = getQuestionNumber(questionType);
 
     // add new question to question container
@@ -23,7 +20,7 @@ function addMathQuestion(){
                                 </form>
                                 `);
 
-
+    //init math fields
     const answerSpans = questions.getElementsByClassName('math-answer')
     let MQ = MathQuill.getInterface(2);
     for (const span of answerSpans){

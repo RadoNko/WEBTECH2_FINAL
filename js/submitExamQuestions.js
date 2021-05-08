@@ -1,13 +1,11 @@
 // checks for question types in test and sends each question to its submit function
-function submitTest() {
+function submitExamQuestions() {
     let questionTypeConnectIds = $("[id^='questionTypeConnect']"); //kovacik
     let questionTypeMultipleIds = $("[id^='questionTypeMultiple']"); //kovacik
     let questionTypeTextIds = $("[id^='questionTypeText']"); //kanda
     let questionTypeMathIds = $("[id^='questionTypeMath']"); //fullajtar
     let questionTypeDrawingIds = $("[id^='questionTypeDrawing']"); //fullajtar
 
-    console.log("sublit")
-    console.log("ids: ", questionTypeConnectIds)
     if (questionTypeConnectIds.length > 0) { //kovacik
         questionTypeConnectIds.each(function () {
             submitQuestionConnect(this.id);
@@ -22,7 +20,6 @@ function submitTest() {
 
     if(questionTypeTextIds.length > 0){ //kanda
         questionTypeTextIds.each(function(){
-            console.log("id: "+this.id);
             submitQuestionText(this.id);
         })
     }
@@ -102,10 +99,6 @@ function submitQuestionText(id){
     let data = {};
     data["question"] = form[0].value;
     data["points"] = form[1].value;
-    // console.log("question "+form[0].value);
-    // console.log("points "+form[1].value);
-    // console.log("answer "+form[2].value);
-
 
     // let answers = [];
     let question={
@@ -121,7 +114,6 @@ function submitQuestionText(id){
         url: origin + "/Final/router/question/addNewQuestionText",
         data: question,
         success: function(data){
-            console.log("som spat"+data);
             resetArea();
         }
     });
@@ -153,16 +145,12 @@ function submitQuestionConnect(id) {
 
     let origin = $(location).attr("origin");
 
-    console.log("data befiore ajhaz",data);
-
     $.ajax({
           method: "POST",
           url: origin + "/Final/router/question/connect",
           data: data,
           dataType: "text",
           success: function(data){
-
-              console.log(data);
           }
       });
 }
@@ -199,7 +187,6 @@ function submitQuestionMultiple(id) {
           data: data,
           dataType: "text",
           success: function(data){
-              console.log(data);
           }
       });
 }

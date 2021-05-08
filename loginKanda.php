@@ -49,7 +49,7 @@
     <!--        <input type='button' class='btn btn-primary'  onclick='location.href="login/teacher"' value='Som učiteľ' />-->
     <!--    </div>-->
 
-    <script src="js/questionText.js"></script>
+    <script src="js/addTextQuestion.js"></script>
     <script src="js/login.js"></script>
 </body>
 
