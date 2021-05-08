@@ -21,6 +21,8 @@ $(document).ready(function () {
   });
 });
 
+let boards = new Map()
+
 function renderQuestionTypeDrawing(question, answers){
   const exam = document.getElementById("examContainer");
   const questionType = "questionTypeDrawing";
@@ -47,8 +49,8 @@ function renderQuestionTypeDrawing(question, answers){
                                              `)
 
   // //init drawingBoard
-  myBoard = new DrawingBoard.Board('drawingDiv'+ questionType + questionTypeNumber);
-  console.log("init myBoard: ",myBoard)
+  const myBoard = new DrawingBoard.Board('drawingDiv'+ questionType + questionTypeNumber);
+  boards.set(''+questionType + questionTypeNumber, myBoard);
   //
   // $('.drawing-form').on('submit', function(e) {
   //   //get drawingboard content
@@ -275,6 +277,8 @@ function submitQuestionDrawing(id){
 
   let form = $("#"+id).serializeArray();
 
+  const myBoard = boards.get(id)
+  console.log("myBoard: ", myBoard)
 
     //get drawingboard content
     var img = myBoard.getImg();
