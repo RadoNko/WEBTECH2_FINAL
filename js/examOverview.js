@@ -1,4 +1,7 @@
 $(document).ready(function () {
+  let existingExams;
+  $("#nameHelp").show();
+
   /*Render basic website list with all exams*/
   $.ajax({
     method: "GET",
@@ -11,9 +14,10 @@ $(document).ready(function () {
         dataType: "json",
         success: function (data) {
           let items = [];
+          existingExams = data;
           $.each(data, function (key, val) {
-            let active = val["is_active"] == 0 ? "active" : "inactive";
-            let teacher = teachers.find((t) => t.id === val["id"]);
+            let active = val["is_active"] == 0 ? "inactive" : "active";
+            let teacher = teachers.find((t) => t.id === val["teacher_fk"]);
             let teacherName = teacher ? teacher.username : "undefined";
             items.push(
               "<li class='list-group-item list-group-item-action' id='" +
@@ -38,6 +42,7 @@ $(document).ready(function () {
       });
     },
   });
+
   // Action to show modal on activity button click
   $(document).on("click", ".activity-button", function () {
     let active = $(this).text() == "active" ? "active" : "inactive";
@@ -85,6 +90,57 @@ $(document).ready(function () {
             : "active";
         $("#" + examId + " > div > small > button").text(active);
         $("#toggleExamModal").modal("hide");
+      },
+    });
+  });
+
+  $("#addNewExamButton").click(function () {
+    $("#createExamModal").modal("show");
+  });
+
+  // validation of inputs, do not allow empty
+  $("#timeInput").on("input", function (e) {
+    if ($("#timeInput").val() > 1660) {
+      $("#timeInput").val(1660);
+    } else if ($("#timeInput").val() < 1) {
+      $("#timeInput").val(1);
+    }
+  });
+
+  // validation of inputs, do not allow empty
+  $("#nameInput").on("input", function (e) {
+    if ($("#nameInput").val().length == 0) {
+      $("#createExamButton").prop("disabled", true);
+      $("#nameHelp").show();
+    } else if ($(this).val().length > 0 && $("#timeInput").val().length > 0) {
+      // do not allow exam with existing name
+      if (
+        existingExams.find((exam) => exam.name == $(this).val()) == undefined
+      ) {
+        $("#createExamButton").prop("disabled", false);
+        $("#nameHelp").hide();
+      } else {
+        $("#createExamButton").prop("disabled", true);
+        $("#nameHelp").show();
+      }
+    } else {
+      $("#createExamButton").prop("disabled", true);
+    }
+  });
+
+  $("#createExamButton").click(function (e) {
+    let data = {};
+    data["name"] = $("#nameInput").val();
+    data["time"] = $("#timeInput").val();
+    data["code"] = Math.random().toString(36).substring(2, 7);
+    $.ajax({
+      method: "POST",
+      url: origin + "/Final/router/exam",
+      data: data,
+      dataType: "json",
+      success: function (response) {
+        // TODO redirect to proper exam creation site
+        $("#createExamModal").modal("hide");
       },
     });
   });
