@@ -63,9 +63,9 @@
             //we keep drawingboard content only if it's not the 'blank canvas'
             var imgInput = (myBoard.blankCanvas == img) ? '' : img;
 
-            return false
             //put the drawingboard content in the form field to send it to the server
-            $(this).find('input[name=image]').val(imgInput);
+            $(this).find('input[name=image11]').val(imgInput);
+            $(this).find('input[name=imageId]').val("MOJEID");
 
             //we can also assume that everything goes well server-side
             //and directly clear webstorage here so that the drawing isn't shown again after form submission

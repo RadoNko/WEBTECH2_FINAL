@@ -31,21 +31,23 @@ function renderQuestionTypeDrawing(question, answers){
                                     <div class="form-group">
                                         <p>` + question + `</p>
                                     </div>
-                                    <div id="answersMath`+ questionTypeNumber +`" class="form-group">
+                                    <div id="answersDrawing`+ questionTypeNumber +`" class="form-group">
                                         
                                     </div>
                                 </form>
                                 `);
-  const answersContainer = document.getElementById("answersMath" + questionTypeNumber);
+  const answersContainer = document.getElementById("answersDrawing" + questionTypeNumber);
   answersContainer.insertAdjacentHTML('beforeend', `<div class="form-check">
-                                                                    <div class="w-full h-96" id='answer`+ questionType + questionTypeNumber +`'></div>
+                                                                    <div class="w-full h-96" id='drawingDiv`+ questionType + questionTypeNumber +`'></div>
+                                                                    <input type="hidden" name='image' value="">
+                                                                    <input type="hidden" name="imageId" value="">
                                                                  </div>
             
     
                                              `)
 
   //init drawingBoard
-  var myBoard = new DrawingBoard.Board('answer'+ questionType + questionTypeNumber);
+  var myBoard = new DrawingBoard.Board('drawingDiv'+ questionType + questionTypeNumber);
   $('.drawing-form').on('submit', function(e) {
     //get drawingboard content
     var img = myBoard.getImg();
@@ -55,6 +57,7 @@ function renderQuestionTypeDrawing(question, answers){
 
     //put the drawingboard content in the form field to send it to the server
     $(this).find('input[name=image]').val(imgInput);
+    $(this).find('input[name=imageId]').val(questionTypeNumber);
 
     //we can also assume that everything goes well server-side
     //and directly clear webstorage here so that the drawing isn't shown again after form submission

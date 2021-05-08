@@ -1,54 +1,15 @@
 <div class="w-4/5 h-full bg-gray-100 py-10 px-20 text-xl shadow-2xl">
     <h2 class="text-center text-3xl font-semibold">Test "Name"</h2>
-    <form class="drawing-form" action="create-drawing.php" method="post">
-        <ol class="list-decimal 2xl:list-decimal">
-            <li> <!--radio question-->
-                <p>Solve<span class="math-expression">\frac{1}{2\sqrt{3}}</span>.</p>
-                <label>
-                    <input name="question-1" type="radio"><span id="test" class="math-expression">\frac{1}{2\sqrt{3}}</span>
-                </label><br>
-                <label>
-                    <input name="question-1" type="radio"><span class="math-expression">\frac{1}{2}</span>
-                </label><br>
-                <label>
-                    <input name="question-1" type="radio"><span class="math-expression">\sqrt{3}</span>
-                </label><br>
-                <input id="question-1" name="" type="hidden">
-                <hr>
-            </li>
-            <li> <!--input question-->
-                <p>Solve x=<span class="math-expression">{2\sqrt{3}}</span>.</p>
-                <p>Answer
-                    <span class="math-answer" id="answer-2"></span>
-                    <input id="question-2" name="" type="hidden">
-                </p>
-                <hr>
-            </li>
-            <li>
-                <p>Solve x=<span class="math-expression">\frac{1}{2}</span>.</p>
-                <p>Answer
-                    <span class="math-answer" id="answer-3"></span>
-                    <input id="question-3" name="" type="hidden">
-                </p>
-                <hr>
-            </li>
-            <li>
+    <form class="drawing-form" action="../create-drawing.php" method="post">
                 <p>Question</p>
                 <p>Answer<span id="answer-4"></span></p>
                 <input id="question-4" name="" type="hidden">
                 <div class="w-full h-96" id="zbeubeu"></div>
-                <input type="hidden" name="image" value="">
+                <input type="hidden" name="image11" value="">
+                <input type="hidden" name="imageId" value="">
                 <hr>
-            </li>
-        </ol>
         <button>Submit</button>
     </form>
-
-
-
-
-
-
     <div class="a4-height"></div>
     <div class="a4-height"></div>
 
