@@ -111,6 +111,7 @@ function renderQuestionTypeMultiple(question, answers) {
     );
   });
 }
+
 function renderQuestionTypeMath(question, answers){
   const exam = document.getElementById("examContainer");
   const questionType = "questionTypeMath";
@@ -156,7 +157,6 @@ function renderQuestionTypeMath(question, answers){
     })
   }
 }
-
 
 function renderQuestionTypeConnect(question, data) {
   let exam = document.getElementById("examContainer");
@@ -237,6 +237,33 @@ function renderQuestionTypeConnect(question, data) {
 
   // randomly rearrange answers (right side); before shuffle they are 1:1 with options (left side) and therefore correctly placed
   $("#connectAnswers" + questionTypeNumber + " li").shuffle();
+}
+
+function submitQuestionMath(id){
+  let form = $("#"+id).serializeArray();
+  let questionId = id.split("questionTypeMath").pop();
+  let data = {};
+
+  //TODO CHANGE ! these are dummy values for testing
+  data["examId"] = 1;
+  data["studentId"] = 1;
+  data["studentExamId"] = 1;
+
+  data["questionId"] = questionId;
+  data["answer"] = form[0].value;
+  console.log("data: ",data)
+
+  let origin = $(location).attr('origin');
+
+  $.ajax({
+    method: "POST",
+    url: origin + "/Final/router/exam/insertAnswersMath",
+    data: data,
+    dataType: "text",
+    success: function(data){
+      console.log(data)
+    }
+  });
 }
 
 function submitQuestionConnect(id) {
@@ -325,6 +352,7 @@ function submitQuestionMultiple(id) {
 function submitTest() {
   let questionTypeConnectIds = $("[id^='questionTypeConnect']");
   let questionTypeMultipleIds = $("[id^='questionTypeMultiple']");
+  let questionTypeMathIds = $("[id^='questionTypeMath']"); //fullajtar
 
   if (questionTypeConnectIds.length > 0) {
     questionTypeConnectIds.each(function () {
@@ -336,6 +364,14 @@ function submitTest() {
     questionTypeMultipleIds.each(function () {
       submitQuestionMultiple(this.id);
     });
+  }
+
+  //fullajtar
+  if(questionTypeMathIds.length > 0){
+
+    questionTypeMathIds.each(function(){
+      submitQuestionMath(this.id);
+    })
   }
 }
 
