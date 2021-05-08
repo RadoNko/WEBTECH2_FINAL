@@ -81,7 +81,11 @@ function registerNewTeacher(){
             url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/logins/registerNewTeacher",
             data: {nickname:nickname,password:psw},
             success: function(data){
-                location.href = 'http://147.175.98.72/skuska/WEBTECH2_FINAL/';
+                console.log(data);
+                if(data==="alreadyRegistered"){
+                    document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Účet už existuje</div>`);
+                }else
+                    location.href = 'http://147.175.98.72/skuska/WEBTECH2_FINAL/';
             }
         });
     }else{

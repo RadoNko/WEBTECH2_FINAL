@@ -38,6 +38,13 @@ class Teacher{
 
     function registerTeacher($data){
         try{
+            $stm = $this->connection->prepare("SELECT username FROM Teacher WHERE username=?");
+            $stm->execute([$data["nickname"]]);
+            $count = $stm->rowCount();
+            if($count!=0){
+                return "alreadyRegistered";
+            }
+
             $sql = "INSERT INTO Teacher (username,password) VALUES (?,?)";
             $hashedPSW=password_hash($data["password"], PASSWORD_DEFAULT);
             $stm = $this->connection->prepare($sql);
