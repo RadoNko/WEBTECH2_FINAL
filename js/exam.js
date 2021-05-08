@@ -6,11 +6,9 @@ $(document).ready(function(){
 
     $.ajax({
         method: "GET",
-        url: origin + "/Final/router/exam/" + examId,
+        url: origin + "/Final/router/exam/id/" + examId,
         dataType: "json",
         success: function(data){
-          
-            console.log(data);
 
             $.each(data, function(questionType, questions){
                 $.each(questions, function(question, answers){
@@ -107,7 +105,7 @@ function renderQuestionTypeConnect(question, data){
     });
 
     // randomly rearrange answers (right side); before shuffle they are 1:1 with options (left side) and therefore correctly placed
-    $("#connectAnswers" + questionTypeNumber +" li").shuffle();
+    $("#connectAnswers" + questionTypeNumber +" li").shuffle(questionTypeNumber);
 }
 
 function submitQuestionConnect(id){
@@ -121,7 +119,7 @@ function submitQuestionConnect(id){
     // CHANGE ! these are dummy values for testing
     data["examId"] = 1;
     data["studentId"] = 1;
-    data["studentExamId"] = 1;
+    data["studentExamId"] = 3;
 
     data["questionId"] = questionId;
 
@@ -142,15 +140,16 @@ function submitQuestionConnect(id){
 
     let origin = $(location).attr('origin');
 
-    /*$.ajax({
+    $.ajax({
         method: "POST",
-        url: origin + "/Final/router/exam/insertAnswersConnect",
+        url: origin + "/Final/router/exam/answer/connect",
         data: data,
         dataType: "text",
         success: function(data){
  
+            console.log(data);
         }
-    });*/
+    });
 }
 
 
@@ -271,11 +270,13 @@ function drop(event) {
     Shuffle answers
 
     sauce: https://css-tricks.com/snippets/jquery/shuffle-dom-elements/
+    
+    modifications by me
 */
 
 (function($){
  
-    $.fn.shuffle = function() {
+    $.fn.shuffle = function(questionTypeNumber) {
  
         var allElems = this.get(),
             getRandom = function(max) {
@@ -291,6 +292,15 @@ function drop(event) {
         this.each(function(i){
             $(this).replaceWith($(shuffled[i]));
         });
+
+        $("#connectOptions"+ questionTypeNumber + " li input").each(function(i){
+
+            let opposite = $("#connectAnswers"+questionTypeNumber +" li:nth-child("+(i+1)+") input");
+
+            if(this.value - 1 == opposite[0].value){
+                $("#connectAnswers" + questionTypeNumber +" li").shuffle(questionTypeNumber);
+            }
+        })
  
         return $(shuffled);
  

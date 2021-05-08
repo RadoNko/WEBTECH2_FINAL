@@ -31,10 +31,13 @@
         $answerMultipleController = new AnswerMultipleController();
         $input = input()->all();
 
-        $answerMultipleController->insertAnswers($input["questionId"], $input["studentExamId"], $input["answers"]);
+        if(!empty($input["answers"])){
+
+            $answerMultipleController->insertAnswers($input["questionId"], $input["studentExamId"], $input["answers"]);
+        }
     });
 
-    Router::post("Final/router/exam/insertAnswersConnect", function(){
+    Router::post("Final/router/exam/answer/connect", function(){
 
         $answerConnectController = new AnswerConnectController();
         $input = input()->all();
@@ -42,7 +45,7 @@
         $answerConnectController->insertAnswers($input["studentExamId"], $input["questionId"], $input["pairs"]);
     });
 
-    Router::get("Final/router/exam/{id}", "ExamController@getExam");
+    Router::get("Final/router/exam/id/{id}", "ExamController@getExam");
 
     // set session based on ip and gps permission
     //Router::post("Forward_the_Foundation/question/multiple", "QuestionMultipleController@insertQuestionAndAnswers");

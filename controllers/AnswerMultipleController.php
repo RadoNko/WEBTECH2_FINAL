@@ -50,7 +50,7 @@ class AnswerMultipleController{
         }
     }
 
-    // retrieve how many correct answers question has
+    // returns how many correct answers question has
     private function getNumberOfCorrectAnswers($question){
 
         try{
@@ -72,6 +72,27 @@ class AnswerMultipleController{
                     </div>";
         }
 
+    }
+
+    private function getNumberOfAllAnswers($question){
+
+        try{
+
+            $sql = "SELECT COUNT(is_correct)
+                    FROM OptionTypeMultiple
+                    WHERE question_type_fk = ?";
+            
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute([$question]);
+
+            return $stmnt->fetchColumn();
+        }
+        catch(PDOException $e){
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage()."
+                    </div>";
+        }
     }
 
     private function getPointsForQuestion($question){
@@ -124,10 +145,30 @@ class AnswerMultipleController{
         }
     }
 
-    private function insertPointsForAnswer($answerTypeId, $answer, $maxPoints, $correctAnswers){
+    private function insertPointsForAnswer($answerTypeId, $answer, $maxPoints, $numberOfCorrectAnswers, $numberOfStudentAnswers, $numberOfAllAnswers, $redundantAnswers){
 
-        $points = $this->getPointsForAnswer($answer, $maxPoints, $correctAnswers);
+        if($numberOfStudentAnswers == $numberOfAllAnswers){
 
+            $points = 0;
+        }
+        else if(($numberOfStudentAnswers > $numberOfCorrectAnswers) && ($numberOfStudentAnswers < $numberOfAllAnswers)){
+
+            $points = $this->getPointsForAnswer($answer, $maxPoints, $numberOfCorrectAnswers);
+
+            if($points && $redundantAnswers){
+
+                $points = 0;
+                $redundantAnswers = $redundantAnswers - 1;
+            }
+
+        }
+        else{
+
+            $points = $this->getPointsForAnswer($answer, $maxPoints, $numberOfCorrectAnswers);
+        }
+
+
+        
         try{
 
             $sql = "UPDATE AnswerTypeMultiple
@@ -137,6 +178,8 @@ class AnswerMultipleController{
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmnt = $this->conn->prepare($sql);
             $stmnt->execute([$points, $answerTypeId]);
+
+            return $redundantAnswers;
 
         }
         catch(PDOException $e){
@@ -149,20 +192,25 @@ class AnswerMultipleController{
     public function insertAnswers($questionId, $studentExamId, $answers){
 
         $answerTypeId = null;
+
         $correctQuestionAnswersNum = $this->getNumberOfCorrectAnswers($questionId);
+        $numberOfAllAnswers = $this->getNumberOfAllAnswers($questionId);
         $pointsForQuestion = $this->getPointsForQuestion($questionId);
+        $numberOfStudentAnswers = sizeof($answers);
 
-        echo(sizeof($answers));
+        if(($numberOfStudentAnswers - $correctQuestionAnswersNum) >= 0){
 
+            $redundantAnswers = $numberOfStudentAnswers - $correctQuestionAnswersNum;
+        }
+        
         foreach($answers as $key => $answer){
 
-            
-
-            /*$answerTypeId = $this->insertAnswerType($questionId, $studentExamId);
+            $answerTypeId = $this->insertAnswerType($questionId, $studentExamId);
 
             $this->insertOptionMarked($answer["answer"], $answerTypeId);
 
-            $this->insertPointsForAnswer($answerTypeId, $answer["answer"], $pointsForQuestion, $correctQuestionAnswersNum);*/
+            $redundantAnswers = $this->insertPointsForAnswer($answerTypeId, $answer["answer"], $pointsForQuestion, $correctQuestionAnswersNum, $numberOfStudentAnswers, $numberOfAllAnswers, $redundantAnswers);
+            
         }
     }
 }

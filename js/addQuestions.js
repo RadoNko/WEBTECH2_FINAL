@@ -93,7 +93,7 @@ function submitQuestionMultiple(id){
 
     let origin = $(location).attr('origin');
 
-    /*$.ajax({
+    $.ajax({
         method: "POST",
         url: origin + "/Final/router/question/multiple",
         data: data,
@@ -101,7 +101,7 @@ function submitQuestionMultiple(id){
         success: function(data){
 
         }
-    });*/
+    });
 }
 
 function addQuestionConnect(){
@@ -194,8 +194,8 @@ function submitQuestionConnect(id){
     data["pairs"] = pairs;
 
     let origin = $(location).attr('origin');
-
-    /*$.ajax({
+ 
+    $.ajax({
         method: "POST",
         url: origin + "/Final/router/question/connect",
         data: data,
@@ -203,7 +203,7 @@ function submitQuestionConnect(id){
         success: function(data){
 
         }
-    });*/
+    });
 }
 
 
