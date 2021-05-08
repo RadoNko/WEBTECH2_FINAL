@@ -12,7 +12,7 @@
 </head>
 
 <body class="grid grid-cols-12 bg-gray-200 min-h-screen">
-    <?php include "partials/navbar.html" ?>
+    <?php include "partials/studentNavigation.html" ?>
     <main class="col-span-10 flex justify-center pt-10">
         <?php include "partials/debug.test.html" ?>
     </main>

@@ -20,7 +20,7 @@
 
 </head>
 <body class="grid grid-cols-12 bg-gray-200 min-h-screen">
-<?php include "partials/navbar.html"?>
+<?php include "partials/studentNavigation.html" ?>
 <main class="col-span-10 flex justify-center pt-10">
     <div class="w-4/5 h-full bg-gray-100 text-xl shadow-2xl pb-96">
         <div class="sticky top-0 p-4 z-10 bg-gray-100 border border-gray-200">

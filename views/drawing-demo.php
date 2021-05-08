@@ -9,7 +9,7 @@
   <script src="../drawingboard.js/drawingboard.min.js"></script>
 </head>
 <body class="grid grid-cols-12 bg-gray-200 min-h-screen">
-<?php include "partials/navbar.html" ?>
+<?php include "partials/studentNavigation.html" ?>
 <main class="col-span-10 flex justify-center">
     <div id="drawing-demo" class="w-full h-full"></div>
 </main>

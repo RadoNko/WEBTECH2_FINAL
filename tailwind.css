@@ -32259,6 +32259,82 @@ form{
   display: inline;
 }
 
+[id^="answersConnect"] > div{
+  display: flex;
+  justify-content: space-between;
+}
+
+[id^="connectOptions"]{
+  width: 45%;
+}
+
+/*[id^="connectAnswers"]>li:before{*/
+
+/*    display: block;*/
+
+/*    content: "-->";*/
+
+/*    width: 33%;*/
+
+/*}*/
+
+[id^="connectAnswers"] {
+  width: 45%;
+  background: purple;
+}
+
+li {
+  list-style: none;
+  font-size: 20px;
+}
+
+[id^="connectOptions"] li{
+  position: relative;
+}
+
+[id^="connectOptions"] li:after{
+  position: absolute;
+  right: 0;
+  content:url("../img/iconmonstr-arrow-right-thin.svg");
+  transform: translate(150%, 0%);
+  width: 10%;
+}
+
+/*[id^="connectAnswers"]{*/
+
+/*    display: block;*/
+
+/*    width: 33%;*/
+
+/*    list-style: square;*/
+
+/*}*/
+
+form{
+  position: relative;
+}
+
+.max-points:before{
+  content: "Points: ";
+  left: 10px;
+}
+
+.max-points{
+  width: auto;
+  padding-right: 0.5rem;
+  height: 2rem;
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+.math-expression{
+  font-weight: bold;
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;

@@ -9,7 +9,7 @@
     <script src="../mathquill-0.10.1/mathquill.js"></script>
 </head>
 <body class="grid grid-cols-12 bg-gray-200 min-h-screen">
-    <?php include "partials/navbar.html" ?>
+    <?php include "partials/studentNavigation.html" ?>
     <main class="col-span-10 flex justify-center pt-10">
         <div>
             <p class="text-center text-2xl 2xl:font-semibold sticky top-0 p-2.5 bg-gray-200">Test your math expression: <span class="math-answer" id="answer-2"></span></p>

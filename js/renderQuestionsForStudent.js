@@ -28,7 +28,8 @@ function renderQuestionTypeDrawing(question, answers){
     let questionTypeNumber = answers["id"];
     exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`'>
                                     <div class="form-group">
-                                        <p>` + question + `</p>
+                                        <p class="font-semibold">` + question + `</p>
+                                        <span class="max-points">`+ answers["points"] +`</span>
                                     </div>
                                     <div id="answersDrawing`+ questionTypeNumber +`" class="form-group">
                                         
@@ -61,7 +62,7 @@ function renderQuestionTypeMultiple(question, answers){
     exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
                                     <div class="form-group">
                                         <p><b>` + question + `</b></p>
-                                        <span>`+ answers["points"] +`</span>
+                                        <span class="max-points">`+ answers["points"] +`</span>
                                     </div>
                                     <div id="answersMultiple`+ questionTypeNumber +`" class="form-group">
                                         
@@ -91,6 +92,7 @@ function renderQuestionTypeMath(question, answers){
     exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
                                     <div class="form-group">
                                         <p><span class="math-expression">` + question + `</span></p>
+                                        <span class="max-points">`+ answers["points"] +`</span>
                                     </div>
                                     <div id="answersMath`+ questionTypeNumber +`" class="form-group">
                                         
@@ -140,7 +142,7 @@ function renderQuestionTypeConnect(question, data){
     exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
                                             <div class='form-group'>
                                                 <p><b>` + question + `</b></p>
-                                                <span>`+ data["points"] +`</span>
+                                                <span class="max-points">`+ data["points"] +`</span>
                                             </div>
                                             <div id='answersConnect`+ questionTypeNumber +`' class='form-group'>
                                                 <div class='row'>
@@ -190,11 +192,10 @@ function renderQuestionTypeText(question, answers){
     let questionTypeNumber = answers["id"];
 
     exam.insertAdjacentHTML('beforeend', `
-                                    <h4>Otázka</h4>    
                                     <form class='question' id='` + questionType + questionTypeNumber +`' >
                                     <div class="form-group">
                                         <p><b>` + question + `</b></p>
-                                        <span>max. body `+ answers["points"] +`</span>
+                                        <span class="max-points"> `+ answers["points"] +`</span>
                                     </div>
                                     
                                     <div class='answer' id='` + "answerTypeText" + questionTypeNumber +`' >
