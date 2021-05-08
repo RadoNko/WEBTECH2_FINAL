@@ -6,6 +6,8 @@ function submitTest() {
     let questionTypeMathIds = $("[id^='questionTypeMath']"); //fullajtar
     let questionTypeDrawingIds = $("[id^='questionTypeDrawing']"); //fullajtar
 
+    console.log("sublit")
+    console.log("ids: ", questionTypeConnectIds)
     if (questionTypeConnectIds.length > 0) { //kovacik
         questionTypeConnectIds.each(function () {
             submitQuestionConnect(this.id);
@@ -131,7 +133,7 @@ function submitQuestionConnect(id) {
 
     let data = {};
     data["question"] = form[0].value;
-    //data["points"] = form[1].value;
+    data["points"] = form[1].value;
 
     let pairs = [];
     let pair = {};
@@ -151,7 +153,7 @@ function submitQuestionConnect(id) {
 
     let origin = $(location).attr("origin");
 
-    //console.log(data);
+    console.log("data befiore ajhaz",data);
 
     $.ajax({
           method: "POST",

@@ -381,7 +381,7 @@ function submitQuestionConnect(id) {
 
   let origin = $(location).attr("origin");
 
-  /*$.ajax({
+  $.ajax({
         method: "POST",
         url: origin + "/Final/router/exam/insertAnswersConnect",
         data: data,
@@ -389,7 +389,7 @@ function submitQuestionConnect(id) {
         success: function(data){
  
         }
-    });*/
+    });
 }
 
 function submitQuestionMultiple(id){
@@ -403,7 +403,7 @@ function submitQuestionMultiple(id){
   // CHANGE ! these are dummy values for testing
   data["examId"] = 1;
   data["studentId"] = 1;
-  data["studentExamId"] = 3;
+  data["studentExamId"] = 1;
 
   data["questionId"] = questionId;
 
@@ -439,9 +439,6 @@ function submitQuestionMultiple(id){
     !!!!!!:  update table Student_Exam
 */
 function submitTest() {
-
-
-
   let questionTypeConnectIds = $("[id^='questionTypeConnect']");
   let questionTypeMultipleIds = $("[id^='questionTypeMultiple']");
   let questionTypeMathIds = $("[id^='questionTypeMath']"); //fullajtar

@@ -208,27 +208,27 @@ function submitQuestionConnect(id){
 
 
 // checks for question types in test and sends each question to its submit function
-function submitTest(){
-
-    let questionTypeConnectIds = $("[id^='questionTypeConnect']");
-    let questionTypeMultipleIds = $("[id^='questionTypeMultiple']");
-
-    if(questionTypeConnectIds.length > 0){
-
-        questionTypeConnectIds.each(function(){
-            submitQuestionConnect(this.id);
-        })
-    }
-
-    if(questionTypeMultipleIds.length > 0){
-
-        questionTypeMultipleIds.each(function(){
-            submitQuestionMultiple(this.id);
-        })
-    }
-
-    resetArea();
-}
+// function submitTest(){
+//
+//     let questionTypeConnectIds = $("[id^='questionTypeConnect']");
+//     let questionTypeMultipleIds = $("[id^='questionTypeMultiple']");
+//
+//     if(questionTypeConnectIds.length > 0){
+//
+//         questionTypeConnectIds.each(function(){
+//             submitQuestionConnect(this.id);
+//         })
+//     }
+//
+//     if(questionTypeMultipleIds.length > 0){
+//
+//         questionTypeMultipleIds.each(function(){
+//             submitQuestionMultiple(this.id);
+//         })
+//     }
+//
+//     resetArea();
+// }
 
 function getQuestionNumber(questionType){
 
