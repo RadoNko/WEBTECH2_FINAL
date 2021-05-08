@@ -14,7 +14,7 @@
             session_start();
             if($_SESSION["student"]==true){
                 echo "student: ".$_SESSION["logged_id"];
-                echo "<button class='btn btn-danger' onclick='logOut()'>Log out</button><br>";
+                echo "<button class='btn btn-success' onclick='logOut()'>Submit test</button><br>";
                 echo"Tu sa zobrazi test";
             }elseif($_SESSION["teacher"]==true){
                 echo "teacher: ".$_SESSION["logged_id"];
@@ -23,9 +23,9 @@
                         <button type="button" class="btn btn-primary" id="addQuestionMultiple" onclick="addQuestionText()">Add question</button>
                         <h1 style="margin-left: 40%">Question type text</h1><br>
                         <div id="mainQuestionDiv" style="margin-left: 40%">
-                        </div>';
+                        </div>
+                        <button type="button" class="btn btn-success" onclick="submitTest()">Ulož test</button>';
             }else{
-                echo "login menu";
                 echo "    <div id='loginButtons'>
                         <input type='button' class='btn btn-primary'  onclick='location.href=\"login/student\"' value='Som študent' />
                         <input type='button' class='btn btn-primary'  onclick='location.href=\"login/teacher\"' value='Som učiteľ' />

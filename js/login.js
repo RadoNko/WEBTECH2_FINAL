@@ -55,8 +55,10 @@ function sendStudentName(){
                 console.log(data);
                 if(data==="wrongData")
                     studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Ais ID nesedí so zadanými údajmi</div>`);
-                else{
+                else if(data==="studentExamInserted"){
                     location.href = 'http://147.175.98.72/skuska/WEBTECH2_FINAL/';
+                }else if(data==="alreadyFinished"){
+                    studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Tento test si už dopísal</div>`);
                 }
 
             }

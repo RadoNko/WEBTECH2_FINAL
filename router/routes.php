@@ -3,9 +3,10 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-require_once("../controller/QuestionText.php");
-require_once("../controller/Teacher.php");
-require_once("../controller/Student.php");
+require_once("../controllers/QuestionText.php");
+require_once("../controllers/Teacher.php");
+require_once("../controllers/Student.php");
+require_once("../controllers/Exam.php");
 
 
 
@@ -13,6 +14,7 @@ require_once("../controller/Student.php");
 use Pecee\SimpleRouter\SimpleRouter as Router;
 
 Router::post("skuska/WEBTECH2_FINAL/router/question/addNewQuestionText", function(){
+    session_start();
     $input = input()->all();
     $questionText=new QuestionText();
     $questionText->addQuestion($input);
@@ -27,6 +29,7 @@ Router::post("skuska/WEBTECH2_FINAL/router/logins/verifyTestCode", function() {
 });
 
 Router::post("skuska/WEBTECH2_FINAL/router/logins/sendStudentNameSurname", function() {
+    session_start();
     $input = input()->all();
     $student=new Student();
     $result=$student->insertStudentData($input);
@@ -41,11 +44,14 @@ Router::post("skuska/WEBTECH2_FINAL/router/logins/destroySession", function() {
     session_start();
     $_SESSION["student"]=false;
     $_SESSION["teacher"]=false;
+    $_SESSION["logged_id"]=-1;
+    $_SESSION["student_exam_id"]=-1;
     header("location:http://147.175.98.72/skuska/WEBTECH2_FINAL/");
 //    return json_encode($_SESSION["student"]);
 });
 
 Router::post("skuska/WEBTECH2_FINAL/router/logins/registerNewTeacher", function() {
+    session_start();
     $input = input()->all();
     $teacher=new Teacher();
     $result=$teacher->registerTeacher($input);
@@ -54,10 +60,20 @@ Router::post("skuska/WEBTECH2_FINAL/router/logins/registerNewTeacher", function(
 
 
 Router::post("skuska/WEBTECH2_FINAL/router/logins/verifyTeacherLogin", function() {
+    session_start();
     $input = input()->all();
     $teacher=new Teacher();
     $result=$teacher->verifyTeacherLogin($input);
     return json_encode($result);
+});
+
+Router::get("skuska/WEBTECH2_FINAL/router/exam/{id}", "Exam@getExam");
+
+Router::post("skuska/WEBTECH2_FINAL/router/exam/insertTextAnswer", function() {
+    $input = input()->all();
+    $question=new QuestionText();
+    return json_encode($question->insertAnswers($input));
+//    return json_encode($input);
 });
 
 ?>
