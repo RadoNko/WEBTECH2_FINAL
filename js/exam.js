@@ -27,7 +27,7 @@ function renderQuestionTypeDrawing(question, answers){
 
   // this is the ID from db; it will be extracted upon test submit
   let questionTypeNumber = answers["id"];
-  exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
+  exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`'>
                                     <div class="form-group">
                                         <p>` + question + `</p>
                                     </div>
@@ -46,25 +46,27 @@ function renderQuestionTypeDrawing(question, answers){
     
                                              `)
 
-  //init drawingBoard
-  var myBoard = new DrawingBoard.Board('drawingDiv'+ questionType + questionTypeNumber);
-  $('.drawing-form').on('submit', function(e) {
-    //get drawingboard content
-    var img = myBoard.getImg();
-
-    //we keep drawingboard content only if it's not the 'blank canvas'
-    var imgInput = (myBoard.blankCanvas == img) ? '' : img;
-
-    //put the drawingboard content in the form field to send it to the server
-    $(this).find('input[name=image]').val(imgInput);
-    $(this).find('input[name=imageId]').val(questionTypeNumber);
-
-    //we can also assume that everything goes well server-side
-    //and directly clear webstorage here so that the drawing isn't shown again after form submission
-    //but the best would be to do when the server answers that everything went well
-    myBoard.clearWebStorage();
-
-  });
+  // //init drawingBoard
+  myBoard = new DrawingBoard.Board('drawingDiv'+ questionType + questionTypeNumber);
+  console.log("init myBoard: ",myBoard)
+  //
+  // $('.drawing-form').on('submit', function(e) {
+  //   //get drawingboard content
+  //   var img = myBoard.getImg();
+  //
+  //   //we keep drawingboard content only if it's not the 'blank canvas'
+  //   var imgInput = (myBoard.blankCanvas == img) ? '' : img;
+  //
+  //   //put the drawingboard content in the form field to send it to the server
+  //   $(this).find('input[name=image]').val(imgInput);
+  //   $(this).find('input[name=imageId]').val(questionTypeNumber);
+  //
+  //   //we can also assume that everything goes well server-side
+  //   //and directly clear webstorage here so that the drawing isn't shown again after form submission
+  //   //but the best would be to do when the server answers that everything went well
+  //   myBoard.clearWebStorage();
+  //
+  // });
 }
 
 function renderQuestionTypeMultiple(question, answers) {
@@ -269,6 +271,58 @@ function submitQuestionMath(id){
   });
 }
 
+function submitQuestionDrawing(id){
+
+  let form = $("#"+id).serializeArray();
+
+
+    //get drawingboard content
+    var img = myBoard.getImg();
+
+    //we keep drawingboard content only if it's not the 'blank canvas'
+    var imgInput = (myBoard.blankCanvas == img) ? '' : img;
+
+    //put the drawingboard content in the form field to send it to the server
+    const thisForm = document.getElementById(id)
+    $(thisForm).find('input[name=image]').val(imgInput);
+    $(thisForm).find('input[name=imageId]').val(id);
+
+    //we can also assume that everything goes well server-side
+    //and directly clear webstorage here so that the drawing isn't shown again after form submission
+    //but the best would be to do when the server answers that everything went well
+
+
+
+
+
+
+  let questionId = id.split("questionTypeDrawing").pop();
+  let data = {};
+
+  //TODO CHANGE ! these are dummy values for testing
+  data["examId"] = 1;
+  data["studentId"] = 1;
+  data["studentExamId"] = 1;
+
+  data["questionId"] = questionId;
+  data["answer"] = id;
+  data["img"] = imgInput;
+  console.log("data: ",data)
+
+  let origin = $(location).attr('origin');
+
+  $.ajax({
+    method: "POST",
+    url: origin + "/Final/router/exam/insertAnswersDrawing",
+    data: data,
+    dataType: "text",
+    success: function(data){
+      console.log(data)
+      myBoard.clearWebStorage();
+    }
+  });
+}
+
 function submitQuestionConnect(id) {
   let form = $("#" + id).serializeArray();
 
@@ -356,6 +410,7 @@ function submitTest() {
   let questionTypeConnectIds = $("[id^='questionTypeConnect']");
   let questionTypeMultipleIds = $("[id^='questionTypeMultiple']");
   let questionTypeMathIds = $("[id^='questionTypeMath']"); //fullajtar
+  let questionTypeDrawingIds = $("[id^='questionTypeDrawing']"); //fullajtar
 
   if (questionTypeConnectIds.length > 0) {
     questionTypeConnectIds.each(function () {
@@ -374,6 +429,13 @@ function submitTest() {
 
     questionTypeMathIds.each(function(){
       submitQuestionMath(this.id);
+    })
+  }
+
+  if(questionTypeDrawingIds.length > 0){
+
+    questionTypeDrawingIds.each(function(){
+      submitQuestionDrawing(this.id);
     })
   }
 }

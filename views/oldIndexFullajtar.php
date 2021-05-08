@@ -57,6 +57,7 @@
     <script>
         var myBoard = new DrawingBoard.Board('zbeubeu');
         $('.drawing-form').on('submit', function(e) {
+            console.log("thid: ", this)
             //get drawingboard content
             var img = myBoard.getImg();
 
@@ -67,10 +68,32 @@
             $(this).find('input[name=image11]').val(imgInput);
             $(this).find('input[name=imageId]').val("MOJEID");
 
+            return false
+
             //we can also assume that everything goes well server-side
             //and directly clear webstorage here so that the drawing isn't shown again after form submission
             //but the best would be to do when the server answers that everything went well
             myBoard.clearWebStorage();
 
         });
+
+
+        // var myBoard = new DrawingBoard.Board('zbeubeu');
+        // $('.drawing-form').on('submit', function(e) {
+        //     //get drawingboard content
+        //     var img = myBoard.getImg();
+        //
+        //     //we keep drawingboard content only if it's not the 'blank canvas'
+        //     var imgInput = (myBoard.blankCanvas == img) ? '' : img;
+        //
+        //     //put the drawingboard content in the form field to send it to the server
+        //     $(this).find('input[name=image11]').val(imgInput);
+        //     $(this).find('input[name=imageId]').val("MOJEID");
+        //
+        //     //we can also assume that everything goes well server-side
+        //     //and directly clear webstorage here so that the drawing isn't shown again after form submission
+        //     //but the best would be to do when the server answers that everything went well
+        //     myBoard.clearWebStorage();
+        //
+        // });
     </script>
