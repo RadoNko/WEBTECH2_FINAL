@@ -79,7 +79,7 @@ Router::post("Final/router/exam/insertAnswersDrawing", function () {
 
     $answerDrawingController = new AnswerDrawingController();
     $input = input()->all();
-    $answerDrawingController->insertAnswer($input["studentExamId"], $input["questionId"], $input["answer"], $input["img"]);
+    $answerDrawingController->insertAnswer($input["studentExamId"], $input["questionId"], $input["img"]);
 });
 
 Router::get("Final/router/exam/{id}", "ExamController@getExam");

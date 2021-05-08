@@ -12,7 +12,7 @@ class AnswerDrawingController{
         $this->conn = (new Database())->getConnection();
     }
 
-    public function insertAnswer($student_exam_fk, $question_fk, $answer, $img){
+    public function insertAnswer($student_exam_fk, $question_fk, $img){
 
         //see http://j-query.blogspot.fr/2011/02/save-base64-encoded-canvas-image-to-png.html
         $img = str_replace(' ', '+', str_replace('data:image/png;base64,', '', $img));
@@ -22,9 +22,9 @@ class AnswerDrawingController{
         file_put_contents('/home/xfullajtar/public_html/Final/drawings/'. str_replace(' ', '_', $student_exam_fk.'-'.$question_fk).'.png', $data);
 
         try{
-            $sql = "INSERT INTO AnswerTypePicture(question_type_fk, answer, student_exam_fk) VALUES(?, ?, ?)";
+            $sql = "INSERT INTO AnswerTypePicture(question_type_fk, student_exam_fk) VALUES(?, ?)";
             $stm = $this->conn->prepare($sql);
-            $stm->execute([$question_fk,'check FK values',$student_exam_fk]);
+            $stm->execute([$question_fk, $student_exam_fk]);
 
             //return $this->conn->lastInsertId();
         }
