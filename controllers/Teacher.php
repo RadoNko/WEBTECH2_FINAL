@@ -22,7 +22,6 @@ class Teacher{
 
 
             if(password_verify($data["password"],$result["password"])==true){
-                session_start();
                 $_SESSION["teacher"]=true;
                 $_SESSION["logged_id"]=$result["id"];
                 return "verified";
@@ -39,12 +38,18 @@ class Teacher{
 
     function registerTeacher($data){
         try{
+            $stm = $this->connection->prepare("SELECT username FROM Teacher WHERE username=?");
+            $stm->execute([$data["nickname"]]);
+            $count = $stm->rowCount();
+            if($count!=0){
+                return "alreadyRegistered";
+            }
+
             $sql = "INSERT INTO Teacher (username,password) VALUES (?,?)";
             $hashedPSW=password_hash($data["password"], PASSWORD_DEFAULT);
             $stm = $this->connection->prepare($sql);
             $stm->execute([$data["nickname"],$hashedPSW]);
 
-            session_start();
             $_SESSION["teacher"]=true;
             $_SESSION["logged_id"]=$this->connection->lastInsertId();
             return "registered";

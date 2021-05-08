@@ -33,6 +33,15 @@ class Student{
         }
     }
 
+    private function getExamID($testCode){
+        $sql="SELECT id FROM Exam WHERE code=?";
+        $stm = $this->connection->prepare($sql);
+        $stm->execute([$testCode]);
+        $examID=$stm->fetch();
+        return $examID["id"];
+    }
+
+
     public function insertStudentData($data){
         // $data["surname"];
         try{
@@ -45,10 +54,6 @@ class Student{
             //je už v db alebo nie?
             if($count!=0){
                 if($result["name"]==$data["name"] && $result["surname"]==$data["surname"]){      //kontrola či sa pod rovnakym ais id neloguje ine meno
-                    session_start();
-                    $_SESSION["student"]=true;
-                    $_SESSION["teacher"]=false;
-                    $_SESSION["logged_id"]=$data["id"];
                     return "verified";
                 }
                 else
@@ -58,10 +63,6 @@ class Student{
                 $sql = "INSERT INTO Student (ais_id, name, surname) VALUES (?,?,?)";
                 $stm = $this->connection->prepare($sql);
                 $stm->execute([$data["id"],$data["name"],$data["surname"]]);
-                session_start();
-                $_SESSION["student"]=true;
-                $_SESSION["teacher"]=false;
-                $_SESSION["logged_id"]=$data["id"];
                 return "inserted";
             }
 
@@ -75,15 +76,26 @@ class Student{
 
     public function insertStudentExam($data){
         try{
-            //ziskaj FK idčka testu do nasledujuceho insertu
-            $sql="SELECT id FROM Exam WHERE code=?";
+            //kontrola či sa student neloguje znova na ten isty test
+            $sql = "SELECT * FROM Student_Exam WHERE student_fk=?";
             $stm = $this->connection->prepare($sql);
-            $stm->execute([$data["testCode"]["testCode"]]);
-            $examID=$stm->fetch();
+            $stm->execute([$data["id"]]);
+            $count = $stm->rowCount();
+            if($count!=0){
+                return "alreadyFinished";
+            }
 
-            $sql = "INSERT INTO Student_Exam (student_fk, exam_fk,is_finished) VALUES (?,?,?)";
+            //ziskaj FK idčka testu do nasledujuceho insertu
+            $examID=$this->getExamID($data["testCode"]["testCode"]);
+
+            $sql = "INSERT INTO Student_Exam (student_fk, exam_fk,is_finished, left_website) VALUES (?,?,?,?)";
             $stm = $this->connection->prepare($sql);
-            $stm->execute([$data["id"],$examID["id"],0]);
+            $stm->execute([$data["id"],$examID,0,0]);
+
+            $_SESSION["student"]=true;
+            $_SESSION["student_exam_id"]=$this->connection->lastInsertId();
+            $_SESSION["teacher"]=false;
+            $_SESSION["logged_id"]=$data["id"];
 
             return "studentExamInserted";
         }
