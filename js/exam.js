@@ -383,7 +383,7 @@ function submitQuestionConnect(id) {
 
   $.ajax({
         method: "POST",
-        url: origin + "/Final/router/exam/insertAnswersConnect",
+        url: origin + "/Final/router/exam/answer/connect",
         data: data,
         dataType: "text",
         success: function(data){
