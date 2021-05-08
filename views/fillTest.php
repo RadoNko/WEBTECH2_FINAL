@@ -29,7 +29,7 @@
     <script src="../mathquill-0.10.1/mathquill.js"></script>
     <script src="../drawingboard.js/drawingboard.min.js"></script>
 
-    <script src="../js/exam.js"></script>
+    <script src="../js/sketch.js"></script>
     <script src="../js/initializeMathFields.js"></script>
 </body>
 </html>

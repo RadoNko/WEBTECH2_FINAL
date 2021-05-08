@@ -17,8 +17,10 @@ require_once("../controllers/ExamController.php");
 
 require_once("../controllers/TeacherController.php");
 
-require_once("../controllers/QuestionMathController.php");//fullajtar
-require_once("../controllers/QuestionDrawingController.php");//fullajtar
+//fullajtar
+require_once("../controllers/QuestionMathController.php");
+require_once("../controllers/QuestionDrawingController.php");
+require_once ("../controllers/AnswerMathController.php");
 
 use Pecee\SimpleRouter\SimpleRouter as Router;
 
@@ -62,6 +64,14 @@ Router::post("Final/router/exam/insertAnswersConnect", function () {
     $input = input()->all();
 
     $answerConnectController->insertAnswers($input["studentExamId"], $input["questionId"], $input["pairs"]);
+});
+
+Router::post("Final/router/exam/insertAnswersMath", function () {
+
+    $answerMathController = new AnswerMathController();
+    $input = input()->all();
+
+    $answerMathController->insertAnswer($input["studentExamId"], $input["questionId"], $input["answer"]);
 });
 
 Router::get("Final/router/exam/{id}", "ExamController@getExam");

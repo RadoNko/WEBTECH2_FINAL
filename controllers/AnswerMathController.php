@@ -12,7 +12,8 @@ class AnswerMathController{
         $this->conn = (new Database())->getConnection();
     }
 
-    private function insertAnswer($question_fk, $answer, $student_exam_fk){
+    public function insertAnswer($student_exam_fk, $question_fk, $answer){
+        echo "QFK: ".$question_fk, "| AEXFK: ".$student_exam_fk, "| ANSW: ".$answer;
 
         try{
             $sql = "INSERT INTO AnswerTypeMath(question_type_fk, answer, student_exam_fk) VALUES(?, ?, ?)";
