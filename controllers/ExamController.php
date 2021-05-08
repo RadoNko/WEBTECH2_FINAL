@@ -1,11 +1,12 @@
 <?php
-
+//session_start();
 require_once("Database.php");
 require_once("QuestionConnectController.php");
 require_once("QuestionMultipleController.php");
-session_start();
 require_once("QuestionMathController.php");
 require_once("QuestionDrawingController.php");
+require_once("QuestionText.php");
+
 
 class ExamController
 {
@@ -63,6 +64,14 @@ class ExamController
         if (!empty($questionsDrawing)) { //fullajtar
 
             $exam["QuestionTypeDrawing"] = $questionsDrawing;
+        }
+        $questionTextController = new QuestionText();
+
+        $questionsText = $questionTextController->getExamQuestions($examId);
+
+        if(!empty($questionsText)){
+
+            $exam["QuestionTypeText"] = $questionsText;
         }
 
 

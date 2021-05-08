@@ -5,29 +5,31 @@ error_reporting(E_ALL);
 
 require_once "Database.php";
 
-class QuestionText{
-    public $connection;
+class QuestionText
+{
+    public $conn;
 
-    function __construct() {
-        $this->connection=(new Database())->getConnection();
+    function __construct()
+    {
+        $this->conn = (new Database())->getConnection();
     }
 
 
-    private function insertExam($exam){
+    private function insertExam($exam)
+    {
 
-        try{
+        try {
 
             $sql = "INSERT INTO Exam(name) VALUES(?)";
 
-            $stm = $this->connection->prepare($sql);
+            $stm = $this->conn->prepare($sql);
             $stm->execute([$exam]);
 
-            return $this->connection->lastInsertId();
+            return $this->conn->lastInsertId();
 
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo "<div class='alert alert-danger' role='alert'>
-                        Sorry, there was an error. " . $e->getMessage()."
+                        Sorry, there was an error. " . $e->getMessage() . "
                     </div>";
         }
 
@@ -50,37 +52,102 @@ class QuestionText{
 //
 //    }
 
-    private function insertQuestion($name,$correct_answer, $exam){
+    private function insertQuestion($name, $correct_answer, $exam, $points)
+    {
 
-        try{
+        try {
 
-            $sql = "INSERT INTO QuestionTypeText(name,correct_answer, exam_fk) VALUES(?,?,?)";
+            $sql = "INSERT INTO QuestionTypeText(name,correct_answer, exam_fk, max_points) VALUES(?,?,?,?)";
 
-            $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stm = $this->connection->prepare($sql);
-            $stm->execute([$name,$correct_answer, $exam]);
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stm = $this->conn->prepare($sql);
+            $stm->execute([$name, $correct_answer, $exam, $points]);
 
-            return $this->connection->lastInsertId();
+            return $this->conn->lastInsertId();
 
-        }
-        catch(PDOException $e){
+        } catch (PDOException $e) {
             echo "<div class='alert alert-danger' role='alert'>
-                        Sorry, there was an error. " . $e->getMessage()."
+                        Sorry, there was an error. " . $e->getMessage() . "
                     </div>";
         }
 
     }
 
-    public function addQuestion($data){
+    public function addQuestion($data)
+    {
 
 //        $examId = $this->insertExam(1);
 
-        foreach($data as $key => $value){
+        foreach ($data as $key => $value) {
 
-            if($key === "question"){
-                $questionId = $this->insertQuestion($data["question"], $data["answer"],1);
+            if ($key === "question") {
+                $questionId = $this->insertQuestion($data["question"], $data["answer"], 1, $data["points"]);
             }
         }
         return json_encode($questionId);
+    }
+
+
+    public function getExamQuestions($examId)
+    {
+
+
+        $sql = "SELECT id, name AS 'question',max_points AS 'points' FROM QuestionTypeText WHERE exam_fk = ?";
+
+        $stm = $this->conn->prepare($sql);
+        $stm->execute([$examId]);
+
+        $questions = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+        $data = [];
+
+        foreach ($questions as $question) {
+            $data[$question["question"]]["id"] = $question["id"];
+            $data[$question["question"]]["points"] = $question["points"];
+        }
+
+        return $data;
+    }
+
+    private function getCorrectAnswer($data)
+    {
+        $sql = "SELECT correct_answer, max_points FROM QuestionTypeText WHERE id=? AND exam_fk = ?";
+        $stm = $this->conn->prepare($sql);
+        $stm->execute([$data["questionId"], $data["examId"]]);
+        return $stm->fetch(PDO::FETCH_ASSOC);
+    }
+
+    public function insertAnswers($data)
+    {
+        // odpoved $data["answers"][0]["answer"];
+        // $data["examId"], $data["studentId"], $data["studentExamId"], $data["questionId"]
+        //  potom sa budu niektore data brat zo session
+        $answer = $data["answers"][0]["answer"];
+
+        try {
+            //vyber spravnu odpoved + pocet bodov za nu
+            $result = $this->getCorrectAnswer($data);
+
+
+            $sql = "INSERT INTO AnswerTypeText(question_type_fk,answer, student_exam_fk, points) VALUES(?,?,?,?)";
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stm = $this->conn->prepare($sql);
+
+            if ($result["correct_answer"] == $answer) {
+                //odpovede sedia -> dostane max body
+                $stm->execute([$data["questionId"], $answer, $data["studentExamId"], $result["max_points"]]);
+                return $this->conn->lastInsertId();
+            } else {
+                //odpovede nesedia -> dostane holy bačov
+                $stm->execute([$data["questionId"], $answer, $data["studentExamId"], 0]);
+                return $this->conn->lastInsertId();
+            }
+
+        } catch (PDOException $e) {
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage() . "
+                    </div>";
+        }
+
     }
 }

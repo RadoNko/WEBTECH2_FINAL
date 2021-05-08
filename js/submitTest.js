@@ -112,10 +112,11 @@ function submitQuestionText(id){
         "points":form[1].value,
         "exam":"QuestionTypeText"
     }
+    const origin = $(location).attr("origin");
 
     $.ajax({
         method: "POST",
-        url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/question/addNewQuestionText",
+        url: origin + "/Final/router/question/addNewQuestionText",
         data: question,
         success: function(data){
             console.log("som spat"+data);

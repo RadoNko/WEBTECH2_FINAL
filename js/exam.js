@@ -246,6 +246,73 @@ function renderQuestionTypeConnect(question, data) {
   $("#connectAnswers" + questionTypeNumber + " li").shuffle();
 }
 
+function renderQuestionTypeText(question, answers){
+
+  let exam = document.getElementById("examContainer");
+
+  let questionType = "questionTypeText";
+
+  let questionTypeNumber = answers["id"];
+
+  exam.insertAdjacentHTML('beforeend', `
+                                    <h4>Otázka</h4>    
+                                    <form class='question' id='` + questionType + questionTypeNumber +`' >
+                                    <div class="form-group">
+                                        <p><b>` + question + `</b></p>
+                                        <span>max. body `+ answers["points"] +`</span>
+                                    </div>
+                                    
+                                    <div class='answer' id='` + "answerTypeText" + questionTypeNumber +`' >
+                                     <input type="text" name="questionAnswer` +questionTypeNumber +`">
+                               
+                                </form>
+                                        <br>
+                                `);
+}
+
+function submitQuestionText(id){
+
+  let form = $("#"+id).serializeArray();
+
+  let questionId = id.split("questionTypeText").pop();
+
+  let data = {};
+
+  // CHANGE ! these are dummy values for testing
+  data["examId"] = 1;
+  data["studentId"] = 1;
+  data["studentExamId"] = 1;
+
+  data["questionId"] = questionId;
+
+  let answers = [];
+  let answer = {};
+
+
+  for(i = 0; i < form.length; i++){
+
+    answer.answer = form[i].value;
+    answers.push(answer);
+    answer = {};
+  }
+
+  data["answers"] = answers;
+
+  const origin = $(location).attr("origin");
+
+
+  $.ajax({
+    method: "POST",
+    url: origin + "/Final/router/exam/insertTextAnswer",
+    data: data,
+    dataType: "text",
+    success: function(data){
+      console.log(data);
+    }
+  });
+
+}
+
 function submitQuestionMath(id){
   let form = $("#"+id).serializeArray();
   let questionId = id.split("questionTypeMath").pop();
@@ -411,10 +478,14 @@ function submitQuestionMultiple(id) {
     !!!!!!:  update table Student_Exam
 */
 function submitTest() {
+
+
+
   let questionTypeConnectIds = $("[id^='questionTypeConnect']");
   let questionTypeMultipleIds = $("[id^='questionTypeMultiple']");
   let questionTypeMathIds = $("[id^='questionTypeMath']"); //fullajtar
   let questionTypeDrawingIds = $("[id^='questionTypeDrawing']"); //fullajtar
+  let questionTypeTextIds = $("[id^='questionTypeText']");
 
   if (questionTypeConnectIds.length > 0) {
     questionTypeConnectIds.each(function () {
@@ -440,6 +511,13 @@ function submitTest() {
 
     questionTypeDrawingIds.each(function(){
       submitQuestionDrawing(this.id);
+    })
+  }
+
+  if(questionTypeTextIds.length > 0){
+
+    questionTypeTextIds.each(function(){
+      submitQuestionText(this.id);
     })
   }
 }
