@@ -32,16 +32,16 @@ class QuestionConnectController{
 
     }
 
-    private function insertParentQuestion($question, $exam){
+    private function insertParentQuestion($question, $exam, $points){
 
         try{
 
-            $sql = "INSERT INTO QuestionTypeConnect(name, exam_fk)
-                                VALUES(?, ?)";
+            $sql = "INSERT INTO QuestionTypeConnect(name, exam_fk, max_points)
+                                VALUES(?, ?, ?)";
 
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmnt = $this->conn->prepare($sql);
-            $stmnt->execute([$question, $exam]);
+            $stmnt->execute([$question, $exam, $points]);
 
             return $this->conn->lastInsertId();
 
@@ -101,13 +101,13 @@ class QuestionConnectController{
 
     public function insertQuestionAndAnswers($data){
 
-        $examId = $this->insertExam(1);
+        //$examId = $this->insertExam(1);
         
         foreach($data as $key => $value){
 
             if($key === "question"){
 
-                $questionId = $this->insertParentQuestion($value, $examId);
+                $questionId = $this->insertParentQuestion($value, 1, $data["points"]);
             }
 
             if($key === "pairs"){
@@ -125,7 +125,7 @@ class QuestionConnectController{
         
         try{
 
-            $sql = "SELECT id, name AS 'question'
+            $sql = "SELECT id, name AS 'question', max_points AS 'points'
                     FROM QuestionTypeConnect
                     WHERE exam_fk = ?";
 
@@ -199,6 +199,7 @@ class QuestionConnectController{
         foreach($questions as $question){
 
             $data[$question["question"]]["id"] = $question["id"];
+            $data[$question["question"]]["points"] = $question["points"];
             $data[$question["question"]]["options"] = $this->getQuestionOptions($question["id"]);
             $data[$question["question"]]["answers"] = $this->getQuestionAnswers($question["id"]);
         }

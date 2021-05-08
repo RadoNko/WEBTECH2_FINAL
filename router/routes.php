@@ -56,21 +56,24 @@ Router::post("Final/router/question/addNewQuestionText", function() {
         $questionConnectController->insertQuestionAndAnswers($input);
     });
 
-    Router::post("Final/router/exam/insertAnswersMultiple", function () {
+Router::post("Final/router/exam/answer/multiple", function(){
 
-        $answerMultipleController = new AnswerMultipleController();
-        $input = input()->all();
+    $answerMultipleController = new AnswerMultipleController();
+    $input = input()->all();
+
+    if(!empty($input["answers"])){
 
         $answerMultipleController->insertAnswers($input["questionId"], $input["studentExamId"], $input["answers"]);
-    });
+    }
+});
 
-    Router::post("Final/router/exam/insertAnswersConnect", function () {
+Router::post("Final/router/exam/answer/connect", function(){
 
-        $answerConnectController = new AnswerConnectController();
-        $input = input()->all();
+    $answerConnectController = new AnswerConnectController();
+    $input = input()->all();
 
-        $answerConnectController->insertAnswers($input["studentExamId"], $input["questionId"], $input["pairs"]);
-    });
+    $answerConnectController->insertAnswers($input["questionId"], $input["studentExamId"], $input["pairs"]);
+});
 
     Router::post("Final/router/exam/insertAnswersMath", function () {
 

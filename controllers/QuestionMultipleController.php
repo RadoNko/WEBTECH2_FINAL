@@ -54,16 +54,16 @@ class QuestionMultipleController{
 
     }
 
-    private function insertQuestion($question, $exam){
+    private function insertQuestion($question, $exam, $points){
 
         try{
 
-            $sql = "INSERT INTO QuestionTypeMultiple(name, exam_fk)
-                                VALUES(?, ?)";
+            $sql = "INSERT INTO QuestionTypeMultiple(name, exam_fk, max_points)
+                                VALUES(?, ?, ?)";
 
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmnt = $this->conn->prepare($sql);
-            $stmnt->execute([$question, $exam]);
+            $stmnt->execute([$question, $exam, $points]);
 
             return $this->conn->lastInsertId();
 
@@ -78,13 +78,13 @@ class QuestionMultipleController{
 
     public function insertQuestionAndAnswers($data){
 
-        $examId = $this->insertExam(1);
+        //$examId = $this->insertExam(1);
         
         foreach($data as $key => $value){
 
             if($key === "question"){
 
-                $questionId = $this->insertQuestion($value, $examId);
+                $questionId = $this->insertQuestion($value, 1, $data["points"]);
             }
 
             if($key === "answers"){
@@ -93,7 +93,7 @@ class QuestionMultipleController{
 
                     $this->insertAnswer($answer["name"], $answer["correct"], $questionId);
                 }
-            }            
+            }          
         }
     }
 
@@ -101,7 +101,7 @@ class QuestionMultipleController{
         
         try{
 
-            $sql = "SELECT id, name AS 'question'
+            $sql = "SELECT id, name AS 'question', max_points AS 'points'
                     FROM QuestionTypeMultiple
                     WHERE exam_fk = ?";
 
@@ -139,6 +139,7 @@ class QuestionMultipleController{
                 $stmnt->execute([$question["id"]]);
 
                 $data[$question["question"]]["id"] = $question["id"];
+                $data[$question["question"]]["points"] = $question["points"];
                 $data[$question["question"]]["answers"] = $stmnt->fetchAll(PDO::FETCH_ASSOC);
             
             }

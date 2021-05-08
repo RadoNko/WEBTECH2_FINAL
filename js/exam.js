@@ -71,7 +71,8 @@ function renderQuestionTypeDrawing(question, answers){
   // });
 }
 
-function renderQuestionTypeMultiple(question, answers) {
+function renderQuestionTypeMultiple(question, answers){
+
   let exam = document.getElementById("examContainer");
 
   let questionType = "questionTypeMultiple";
@@ -79,44 +80,28 @@ function renderQuestionTypeMultiple(question, answers) {
   // this is the ID from db; it will be extracted upon test submit
   let questionTypeNumber = answers["id"];
 
-  exam.insertAdjacentHTML(
-    "beforeend",
-    `<form class='question' id='` +
-      questionType +
-      questionTypeNumber +
-      `' >
+  exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
                                     <div class="form-group">
-                                        <p><b>` +
-      question +
-      `</b></p>
+                                        <p><b>` + question + `</b></p>
+                                        <span>`+ answers["points"] +`</span>
                                     </div>
-                                    <div id="answersMultiple` +
-      questionTypeNumber +
-      `" class="form-group">
+                                    <div id="answersMultiple`+ questionTypeNumber +`" class="form-group">
                                         
                                     </div>
                                 </form>
-                                `
-  );
+                                `);
 
-  let answersContainer = document.getElementById(
-    "answersMultiple" + questionTypeNumber
-  );
+  let answersContainer = document.getElementById("answersMultiple" + questionTypeNumber);
 
-  $.each(answers["answers"], function (key, answer) {
-    answersContainer.insertAdjacentHTML(
-      "beforeend",
-      `<div class="form-check">
-                                                                <input type="checkbox" name="answer" value='` +
-        answer.id +
-        `' class="form-check-input">
-                                                                <label class="form-check-label">` +
-        answer.answer +
-        `</label>
+  $.each(answers["answers"], function(key, answer){
+
+
+    answersContainer.insertAdjacentHTML('beforeend', `<div class="form-check">
+                                                                <input type="checkbox" name="answer" value='`+ answer.id +`' class="form-check-input">
+                                                                <label class="form-check-label">` + answer.answer + `</label>
                                                              </div>
-                                             `
-    );
-  });
+                                             `)
+  })
 }
 
 function renderQuestionTypeMath(question, answers){
@@ -165,7 +150,8 @@ function renderQuestionTypeMath(question, answers){
   }
 }
 
-function renderQuestionTypeConnect(question, data) {
+function renderQuestionTypeConnect(question, data){
+
   let exam = document.getElementById("examContainer");
 
   let questionType = "questionTypeConnect";
@@ -173,77 +159,48 @@ function renderQuestionTypeConnect(question, data) {
   // this is the ID from db; it will be extracted upon test submit
   let questionTypeNumber = data["id"];
 
-  exam.insertAdjacentHTML(
-    "beforeend",
-    `<form class='question' id='` +
-      questionType +
-      questionTypeNumber +
-      `' >
+  exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
                                             <div class='form-group'>
-                                                <p><b>` +
-      question +
-      `</b></p>
+                                                <p><b>` + question + `</b></p>
+                                                <span>`+ data["points"] +`</span>
                                             </div>
-                                            <div id='answersConnect` +
-      questionTypeNumber +
-      `' class='form-group'>
+                                            <div id='answersConnect`+ questionTypeNumber +`' class='form-group'>
                                                 <div class='row'>
-                                                    <ul id='connectOptions` +
-      questionTypeNumber +
-      `' class='col d-flex flex-column list-group'>
+                                                    <ul id='connectOptions`+ questionTypeNumber +`' class='col d-flex flex-column list-group'>
                                                         
                                                     </ul>
 
-                                                    <ul id='connectAnswers` +
-      questionTypeNumber +
-      `' class='col d-flex flex-column'>
+                                                    <ul id='connectAnswers`+ questionTypeNumber +`' class='col d-flex flex-column'>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </form>
-                                `
-  );
+                                `);
 
-  let optionsContainer = document.getElementById(
-    "connectOptions" + questionTypeNumber
-  );
-  let answersContainer = document.getElementById(
-    "connectAnswers" + questionTypeNumber
-  );
+  let optionsContainer = document.getElementById("connectOptions" + questionTypeNumber);
+  let answersContainer = document.getElementById("connectAnswers" + questionTypeNumber);
 
-  $.each(data["options"], function (key, option) {
-    optionsContainer.insertAdjacentHTML(
-      "beforeend",
-      `<li class="list-group-item border text-center">
-                                                                ` +
-        option.option +
-        `
-                                                            <input type="hidden" name='connectOption' value='` +
-        option.id +
-        `'>   
+  $.each(data["options"], function(key, option){
+
+    optionsContainer.insertAdjacentHTML('beforeend', `<li class="list-group-item border text-center">
+                                                                ` + option.option + `
+                                                            <input type="hidden" name='connectOption' value='`+ option.id +`'>   
                                                           </li>
-                                                `
-    );
+                                                `)
   });
 
-  $.each(data["answers"], function (key, answer) {
-    answersContainer.insertAdjacentHTML(
-      "beforeend",
-      `<li draggable="true" ondragstart="drag(event)"
+  $.each(data["answers"], function(key, answer){
+
+    answersContainer.insertAdjacentHTML('beforeend', `<li draggable="true" ondragstart="drag(event)"
                                                             ondrop="drop(event)" ondragover="allowDrop(event)" class="list-group-item border text-center">
-                                                                ` +
-        answer.answer +
-        `
-                                                                <input type="hidden" name="connectAnswer" value='` +
-        answer.id +
-        `'>
+                                                                ` + answer.answer + `
+                                                                <input type="hidden" name="connectAnswer" value='`+ answer.id +`'>
                                                           </li>
-                                            `
-    );
+                                            `);
   });
 
   // randomly rearrange answers (right side); before shuffle they are 1:1 with options (left side) and therefore correctly placed
-  $("#connectAnswers" + questionTypeNumber + " li").shuffle();
+  $("#connectAnswers" + questionTypeNumber +" li").shuffle(questionTypeNumber);
 }
 
 function renderQuestionTypeText(question, answers){
@@ -435,8 +392,9 @@ function submitQuestionConnect(id) {
     });*/
 }
 
-function submitQuestionMultiple(id) {
-  let form = $("#" + id).serializeArray();
+function submitQuestionMultiple(id){
+
+  let form = $("#"+id).serializeArray();
 
   let questionId = id.split("questionTypeMultiple").pop();
 
@@ -445,14 +403,16 @@ function submitQuestionMultiple(id) {
   // CHANGE ! these are dummy values for testing
   data["examId"] = 1;
   data["studentId"] = 1;
-  data["studentExamId"] = 1;
+  data["studentExamId"] = 3;
 
   data["questionId"] = questionId;
 
   let answers = [];
   let answer = {};
 
-  for (i = 0; i < form.length; i++) {
+
+  for(i = 0; i < form.length; i++){
+
     answer.answer = form[i].value;
     answers.push(answer);
     answer = {};
@@ -460,17 +420,18 @@ function submitQuestionMultiple(id) {
 
   data["answers"] = answers;
 
-  let origin = $(location).attr("origin");
+  let origin = $(location).attr('origin');
 
-  /*$.ajax({
-        method: "POST",
-        url: origin + "/Final/router/exam/insertAnswersMultiple",
-        data: data,
-        dataType: "text",
-        success: function(data){
+  $.ajax({
+    method: "POST",
+    url: origin + "/Final/router/exam/answer/multiple",
+    data: data,
+    dataType: "text",
+    success: function(data){
 
-        }
-    });*/
+      console.log(data);
+    }
+  });
 }
 
 /*  checks for question types in test and sends each question to its submit function
@@ -569,23 +530,36 @@ function drop(event) {
     sauce: https://css-tricks.com/snippets/jquery/shuffle-dom-elements/
 */
 
-(function ($) {
-  $.fn.shuffle = function () {
-    var allElems = this.get(),
-      getRandom = function (max) {
-        return Math.floor(Math.random() * max);
-      },
-      shuffled = $.map(allElems, function () {
-        var random = getRandom(allElems.length),
-          randEl = $(allElems[random]).clone(true)[0];
-        allElems.splice(random, 1);
-        return randEl;
-      });
+(function($){
 
-    this.each(function (i) {
+  $.fn.shuffle = function(questionTypeNumber) {
+
+    var allElems = this.get(),
+        getRandom = function(max) {
+          return Math.floor(Math.random() * max);
+        },
+        shuffled = $.map(allElems, function(){
+          var random = getRandom(allElems.length),
+              randEl = $(allElems[random]).clone(true)[0];
+          allElems.splice(random, 1);
+          return randEl;
+        });
+
+    this.each(function(i){
       $(this).replaceWith($(shuffled[i]));
     });
 
+    $("#connectOptions"+ questionTypeNumber + " li input").each(function(i){
+
+      let opposite = $("#connectAnswers"+questionTypeNumber +" li:nth-child("+(i+1)+") input");
+
+      if(this.value - 1 == opposite[0].value){
+        $("#connectAnswers" + questionTypeNumber +" li").shuffle(questionTypeNumber);
+      }
+    })
+
     return $(shuffled);
+
   };
+
 })(jQuery);
