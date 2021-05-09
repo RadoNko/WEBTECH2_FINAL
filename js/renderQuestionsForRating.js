@@ -33,7 +33,7 @@ function renderQuestionTypeDrawing(answer){
     exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`'>
                                     <div class="form-group">
                                         <p class="font-semibold">` + answer["name"] + `</p>
-                                        <span class="max-points">`+ answer["points"] +`</span>
+                                        <span class="max-points">`+ answer["max_points"] +`</span>
                                     </div>
                                     <div id="answersDrawing`+ questionTypeNumber +`" class="form-group">
                                         
@@ -44,7 +44,7 @@ function renderQuestionTypeDrawing(answer){
     answersContainer.insertAdjacentHTML('beforeend', `<div class="form-check">
                                                                     <img class="w-full h-96" id='drawingDiv`+ questionType + questionTypeNumber +`' src="/Final/drawings/`+ answer["student_exam_fk"] +`-`+answer["question_type_fk"] +`.png " alt="Image Not Found">
                                                                     <label for="points">Rate Question</label>
-                                                                    <input type="number" name="points" value='' class="form-check-input" min="0" required>
+                                                                    <input type="number" name="points" value='' class="form-check-input" min="0" max="`+answer["max_points"]+`" required>
                                                                  </div>
                                              `)
 
@@ -64,7 +64,7 @@ function renderQuestionTypeMath(answer){
     exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
                                     <div class="form-group">
                                         <p><span class="math-expression">` + question + `</span></p>
-                                        <span class="max-points">`+ answer["points"] +`</span>
+                                        <span class="max-points">`+ answer["max_points"] +`</span>
                                     </div>
                                     <div id="answersMath`+ questionTypeNumber +`" class="form-group">
 
@@ -75,7 +75,7 @@ function renderQuestionTypeMath(answer){
     answersContainer.insertAdjacentHTML('beforeend', `<div class="form-check">
                                                                     <span class="math-expression" id="answer-2">`+ answer["answer"] +`</span> <!--span as input for rendering math expressions-->
                                                                     <label for="points">Rate Question</label>
-                                                                    <input type="number" name="points" value='' class="form-check-input" min="0" required>
+                                                                    <input type="number" name="points" value='' class="form-check-input" min="0" max="`+answer["max_points"]+`" required>
                                                                  </div>
                                              `)
 
