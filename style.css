@@ -215,7 +215,7 @@ li {
 [id^="connectOptions"] li:after{
     position: absolute;
     right: 0;
-    content:url("../img/iconmonstr-arrow-right-thin.svg");
+    content:url("/Final/img/iconmonstr-arrow-right-thin.svg");
     transform: translate(150%, 0%);
     width: 10%;
 }
