@@ -6,6 +6,7 @@ require_once("QuestionMultipleController.php");
 require_once("QuestionMathController.php");
 require_once("QuestionDrawingController.php");
 require_once("QuestionText.php");
+require_once ("AnswerMathController.php");
 
 
 class ExamController
@@ -131,5 +132,20 @@ class ExamController
                         Sorry, there was an error. " . $e->getMessage() . "
                     </div>";
         }
+    }
+
+    public function getRateExam($student_exam_fk){
+
+        $exam = [];
+
+        $answerMathController = new AnswerMathController();
+        $answersMath = $answerMathController->getAnswerWithQuestion($student_exam_fk);
+
+        if (!empty($answersMath)) { //fullajtar
+
+            $exam["AnswerTypeMath"] = $answersMath;
+        }
+
+        return json_encode($exam, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
 }

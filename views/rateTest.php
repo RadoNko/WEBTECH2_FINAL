@@ -26,7 +26,7 @@
 <script src="../mathquill-0.10.1/mathquill.js"></script>
 <script src="../drawingboard.js/drawingboard.min.js"></script>
 
-<script src="../js/renderQuestionsForRating.js.js"></script>
-<script src="../js/submitExamRating.js.js"></script>
+<script src="../js/renderQuestionsForRating.js"></script>
+<script src="../js/submitExamRating.js"></script>
 </body>
 </html>

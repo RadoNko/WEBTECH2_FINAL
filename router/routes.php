@@ -6,7 +6,6 @@ session_start();
 require_once("../controllers/QuestionText.php");
 require_once("../controllers/Teacher.php");
 require_once("../controllers/Student.php");
-require_once("../controllers/Exam.php");
 
 require_once("../controllers/AnswerMultipleController.php");
 require_once("../controllers/AnswerConnectController.php");
@@ -93,6 +92,9 @@ Router::post("Final/router/exam/answer/connect", function(){
     Router::get("Final/router/exam/{id}", "ExamController@getExam");
 
     Router::get("Final/router/exam", "ExamController@getAll");
+
+    //get exam of student with filled answers
+    Router::get("Final/router/rateExam/{id}", "ExamController@getRateExam");
 
     Router::put("Final/router/exam/toggle/{id}", "ExamController@toggle");
 
