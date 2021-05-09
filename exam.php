@@ -14,6 +14,10 @@
 <!--    <button type="button" class="btn btn-primary" id="submitQuestionConnect" onclick="submitTest()">Submit test</button>-->
 
 <!--    <script src="js/displayQuestionText.js"></script>-->
+
+    <button type="button" class="green-button mb-4 w-full"  onclick="submitRateTest()">Rate test</button>
+
     <script src="js/renderQuestionsForRating.js"></script>
+    <script src="js/submitExamRating.js"></script>
 </body>
 </html>

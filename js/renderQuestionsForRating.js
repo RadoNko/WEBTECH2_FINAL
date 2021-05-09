@@ -1,6 +1,7 @@
 $(document).ready(function () {
     let studentExamId = 1;
     let origin = $(location).attr("origin");
+
     $.ajax({
         method: "GET",
         // url: origin + "/Final/router/rateExam/" + studentExamId,
