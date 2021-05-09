@@ -61,18 +61,23 @@ function submitQuestionMath(id){
 }
 
 function submitQuestionDrawing(id){
+    let form = $("#"+id).serializeArray();
 
-    // let origin = $(location).attr('origin');
-    //
-    // $.ajax({
-    //     method: "POST",
-    //     url: origin + "",
-    //     data: data,
-    //     dataType: "text",
-    //     success: function(data){
-    //         myBoard.clearWebStorage();
-    //     }
-    // });
+    let data = {};
+    data["answerId"] = form[0].name;
+    data["points"] = form[0].value;
+
+    let origin = $(location).attr('origin');
+
+    $.ajax({
+        method: "POST",
+        url: origin + "/Final/router/exam/rateAnswersDrawing",
+        data: data,
+        dataType: "text",
+        success: function(data){
+            console.log("returned: ",data)
+        }
+    });
 }
 
 /*  checks for question types in test and sends each question to its submit function

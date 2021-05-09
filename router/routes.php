@@ -96,6 +96,12 @@ Router::post("Final/router/exam/rateAnswersMath", function () {
     $answerMathController->setScore($input["points"], $input["answerId"]);
 });
 
+Router::post("Final/router/exam/rateAnswersDrawing", function () {
+    $answerDrawingController = new AnswerDrawingController();
+    $input = input()->all();
+    $answerDrawingController->setScore($input["points"], $input["answerId"]);
+});
+
 
     Router::get("Final/router/exam/{id}", "ExamController@getExam");
 

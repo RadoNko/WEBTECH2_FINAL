@@ -36,7 +36,7 @@ class AnswerDrawingController{
 
     }
 
-    private function setScore($points, $questionId){ //score set manually by teacher
+    public function setScore($points, $questionId){ //score set manually by teacher
 
         try{
             $stmt = $this->conn->prepare("UPDATE AnswerTypePicture SET points =:points WHERE id =:questionId");
