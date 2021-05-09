@@ -26,4 +26,20 @@ class Exam{
 
         return json_encode($exam, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
+
+    public function getRateExam($student_exam_fk){
+
+        $exam = [];
+
+        $questionTextController = new QuestionText();
+        $questionsText = $questionTextController->getAnswerWithQuestion($student_exam_fk);
+
+
+        if (!empty($questionsText)) {
+            $exam["AnswerTypeText"] = $questionsText;
+        }
+
+
+        return json_encode($exam, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
 }

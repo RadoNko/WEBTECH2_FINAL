@@ -11,8 +11,9 @@
 <body>
     <div id="examContainer">
     </div>
-    <button type="button" class="btn btn-primary" id="submitQuestionConnect" onclick="submitTest()">Submit test</button>
+<!--    <button type="button" class="btn btn-primary" id="submitQuestionConnect" onclick="submitTest()">Submit test</button>-->
 
-    <script src="js/displayQuestionText.js"></script>
+<!--    <script src="js/displayQuestionText.js"></script>-->
+    <script src="js/renderQuestionsForRating.js"></script>
 </body>
 </html>

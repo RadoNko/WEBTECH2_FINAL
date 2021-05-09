@@ -18,8 +18,6 @@ Router::post("skuska/WEBTECH2_FINAL/router/question/addNewQuestionText", functio
     $input = input()->all();
     $questionText=new QuestionText();
     $questionText->addQuestion($input);
-
-
 });
 
 Router::post("skuska/WEBTECH2_FINAL/router/logins/verifyTestCode", function() {
@@ -75,5 +73,7 @@ Router::post("skuska/WEBTECH2_FINAL/router/exam/insertTextAnswer", function() {
     return json_encode($question->insertAnswers($input));
 //    return json_encode($input);
 });
+
+Router::get("skuska/WEBTECH2_FINAL/router/rateExam/{id}", "Exam@getRateExam");
 
 ?>
