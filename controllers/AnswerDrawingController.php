@@ -54,4 +54,18 @@ class AnswerDrawingController{
 
     }
 
+    public function getAnswerWithQuestion($student_exam_fk){
+        try{
+            $stmt = $this->conn->prepare("SELECT * FROM AnswerTypePicture INNER JOIN QuestionTypePicture ON AnswerTypePicture.question_type_fk = QuestionTypePicture.id WHERE AnswerTypePicture.student_exam_fk =:student_exam_fk");
+            $stmt->bindParam(":student_exam_fk", $student_exam_fk, PDO::PARAM_INT);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $e){
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage()."
+                    </div>";
+        }
+    }
+
 }

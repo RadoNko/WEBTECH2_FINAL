@@ -141,9 +141,15 @@ class ExamController
         $answerMathController = new AnswerMathController();
         $answersMath = $answerMathController->getAnswerWithQuestion($student_exam_fk);
 
-        if (!empty($answersMath)) { //fullajtar
+        $answerDrawingController = new AnswerDrawingController();
+        $answersDrawing = $answerDrawingController->getAnswerWithQuestion($student_exam_fk);
 
+        if (!empty($answersMath)) {
             $exam["AnswerTypeMath"] = $answersMath;
+        }
+
+        if (!empty($answersDrawing)) {
+            $exam["AnswerTypeDrawing"] = $answersDrawing;
         }
 
         return json_encode($exam, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
