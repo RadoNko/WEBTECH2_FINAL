@@ -44,7 +44,7 @@ function renderQuestionTypeDrawing(answer){
     answersContainer.insertAdjacentHTML('beforeend', `<div class="form-check">
                                                                     <img class="w-full h-96" id='drawingDiv`+ questionType + questionTypeNumber +`' src="/Final/drawings/`+ answer["student_exam_fk"] +`-`+answer["question_type_fk"] +`.png " alt="Image Not Found">
                                                                     <label for="points">Rate Question</label>
-                                                                    <input type="number" name="points" value='' class="form-check-input" min="0" max="`+answer["max_points"]+`" required>
+                                                                    <input type="number" name="`+answer["id"]+`" points+ value="`+answer["points"]+`" class="form-check-input" min="0" max="`+answer["max_points"]+`" required>
                                                                  </div>
                                              `)
 
@@ -75,7 +75,7 @@ function renderQuestionTypeMath(answer){
     answersContainer.insertAdjacentHTML('beforeend', `<div class="form-check">
                                                                     <span class="math-expression" id="answer-2">`+ answer["answer"] +`</span> <!--span as input for rendering math expressions-->
                                                                     <label for="points">Rate Question</label>
-                                                                    <input type="number" name="points" value='' class="form-check-input" min="0" max="`+answer["max_points"]+`" required>
+                                                                    <input type="number" name="`+answer["id"]+`" value="`+answer["points"]+`" class="form-check-input" min="0" max="`+answer["max_points"]+`" required>
                                                                  </div>
                                              `)
 

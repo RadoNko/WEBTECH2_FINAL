@@ -40,12 +40,12 @@ class AnswerMathController{
         }
     }
 
-    private function setScore($points, $questionId){ //score set manually by teacher
+    public function setScore($points, $answerId){ //score set manually by teacher
 
         try{
-            $stmt = $this->conn->prepare("UPDATE AnswerTypeMath SET points =:points WHERE id =:questionId");
+            $stmt = $this->conn->prepare("UPDATE AnswerTypeMath SET points =:points WHERE id =:answerId");
             $stmt->bindParam(":points", $points); //TODO add PDO:: for float
-            $stmt->bindParam(":questionId", $questionId, PDO::PARAM_INT);
+            $stmt->bindParam(":answerId", $answerId, PDO::PARAM_INT);
             $stmt->execute();
 
             //return $this->conn->lastInsertId();
