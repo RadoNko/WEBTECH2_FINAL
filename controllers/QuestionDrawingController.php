@@ -50,7 +50,7 @@ class QuestionDrawingController{
 
         try{
 
-            $sql = "SELECT id, name AS 'question'
+            $sql = "SELECT id, name AS 'question',max_points AS 'points'
                     FROM QuestionTypePicture
                     WHERE exam_fk = ?";
 
@@ -77,6 +77,8 @@ class QuestionDrawingController{
 
         foreach($questions as $question){
             $data[$question["question"]]["id"] = $question["id"];
+            $data[$question["question"]]["points"] = $question["points"];
+
         }
 
         return $data;

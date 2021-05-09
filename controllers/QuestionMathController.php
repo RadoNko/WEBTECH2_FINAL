@@ -43,9 +43,7 @@ class QuestionMathController{
 
         try{
 
-            $sql = "SELECT id, name AS 'question'
-                    FROM QuestionTypeMath
-                    WHERE exam_fk = ?";
+            $sql = "SELECT id, name AS 'question',max_points AS 'points' FROM QuestionTypeMath WHERE exam_fk = ?";
 
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmnt = $this->conn->prepare($sql);
@@ -70,6 +68,7 @@ class QuestionMathController{
 
         foreach($questions as $question){
             $data[$question["question"]]["id"] = $question["id"];
+            $data[$question["question"]]["points"] = $question["points"];
         }
 
         return $data;

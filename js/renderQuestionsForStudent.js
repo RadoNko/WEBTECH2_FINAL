@@ -7,10 +7,12 @@ $(document).ready(function () {
         url: origin + "/Final/router/exam/" + examId,
         dataType: "json",
         success: function (data) {
+            console.log("data: ",data)
 
             $.each(data, function (questionType, questions) {
                 $.each(questions, function (question, answers) {
                     // call render function for question type
+
                     window["render" + questionType](question, answers);
                 });
             });
@@ -21,6 +23,7 @@ $(document).ready(function () {
 let boards = new Map()
 
 function renderQuestionTypeDrawing(question, answers){
+
     const exam = document.getElementById("examContainer");
     const questionType = "questionTypeDrawing";
 
