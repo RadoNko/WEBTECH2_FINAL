@@ -6,20 +6,55 @@ $(document).ready(function () {
         url: origin + "/Final/router/rateExam/" + studentExamId,
         dataType: "json",
         success: function (data) {
-            console.log("data: ",data)
-            data["AnswerTypeMath"].forEach(answer => {
-                renderQuestionTypeMath(answer)
+            console.log(data)
 
+            $.each(data, function (questionType, questions) {
+                $.each(questions, function (question, answers) {
+                    console.log("question: ", question)
+                    console.log("answer: ", answers)
+                    console.log("question Type: ", questionType)
+                    // call render function for question type
+                    window["render" + questionType](question, answers);
+                });
+            });
                 //init static math expressions
                 const MQ = MathQuill.getInterface(2);
                 const mathExpressions = document.getElementsByClassName('math-expression')
                 for (const expression of mathExpressions){
                     MQ.StaticMath(expression)
                 }
-            })
-            data["AnswerTypeDrawing"].forEach(answer => {
-                renderQuestionTypeDrawing(answer)
-            })
+
+            // data["AnswerTypeMath"].forEach(answer => {
+            //     renderQuestionTypeMath(answer)
+            //     //init static math expressions
+            //     const MQ = MathQuill.getInterface(2);
+            //     const mathExpressions = document.getElementsByClassName('math-expression')
+            //     for (const expression of mathExpressions){
+            //         MQ.StaticMath(expression)
+            //     }
+            // })
+                    // $.each(data, function (questionType, questions) {
+                    //     $.each(questions, function (question, answers) {
+                    //         console.log("question: ",question)
+                    //         console.log("answer: ",answers)
+                    //         // call render function for question type
+                    //         window["render" + questionType](question, answers);
+                    //     });
+                    // });
+
+
+            // console.log("data: ",data)
+            // data["AnswerTypeMath"].forEach(answer => {
+            //     renderQuestionTypeMath(answer)
+            //     //init static math expressions
+            //     const MQ = MathQuill.getInterface(2);
+            //     const mathExpressions = document.getElementsByClassName('math-expression')
+            //     for (const expression of mathExpressions){
+            //         MQ.StaticMath(expression)
+            //     }
+            // })
+            // console.log("QuestionTypeConnect: ",data["QuestionTypeConnect"])
+            // data["QuestionTypeConnect"].#
         },
     });
 
@@ -45,7 +80,7 @@ $(document).ready(function () {
 
 });
 
-function renderQuestionTypeDrawing(answer){
+function renderAnswerTypeDrawing(question, answer){
     const exam = document.getElementById("examContainer");
     const questionType = "questionTypeDrawing";
 
@@ -103,16 +138,15 @@ function renderQuestionTypeMultiple(question, answers){
     })
 }
 
-function renderQuestionTypeMath(answer){
+function renderAnswerTypeMath(question, answer){
     const exam = document.getElementById("examContainer");
     const questionType = "questionTypeMath";
-    const question = answer["name"];
 
     // this is the ID from db; it will be extracted upon test submit
     let questionTypeNumber = answer["id"];
     exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
                                     <div class="form-group">
-                                        <p><span class="math-expression">` + question + `</span></p>
+                                        <p><span class="math-expression">` + answer["name"] + `</span></p>
                                         <span class="max-points">`+ answer["max_points"] +`</span>
                                     </div>
                                     <div id="answersMath`+ questionTypeNumber +`" class="form-group">
