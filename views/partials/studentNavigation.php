@@ -3,25 +3,19 @@
     <div class="flex flex-row items-center w-full logoColourBackground p-4">
       <div>
         <p class="text-white">Logged In:</p>
-        <p class="text-white">Anon Anonymous</p>
+          <p class="text-white"><?php session_start(); echo $_SESSION["logged_id"]; ?></p>
       </div>
     </div>
     <div id="myDIV" class="px-6 pt-4 pb-8">
-      <a href="/Final/views/oldIndexFullajtar.php" class="block px-2 py-1 text-white font-semibold rounded hover:bg-gray-500">Show exam</a>
+      <a href="/Final/views/fillTest.php" class="block px-2 py-1 text-white font-semibold rounded hover:bg-gray-500">Show exam</a>
       <a href="/Final/views/formula-sheet.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500">Formula sheets</a>
       <a href="/Final/views/drawing-demo.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500">Drawing tool</a>
-      <a href="#" class="block px-2 py-1 mt-1 text-white font-semibold rounded ">Scan work</a>
-      <a href="#" class="block px-2 py-1 mt-1 text-white font-semibold rounded ">Submit exam</a>
-      <a href="/Final/views/createTest.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded opacity-50">Debug Page Create Test</a>
-      <a href="/Final/views/fillTest.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded opacity-50">Debug Page Render Test</a>
-      <a href="/Final/views/rateTest.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded opacity-50">Debug Page Rate Test</a>
-
     </div>
   </div>
   <div class="grid ">
     <p id="countdown" class="font-bold text-5xl justify-self-center">00:00</p>
   </div>
-  <a href="#" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500 self-end">Logout</a>
+  <button onclick="logOut()" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500 self-end">Logout</button>
 </header>
 
 <script>
@@ -49,4 +43,5 @@
     element.classList.toggle("hidden");
   }
 </script>
+<script src="/Final/js/logOut.js"></script>
 

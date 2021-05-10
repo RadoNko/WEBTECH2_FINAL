@@ -154,6 +154,9 @@ Router::post("Final/router/exam/rateAnswersText", function () {
         $_SESSION["teacher"] = false;
         $_SESSION["logged_id"] = -1;
         $_SESSION["student_exam_id"] = -1;
+        if (isset($_SESSION["username"])){
+            $_SESSION["username"] = -1;
+        }
         header("Location: /Final/");
 //    return json_encode($_SESSION["student"]);
     });

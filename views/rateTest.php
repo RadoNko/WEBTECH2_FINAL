@@ -14,7 +14,7 @@
 
 </head>
 <body class="grid grid-cols-12 bg-gray-200 min-h-screen">
-<?php include "partials/studentNavigation.html" ?>
+<?php include "partials/teacherNavigation.php" ?>
 <main class="col-span-10 flex justify-center pt-10 pb-96">
     <div class="w-4/5 h-full bg-gray-100 text-xl shadow-2xl">
         <div id="examContainer">

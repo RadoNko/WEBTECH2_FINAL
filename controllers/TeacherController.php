@@ -33,7 +33,7 @@ class TeacherController
     }
     function verifyTeacherLogin($data){
         try{
-            $sql = "SELECT id,password FROM Teacher WHERE username=?";
+            $sql = "SELECT id,password,username FROM Teacher WHERE username=?";
             $stm = $this->conn->prepare($sql);
             $stm->execute([$data["nickname"]]);
             $result=$stm->fetch();
@@ -43,6 +43,7 @@ class TeacherController
                 $_SESSION["student"]=false;
                 $_SESSION["teacher"]=true;
                 $_SESSION["logged_id"]=$result["id"];
+                $_SESSION["username"]=$result["username"];
                 return "verified";
             }else{
                 return "wrongPassword";
@@ -72,6 +73,7 @@ class TeacherController
             $_SESSION["student"]=false;
             $_SESSION["teacher"]=true;
             $_SESSION["logged_id"]=$this->conn->lastInsertId();
+            $_SESSION["username"]=$data["nickname"];
             return "registered";
         }
         catch(PDOException $e){

@@ -20,10 +20,11 @@
 
 </head>
 <body class="grid grid-cols-12 bg-gray-200 min-h-screen">
-<?php include "partials/studentNavigation.html" ?>
+<?php include "partials/teacherNavigation.php" ?>
 <main class="col-span-10 flex justify-center pt-10">
     <div class="w-4/5 h-full bg-gray-100 text-xl shadow-2xl pb-96">
         <div class="sticky top-0 p-4 z-10 bg-gray-100 border border-gray-200">
+            <h1><?php session_start(); var_dump($_SESSION); ?></h1>
             <button type="button" class="green-button" id="addQuestionMultiple" onclick="addQuestionMultiple()">Add question with multiple choices</button>
             <button type="button" class="green-button" id="addQuestionConnect"  onclick="addQuestionConnect()">Add question with pairs</button>
             <button type="button" class="green-button" id="addQuestionDrawing"  onclick="addDrawingQuestion()">Add drawing Question</button>

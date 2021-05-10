@@ -110,7 +110,7 @@ function verifyTeacherLogin(){
             if(data==="wrongPassword"){
                 document.getElementById("teacherLogin").insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Nesprávne heslo</div>`);
             }else
-                location.href = "/Final/php/examOverview.php";
+                location.href = "/Final/views/examOverview.php";
         }
     });
 }
