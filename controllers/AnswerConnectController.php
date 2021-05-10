@@ -1,4 +1,8 @@
 <?php
+if (session_status() != 2){
+    session_start();
+}
+
 
 require_once("Database.php");
 
@@ -12,6 +16,7 @@ class AnswerConnectController{
 
     // this inserts points too
     private function insertAnswerType($studentExamId, $questionId, $pointsForQuestion, $numberOfPairs, $option, $answer){
+        $studentExamId = $_SESSION["student_exam_id"];
 
         $points = 0;
 

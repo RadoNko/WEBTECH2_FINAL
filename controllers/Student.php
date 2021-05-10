@@ -1,5 +1,7 @@
 <?php
-session_start();
+if (session_status() != 2){
+    session_start();
+}
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -21,9 +23,9 @@ class Student{
             $stm->execute([$code["testCode"]]);
             $count = $stm->rowCount();
             if($count!=0){
-                return "true";
+                return true;
             }else{
-                return "false";
+                return false;
             }
 
         }

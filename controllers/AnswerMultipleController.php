@@ -1,4 +1,7 @@
 <?php
+if (session_status() != 2){
+    session_start();
+}
 
 require_once("Database.php");
 
@@ -11,6 +14,7 @@ class AnswerMultipleController{
     }
 
     private function insertAnswerType($questionId, $studentExamId){
+        $studentExamId = $_SESSION["student_exam_id"];
 
         try{
 
@@ -190,6 +194,7 @@ class AnswerMultipleController{
     }
 
     public function insertAnswers($questionId, $studentExamId, $answers){
+        $studentExamId = $_SESSION["student_exam_id"];
 
         $answerTypeId = null;
 

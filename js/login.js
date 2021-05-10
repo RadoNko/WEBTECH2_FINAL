@@ -4,6 +4,7 @@ function saveTest(code){
 }
 
 function verifyTestCode(){
+    console.log("verify")
     testCode=null;
     var code={
         "testCode": document.getElementById("testCode").value
@@ -14,7 +15,9 @@ function verifyTestCode(){
         method: "POST",
         url: origin + "/Final/router/logins/verifyTestCode",
         data: code,
+        dataType: "text",
         success: function(data){
+            console.log(data)
             if(data==="true"){
                 saveTest(code);
                 document.getElementById("studentLogin").style.display="none";
@@ -56,7 +59,7 @@ function sendStudentName(){
                 if(data==="wrongData")
                     studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Ais ID nesedí so zadanými údajmi</div>`);
                 else if(data==="studentExamInserted"){
-                    location.href = origin;
+                    location.href = "/Final/views/fillTest.php";
                 }else if(data==="alreadyFinished"){
                     studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Tento test si už dopísal</div>`);
                 }

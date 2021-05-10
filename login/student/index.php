@@ -29,6 +29,7 @@ error_reporting(E_ALL);
 
     <?php
         session_start();
+        var_dump($_SESSION);
         if(!isset($_SESSION["student"]) || $_SESSION["student"]==false){
             echo'  <div id="studentLogin" class="form-group">
         <h4>Zadajte kód testu</h4>
