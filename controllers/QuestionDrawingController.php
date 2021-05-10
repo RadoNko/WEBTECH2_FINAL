@@ -1,8 +1,5 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
+session_start();
 require_once "Database.php";
 
 class QuestionDrawingController{
@@ -35,7 +32,7 @@ class QuestionDrawingController{
 
     public function addQuestion($data){
 
-        $examId = 1;//TODO //$this->insertExam(1);
+        $examId = $_SESSION["exam_id"];
 
         foreach($data as $key => $value){
 

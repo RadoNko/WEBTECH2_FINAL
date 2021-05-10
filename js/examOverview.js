@@ -140,7 +140,9 @@ $(document).ready(function () {
       dataType: "json",
       success: function (response) {
         // TODO redirect to proper exam creation site
+
         $("#createExamModal").modal("hide");
+        window.location.href = "/Final/views/createTest.php";
       },
     });
   });

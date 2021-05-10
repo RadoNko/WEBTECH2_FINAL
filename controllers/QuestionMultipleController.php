@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once("Database.php");
 
 class QuestionMultipleController{
@@ -84,7 +84,7 @@ class QuestionMultipleController{
 
             if($key === "question"){
 
-                $questionId = $this->insertQuestion($value, 1, $data["points"]);
+                $questionId = $this->insertQuestion($value, $_SESSION["exam_id"], $data["points"]);
             }
 
             if($key === "answers"){
