@@ -32161,6 +32161,50 @@ form:nth-child(even){
   border-radius: 0.25rem;
 }
 
+.red-warning-small{
+  --tw-bg-opacity: 1;
+  background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  --tw-text-opacity: 1;
+  color: rgba(255, 255, 255, var(--tw-text-opacity));
+  font-weight: 700;
+  padding-top: 0.125rem;
+  padding-bottom: 0.125rem;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  border-width: 1px;
+  --tw-border-opacity: 1;
+  border-color: rgba(185, 28, 28, var(--tw-border-opacity));
+  border-radius: 0.25rem;
+}
+
+/*.purple-button-big{*/
+
+/*    @apply */
+
+/*    @apply bg-purple-500;*/
+
+/*    @apply hover:bg-purple-700;*/
+
+/*    @apply focus:bg-purple-700;*/
+
+/*    @apply text-white;*/
+
+/*    @apply font-bold;*/
+
+/*    @apply py-1;*/
+
+/*    @apply px-2;*/
+
+/*    @apply border;*/
+
+/*    @apply border-purple-700;*/
+
+/*    @apply rounded;*/
+
+/*}*/
+
 .btn-primary{
   --tw-bg-opacity: 1;
   background-color: rgba(139, 92, 246, var(--tw-bg-opacity));
@@ -32362,6 +32406,21 @@ form{
 
 .math-expression{
   font-weight: bold;
+}
+
+.login-main{
+  transform: translate(-50%, -50%);
+  padding-top: 5vw;
+}
+
+.login-icon{
+  width: 62%;
+}
+
+.login-icon-container{
+  width: 10vw;
+  height: 10vw;
+  transform: translate(33%, -100%);
 }
 
 @media (min-width: 640px) {

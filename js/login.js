@@ -24,7 +24,7 @@ function verifyTestCode(){
                 document.getElementById("studentDetails").style.display="block";
             }else{
                 document.getElementById("studentLogin").insertAdjacentHTML('beforeend', `
-                                <div class='alert alert-danger' role='alert'>Incorrect test code</div>`);
+                                <div class='red-warning-small mt-4' role='alert'>Incorrect test code</div>`);
             }
         }
     });
@@ -38,11 +38,11 @@ function sendStudentName(){
     var studentDetailsDiv=document.getElementById("studentDetails");
 
     if(id==null || id==="")
-        studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Vyžaduje sa Ais ID</div>`);
+        studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Vyžaduje sa Ais ID</div>`);
     else if(name==null || name==="")
-        studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Vyžaduje sa meno</div>`);
+        studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Vyžaduje sa meno</div>`);
     else if(surname==null || surname==="")
-        studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Vyžaduje sa priezvisko</div>`);
+        studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Vyžaduje sa priezvisko</div>`);
     else {
         var data = {
             "id":id,
@@ -57,11 +57,11 @@ function sendStudentName(){
             data: data,
             success: function (data) {
                 if(data==="wrongData")
-                    studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Ais ID nesedí so zadanými údajmi</div>`);
+                    studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Ais ID nesedí so zadanými údajmi</div>`);
                 else if(data==="studentExamInserted"){
                     location.href = "/Final/views/fillTest.php";
                 }else if(data==="alreadyFinished"){
-                    studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Tento test si už dopísal</div>`);
+                    studentDetailsDiv.insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Tento test si už dopísal</div>`);
                 }
 
             }
@@ -86,13 +86,13 @@ function registerNewTeacher(){
             data: {nickname:nickname,password:psw},
             success: function(data){
                 if(data==="alreadyRegistered"){
-                    document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Účet už existuje</div>`);
+                    document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Účet už existuje</div>`);
                 }else
                     location.href = origin + '/Final/';
             }
         });
     }else{
-        document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Heslá sa nezhodujú</div>`);
+        document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Heslá sa nezhodujú</div>`);
     }
 }
 
@@ -108,7 +108,7 @@ function verifyTeacherLogin(){
         data: data,
         success: function(data){
             if(data==="wrongPassword"){
-                document.getElementById("teacherLogin").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Nesprávne heslo</div>`);
+                document.getElementById("teacherLogin").insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Nesprávne heslo</div>`);
             }else
                 location.href = "/Final/php/examOverview.php";
         }

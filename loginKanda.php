@@ -7,23 +7,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="tailwind.css">
     <style>
-        main{
-            transform: translate(-50%, -50%);
-            padding-top: 5vw;
-        }
-        .login-icon{
-            width: 62%;
-        }
-        .login-icon-container{
-            width: 10vw;
-            height: 10vw;
-            transform: translate(33%, -100%);
-        }
+
     </style>
 </head>
 
 <body class="relative h-full logoColourBackground">
-    <main class="absolute bg-gray-600 w-1/6 h-1/4 top-1/2 left-1/2 rounded-md">
+    <main class="login-main absolute bg-gray-600 w-1/6 h-1/3 top-1/2 left-1/2 rounded-md">
         <div class="login-icon-container absolute rounded-full opacity-90 bg-gray-700 flex items-center justify-center">
             <img class="login-icon opacity-100" src="/Final/img/person1.svg" alt="Prson Icon">
         </div>
@@ -46,8 +35,8 @@
                         </div>';
         } else {
             echo "    <div id='loginButtons' class='w-full text-center'>
-                        <button class='btn-primary text-2xl break-normal w-max' onclick=location.href='/Final/login/student'>I'm Student</button>
-                        <button class='btn-primary text-2xl break-normal w-max' onclick=location.href='/Final/login/teacher'>I'm Teacher</button>
+                        <button class='btn-primary text-2xl w-max' onclick=location.href='/Final/login/student'>I'm Student</button>
+                        <button class='btn-primary text-2xl w-max' onclick=location.href='/Final/login/teacher'>I'm Teacher</button>
                     </div>";
         }
         ?>

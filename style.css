@@ -137,6 +137,18 @@ form:nth-child(even){
     @apply rounded;
 }
 
+.red-warning-small{
+    @apply bg-red-500;
+    @apply text-sm;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-0.5;
+    @apply px-1;
+    @apply border;
+    @apply border-red-700;
+    @apply rounded;
+}
+
 /*.purple-button-big{*/
 /*    @apply */
 /*    @apply bg-purple-500;*/
@@ -264,4 +276,16 @@ form{
 }
 .math-expression{
     font-weight: bold;
+}
+.login-main{
+    transform: translate(-50%, -50%);
+    padding-top: 5vw;
+}
+.login-icon{
+    width: 62%;
+}
+.login-icon-container{
+    width: 10vw;
+    height: 10vw;
+    transform: translate(33%, -100%);
 }
