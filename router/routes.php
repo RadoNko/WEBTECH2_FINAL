@@ -1,6 +1,5 @@
 <?php
 require_once("../controllers/QuestionText.php");
-require_once("../controllers/Teacher.php");
 require_once("../controllers/Student.php");
 
 require_once("../controllers/AnswerMultipleController.php");
@@ -158,7 +157,8 @@ Router::post("Final/router/exam/rateAnswersText", function () {
     Router::post("Final/router/logins/registerNewTeacher", function () {
         session_start();
         $input = input()->all();
-        $teacher = new Teacher();
+        $teacher = new TeacherController();
+
         $result = $teacher->registerTeacher($input);
         return json_encode($result);
     });
@@ -167,7 +167,7 @@ Router::post("Final/router/exam/rateAnswersText", function () {
     Router::post("Final/router/logins/verifyTeacherLogin", function () {
         session_start();
         $input = input()->all();
-        $teacher = new Teacher();
+        $teacher = new TeacherController();
         $result = $teacher->verifyTeacherLogin($input);
         return json_encode($result);
     });

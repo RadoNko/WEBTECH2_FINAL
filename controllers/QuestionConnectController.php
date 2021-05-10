@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once("Database.php");
 
 class QuestionConnectController{
@@ -107,7 +107,7 @@ class QuestionConnectController{
 
             if($key === "question"){
 
-                $questionId = $this->insertParentQuestion($value, 1, $data["points"]);
+                $questionId = $this->insertParentQuestion($value, $_SESSION["exam_id"], $data["points"]);
             }
 
             if($key === "pairs"){

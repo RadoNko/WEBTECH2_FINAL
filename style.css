@@ -137,6 +137,10 @@ form:nth-child(even){
     @apply rounded;
 }
 
+.btn-primary{
+    @apply purple-button;
+}
+
 .purple-button-small{
     @apply bg-purple-500;
     @apply text-sm;

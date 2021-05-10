@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 require_once("Database.php");
 require_once("QuestionConnectController.php");
 require_once("QuestionMultipleController.php");

@@ -1,4 +1,5 @@
 <?php
+session_start();
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -81,7 +82,7 @@ class QuestionText
         foreach ($data as $key => $value) {
 
             if ($key === "question") {
-                $questionId = $this->insertQuestion($data["question"], $data["answer"], 1, $data["points"]);
+                $questionId = $this->insertQuestion($data["question"], $data["answer"], $_SESSION["exam_id"], $data["points"]);
             }
         }
         return json_encode($questionId);
