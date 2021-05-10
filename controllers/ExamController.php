@@ -150,6 +150,9 @@ class ExamController
         $answerDrawingController = new AnswerDrawingController();
         $answersDrawing = $answerDrawingController->getAnswerWithQuestion($student_exam_fk);
 
+        $questionTextController = new QuestionText();
+        $questionsText = $questionTextController->getAnswerWithQuestion($student_exam_fk);
+
         if(!empty($answersConnect)){
 
             $exam["QuestionTypeConnect"] = $answersConnect;
@@ -166,6 +169,10 @@ class ExamController
 
         if (!empty($answersDrawing)) {
             $exam["AnswerTypeDrawing"] = $answersDrawing;
+        }
+
+        if (!empty($questionsText)) {
+            $exam["AnswerTypeText"] = $questionsText;
         }
 
         return json_encode($exam, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);

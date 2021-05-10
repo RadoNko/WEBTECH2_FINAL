@@ -31,7 +31,6 @@ function submitQuestionText(id){
     let data = {};
     data["answerId"] = form[0].name;
     data["points"] = form[0].value;
-    console.log(data);
     let origin = $(location).attr('origin');
 
     $.ajax({
@@ -41,7 +40,6 @@ function submitQuestionText(id){
         data: data,
         dataType: "text",
         success: function(data){
-            console.log("setnute");
         }
     });
 
@@ -62,7 +60,6 @@ function submitQuestionMath(id){
         data: data,
         dataType: "text",
         success: function(data){
-            console.log("returned: ",data)
         }
     });
 }
@@ -82,7 +79,6 @@ function submitQuestionDrawing(id){
         data: data,
         dataType: "text",
         success: function(data){
-            console.log("returned: ",data)
         }
     });
 }

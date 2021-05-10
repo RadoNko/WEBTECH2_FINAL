@@ -6,13 +6,10 @@ $(document).ready(function () {
         url: origin + "/Final/router/rateExam/" + studentExamId,
         dataType: "json",
         success: function (data) {
-            console.log(data)
 
             $.each(data, function (questionType, questions) {
                 $.each(questions, function (question, answers) {
-                    console.log("question: ", question)
-                    console.log("answer: ", answers)
-                    console.log("question Type: ", questionType)
+
                     // call render function for question type
                     window["render" + questionType](question, answers);
                 });
@@ -23,61 +20,8 @@ $(document).ready(function () {
                 for (const expression of mathExpressions){
                     MQ.StaticMath(expression)
                 }
-
-            // data["AnswerTypeMath"].forEach(answer => {
-            //     renderQuestionTypeMath(answer)
-            //     //init static math expressions
-            //     const MQ = MathQuill.getInterface(2);
-            //     const mathExpressions = document.getElementsByClassName('math-expression')
-            //     for (const expression of mathExpressions){
-            //         MQ.StaticMath(expression)
-            //     }
-            // })
-                    // $.each(data, function (questionType, questions) {
-                    //     $.each(questions, function (question, answers) {
-                    //         console.log("question: ",question)
-                    //         console.log("answer: ",answers)
-                    //         // call render function for question type
-                    //         window["render" + questionType](question, answers);
-                    //     });
-                    // });
-
-
-            // console.log("data: ",data)
-            // data["AnswerTypeMath"].forEach(answer => {
-            //     renderQuestionTypeMath(answer)
-            //     //init static math expressions
-            //     const MQ = MathQuill.getInterface(2);
-            //     const mathExpressions = document.getElementsByClassName('math-expression')
-            //     for (const expression of mathExpressions){
-            //         MQ.StaticMath(expression)
-            //     }
-            // })
-            // console.log("QuestionTypeConnect: ",data["QuestionTypeConnect"])
-            // data["QuestionTypeConnect"].#
         },
     });
-
-    // let studentExamId = 3;
-    // let origin = $(location).attr("origin");
-    //
-    // $.ajax({
-    //     method: "GET",
-    //     url: origin + "/Final/router/studentExam/"+studentExamId+"/answers",
-    //     dataType: "json",
-    //     success: function (data) {
-    //
-    //         console.log(data);
-    //
-    //         $.each(data, function (questionType, questions) {
-    //             $.each(questions, function (question, answers) {
-    //                 // call render function for question type
-    //                 window["render" + questionType](question, answers);
-    //             });
-    //         });
-    //     },
-    // });
-
 });
 
 function renderAnswerTypeDrawing(question, answer){
@@ -161,8 +105,6 @@ function renderAnswerTypeMath(question, answer){
                                                                     <input type="number" name="`+answer["id"]+`" value="`+answer["points"]+`" class="form-check-input" min="0" max="`+answer["max_points"]+`" required>
                                                                  </div>
                                              `)
-
-
 }
 
 function renderQuestionTypeConnect(question, data){
@@ -212,13 +154,13 @@ function renderQuestionTypeConnect(question, data){
 
 }
 
-function renderQuestionTypeText(question, answers){
+function renderAnswerTypeText(question, answer){
 
     let exam = document.getElementById("examContainer");
 
     let questionType = "questionTypeText";
 
-    const question = answer["name"];
+     question = answer["name"];
 
     let questionTypeNumber = answer["id"];
 
@@ -226,7 +168,7 @@ function renderQuestionTypeText(question, answers){
                                     <form class='question' id='` + questionType + questionTypeNumber +`' >
                                     <div class="form-group">
                                         <p><b>` + question + `</b></p>
-                                        <span>max points `+ answer["max_points"] +`</span>
+                                        <span class="max-points">`+ answer["max_points"] +`</span>
                                     </div>
                                     
                                     <div id="answersText`+ questionTypeNumber +`" class="form-group">

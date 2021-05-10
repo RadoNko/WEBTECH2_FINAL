@@ -7,7 +7,6 @@ $(document).ready(function () {
         url: origin + "/Final/router/exam/" + examId,
         dataType: "json",
         success: function (data) {
-            console.log("data: ",data)
 
             $.each(data, function (questionType, questions) {
                 $.each(questions, function (question, answers) {
@@ -16,6 +15,13 @@ $(document).ready(function () {
                     window["render" + questionType](question, answers);
                 });
             });
+
+            //render static math fields
+            const MQ = MathQuill.getInterface(2);
+            const mathExpressions = document.getElementsByClassName('math-expression')
+            for (const expression of mathExpressions){
+                MQ.StaticMath(expression)
+            }
         },
     });
 });
@@ -112,11 +118,7 @@ function renderQuestionTypeMath(question, answers){
                                              `)
     const MQ = MathQuill.getInterface(2);
 
-    //render static math fields //TODO bad preformance due to looping through already rendered fields
-    const mathExpressions = document.getElementsByClassName('math-expression')
-    for (const expression of mathExpressions){
-        MQ.StaticMath(expression)
-    }
+
 
     //init answer math field
     const answerSpans = answersContainer.getElementsByClassName('math-answer')
