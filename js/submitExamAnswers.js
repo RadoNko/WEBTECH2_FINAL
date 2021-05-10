@@ -1,8 +1,33 @@
+$(document).ready(function () {
+  let origin = $(location).attr("origin");
+  setInterval(getTimeout, 1000);
 
+  // function to check if user should not end his test already
+  function getTimeout() {
+    $.ajax({
+      method: "GET",
+      url: origin + "/Final/router/exam/time/left",
+      dataType: "text",
+      success: function (data) {
+        if (data < 0) {
+          $("#countdown").text("End now !");
+          // finish exam
+          submitExamAnswers();
+        } else {
+          $("#countdown").text(new Date(data * 1000).toISOString().substr(11, 8));
+        }
+        var date = new Date(null);
+        date.setSeconds(data); // specify value for SECONDS here
+        var result = date.toISOString().substr(11, 8);
+        $("#countdown").text(result);
+      },
+    });
+  }
+})
 
-function submitQuestionText(id){
+function submitQuestionText(id) {
 
-  let form = $("#"+id).serializeArray();
+  let form = $("#" + id).serializeArray();
 
   let questionId = id.split("questionTypeText").pop();
 
@@ -19,7 +44,7 @@ function submitQuestionText(id){
   let answer = {};
 
 
-  for(i = 0; i < form.length; i++){
+  for (i = 0; i < form.length; i++) {
 
     answer.answer = form[i].value;
     answers.push(answer);
@@ -36,14 +61,14 @@ function submitQuestionText(id){
     url: origin + "/Final/router/exam/insertTextAnswer",
     data: data,
     dataType: "text",
-    success: function(data){
+    success: function (data) {
     }
   });
 
 }
 
-function submitQuestionMath(id){
-  let form = $("#"+id).serializeArray();
+function submitQuestionMath(id) {
+  let form = $("#" + id).serializeArray();
   let questionId = id.split("questionTypeMath").pop();
   let data = {};
 
@@ -62,31 +87,31 @@ function submitQuestionMath(id){
     url: origin + "/Final/router/exam/insertAnswersMath",
     data: data,
     dataType: "text",
-    success: function(data){
+    success: function (data) {
     }
   });
 }
 
-function submitQuestionDrawing(id){
+function submitQuestionDrawing(id) {
 
-  let form = $("#"+id).serializeArray();
+  let form = $("#" + id).serializeArray();
 
   const myBoard = boards.get(id)
 
-    //get drawingboard content
-    var img = myBoard.getImg();
+  //get drawingboard content
+  var img = myBoard.getImg();
 
-    //we keep drawingboard content only if it's not the 'blank canvas'
-    var imgInput = (myBoard.blankCanvas == img) ? '' : img;
+  //we keep drawingboard content only if it's not the 'blank canvas'
+  var imgInput = (myBoard.blankCanvas == img) ? '' : img;
 
-    //put the drawingboard content in the form field to send it to the server
-    const thisForm = document.getElementById(id)
-    $(thisForm).find('input[name=image]').val(imgInput);
-    $(thisForm).find('input[name=imageId]').val(id);
+  //put the drawingboard content in the form field to send it to the server
+  const thisForm = document.getElementById(id)
+  $(thisForm).find('input[name=image]').val(imgInput);
+  $(thisForm).find('input[name=imageId]').val(id);
 
-    //we can also assume that everything goes well server-side
-    //and directly clear webstorage here so that the drawing isn't shown again after form submission
-    //but the best would be to do when the server answers that everything went well
+  //we can also assume that everything goes well server-side
+  //and directly clear webstorage here so that the drawing isn't shown again after form submission
+  //but the best would be to do when the server answers that everything went well
 
 
 
@@ -112,7 +137,7 @@ function submitQuestionDrawing(id){
     url: origin + "/Final/router/exam/insertAnswersDrawing",
     data: data,
     dataType: "text",
-    success: function(data){
+    success: function (data) {
       myBoard.clearWebStorage();
     }
   });
@@ -149,19 +174,19 @@ function submitQuestionConnect(id) {
   let origin = $(location).attr("origin");
 
   $.ajax({
-        method: "POST",
-        url: origin + "/Final/router/exam/answer/connect",
-        data: data,
-        dataType: "text",
-        success: function(data){
- 
-        }
-    });
+    method: "POST",
+    url: origin + "/Final/router/exam/answer/connect",
+    data: data,
+    dataType: "text",
+    success: function (data) {
+
+    }
+  });
 }
 
-function submitQuestionMultiple(id){
+function submitQuestionMultiple(id) {
 
-  let form = $("#"+id).serializeArray();
+  let form = $("#" + id).serializeArray();
 
   let questionId = id.split("questionTypeMultiple").pop();
 
@@ -178,7 +203,7 @@ function submitQuestionMultiple(id){
   let answer = {};
 
 
-  for(i = 0; i < form.length; i++){
+  for (i = 0; i < form.length; i++) {
 
     answer.answer = form[i].value;
     answers.push(answer);
@@ -194,7 +219,7 @@ function submitQuestionMultiple(id){
     url: origin + "/Final/router/exam/answer/multiple",
     data: data,
     dataType: "text",
-    success: function(data){
+    success: function (data) {
     }
   });
 }
@@ -223,23 +248,23 @@ function submitExamAnswers() {
   }
 
   //fullajtar
-  if(questionTypeMathIds.length > 0){
+  if (questionTypeMathIds.length > 0) {
 
-    questionTypeMathIds.each(function(){
+    questionTypeMathIds.each(function () {
       submitQuestionMath(this.id);
     })
   }
 
-  if(questionTypeDrawingIds.length > 0){
+  if (questionTypeDrawingIds.length > 0) {
 
-    questionTypeDrawingIds.each(function(){
+    questionTypeDrawingIds.each(function () {
       submitQuestionDrawing(this.id);
     })
   }
 
-  if(questionTypeTextIds.length > 0){
+  if (questionTypeTextIds.length > 0) {
 
-    questionTypeTextIds.each(function(){
+    questionTypeTextIds.each(function () {
       submitQuestionText(this.id);
     })
   }
@@ -292,31 +317,31 @@ function drop(event) {
     sauce: https://css-tricks.com/snippets/jquery/shuffle-dom-elements/
 */
 
-(function($){
+(function ($) {
 
-  $.fn.shuffle = function(questionTypeNumber) {
+  $.fn.shuffle = function (questionTypeNumber) {
 
     var allElems = this.get(),
-        getRandom = function(max) {
-          return Math.floor(Math.random() * max);
-        },
-        shuffled = $.map(allElems, function(){
-          var random = getRandom(allElems.length),
-              randEl = $(allElems[random]).clone(true)[0];
-          allElems.splice(random, 1);
-          return randEl;
-        });
+      getRandom = function (max) {
+        return Math.floor(Math.random() * max);
+      },
+      shuffled = $.map(allElems, function () {
+        var random = getRandom(allElems.length),
+          randEl = $(allElems[random]).clone(true)[0];
+        allElems.splice(random, 1);
+        return randEl;
+      });
 
-    this.each(function(i){
+    this.each(function (i) {
       $(this).replaceWith($(shuffled[i]));
     });
 
-    $("#connectOptions"+ questionTypeNumber + " li input").each(function(i){
+    $("#connectOptions" + questionTypeNumber + " li input").each(function (i) {
 
-      let opposite = $("#connectAnswers"+questionTypeNumber +" li:nth-child("+(i+1)+") input");
+      let opposite = $("#connectAnswers" + questionTypeNumber + " li:nth-child(" + (i + 1) + ") input");
 
-      if(this.value - 1 == opposite[0].value){
-        $("#connectAnswers" + questionTypeNumber +" li").shuffle(questionTypeNumber);
+      if (this.value - 1 == opposite[0].value) {
+        $("#connectAnswers" + questionTypeNumber + " li").shuffle(questionTypeNumber);
       }
     })
 
