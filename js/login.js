@@ -75,21 +75,30 @@ function registerNewTeacher(){
     var nickname=document.getElementById("teacherRegistrationNickname").value;
     var psw=document.getElementById("teacherRegistrationPassword").value;
     var psw2=document.getElementById("teacherRegistrationPasswordAgain").value;
-    if(psw===psw2){
-        $.ajax({
-            method: "POST",
-            url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/logins/registerNewTeacher",
-            data: {nickname:nickname,password:psw},
-            success: function(data){
-                console.log(data);
-                if(data==="alreadyRegistered"){
-                    document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Účet už existuje</div>`);
-                }else
-                    location.href = 'http://147.175.98.72/skuska/WEBTECH2_FINAL/';
-            }
-        });
-    }else{
-        document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Heslá sa nezhodujú</div>`);
+
+    if(nickname===null || nickname==="")
+        document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Vyžaduje sa meno</div>`);
+    else if(psw===null || psw==="")
+        document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Vyžaduje sa heslo</div>`);
+    else if(psw2===null || psw2==="")
+        document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Vyžaduje sa heslo</div>`);
+    else {
+        if (psw === psw2) {
+            $.ajax({
+                method: "POST",
+                url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/logins/registerNewTeacher",
+                data: {nickname: nickname, password: psw},
+                success: function (data) {
+                    console.log(data);
+                    if (data === "alreadyRegistered") {
+                        document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Účet už existuje</div>`);
+                    } else
+                        location.href = 'http://147.175.98.72/skuska/WEBTECH2_FINAL/';
+                }
+            });
+        } else {
+            document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Heslá sa nezhodujú</div>`);
+        }
     }
 }
 
