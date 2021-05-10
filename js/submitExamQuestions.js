@@ -131,8 +131,8 @@ function submitQuestionConnect(id) {
     let pair = {};
 
     // 0 is question text (don't want this here)
-    for (i = 1; i < form.length; i++) {
-        if (i % 2 !== 0) {
+    for (i = 2; i < form.length; i++) {
+        if (i % 2 == 0) {
             pair.question = form[i].value;
         } else {
             pair.answer = form[i].value;
@@ -144,6 +144,9 @@ function submitQuestionConnect(id) {
     data["pairs"] = pairs;
 
     let origin = $(location).attr("origin");
+
+    console.log("data: ", data)
+    console.log(form)
 
     $.ajax({
           method: "POST",

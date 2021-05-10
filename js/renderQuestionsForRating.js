@@ -75,7 +75,7 @@ function renderQuestionTypeMultiple(question, answers){
 
         //                                                                                                                                                               choice-y -> student selected that answer
         answersContainer.insertAdjacentHTML('beforeend', `<div class="form-check">
-                                                                <input type="checkbox" disabled="disabled" name="answer" value='`+ answer.id +`' class="form-check-input choice-`+ answer.choice +`">
+                                                                <input `+((answer.choice === "y") ? 'checked' : '') +` type="checkbox" disabled="disabled" name="answer" value='`+ answer.id +`'  >
                                                                 <label class="form-check-label">` + answer.answer + `</label>
                                                              </div>
                                              `)
@@ -118,7 +118,7 @@ function renderQuestionTypeConnect(question, data){
     exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
                                             <div class='form-group'>
                                                 <p><b>` + question + `</b></p>
-                                                <span>`+ data["earned_points"] +` / `+ data["max_points"] +`</span>
+                                                <span>`+ parseFloat(data["earned_points"]).toFixed(2) +` / `+ data["max_points"] +`</span>
                                             </div>
                                             <div id='answersConnect`+ questionTypeNumber +`' class='form-group'>
                                                 <div class='row'>
