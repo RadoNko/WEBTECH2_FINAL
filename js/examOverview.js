@@ -113,15 +113,20 @@ $(document).ready(function () {
       $("#createExamButton").prop("disabled", true);
       $("#nameHelp").show();
     } else if ($(this).val().length > 0 && $("#timeInput").val().length > 0) {
-      // do not allow exam with existing name
-      if (
-        existingExams.find((exam) => exam.name == $(this).val()) == undefined
-      ) {
+      if (existingExams != undefined) {
+        // do not allow exam with existing name
+        if (
+          existingExams.find((exam) => exam.name == $(this).val()) == undefined
+        ) {
+          $("#createExamButton").prop("disabled", false);
+          $("#nameHelp").hide();
+        } else {
+          $("#createExamButton").prop("disabled", true);
+          $("#nameHelp").show();
+        }
+      } else {
         $("#createExamButton").prop("disabled", false);
         $("#nameHelp").hide();
-      } else {
-        $("#createExamButton").prop("disabled", true);
-        $("#nameHelp").show();
       }
     } else {
       $("#createExamButton").prop("disabled", true);
@@ -139,8 +144,9 @@ $(document).ready(function () {
       data: data,
       dataType: "json",
       success: function (response) {
-        // TODO redirect to proper exam creation site
         $("#createExamModal").modal("hide");
+        console.log("test");
+        window.location.href = origin + "/Final/php/examOverview.php";
       },
     });
   });
