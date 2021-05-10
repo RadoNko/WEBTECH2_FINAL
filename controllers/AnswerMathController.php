@@ -1,4 +1,8 @@
 <?php
+if (session_status() != 2){
+    session_start();
+}
+
 require_once "Database.php";
 
 class AnswerMathController{
@@ -9,7 +13,7 @@ class AnswerMathController{
     }
 
     public function insertAnswer($student_exam_fk, $question_fk, $answer){
-
+        $student_exam_fk = $_SESSION["student_exam_id"];
         try{
             $sql = "INSERT INTO AnswerTypeMath(question_type_fk, answer, student_exam_fk) VALUES(?, ?, ?)";
             $stm = $this->conn->prepare($sql);
@@ -26,6 +30,7 @@ class AnswerMathController{
     }
 
     public function getAnswerWithQuestion($student_exam_fk){
+        $student_exam_fk = $_SESSION["student_exam_id"];
         //SELECT * FROM `AnswerTypeMath` INNER JOIN QuestionTypeMath ON AnswerTypeMath.question_type_fk = QuestionTypeMath.id WHERE AnswerTypeMath.student_exam_fk = 1
         try{
             $stmt = $this->conn->prepare("SELECT * FROM AnswerTypeMath INNER JOIN QuestionTypeMath ON AnswerTypeMath.question_type_fk = QuestionTypeMath.id WHERE AnswerTypeMath.student_exam_fk =:student_exam_fk");

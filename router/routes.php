@@ -133,7 +133,9 @@ Router::post("Final/router/exam/rateAnswersText", function () {
     });
 
     Router::post("Final/router/logins/sendStudentNameSurname", function () {
-        session_start();
+        if (session_status() != 2){
+            session_start();
+        }
         $input = input()->all();
         $student = new Student();
         $result = $student->insertStudentData($input);
@@ -145,7 +147,9 @@ Router::post("Final/router/exam/rateAnswersText", function () {
     });
 
     Router::post("Final/router/logins/destroySession", function () {
-        session_start();
+        if (session_status() != 2){
+            session_start();
+        }
         $_SESSION["student"] = false;
         $_SESSION["teacher"] = false;
         $_SESSION["logged_id"] = -1;
@@ -155,7 +159,9 @@ Router::post("Final/router/exam/rateAnswersText", function () {
     });
 
     Router::post("Final/router/logins/registerNewTeacher", function () {
-        session_start();
+        if (session_status() != 2){
+            session_start();
+        }
         $input = input()->all();
         $teacher = new TeacherController();
 
@@ -165,7 +171,9 @@ Router::post("Final/router/exam/rateAnswersText", function () {
 
 
     Router::post("Final/router/logins/verifyTeacherLogin", function () {
-        session_start();
+        if (session_status() != 2){
+            session_start();
+        }
         $input = input()->all();
         $teacher = new TeacherController();
         $result = $teacher->verifyTeacherLogin($input);
