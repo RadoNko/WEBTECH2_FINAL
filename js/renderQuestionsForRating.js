@@ -214,4 +214,32 @@ function renderQuestionTypeConnect(question, data){
 
 function renderQuestionTypeText(question, answers){
 
+    let exam = document.getElementById("examContainer");
+
+    let questionType = "questionTypeText";
+
+    const question = answer["name"];
+
+    let questionTypeNumber = answer["id"];
+
+    exam.insertAdjacentHTML('beforeend', `
+                                    <form class='question' id='` + questionType + questionTypeNumber +`' >
+                                    <div class="form-group">
+                                        <p><b>` + question + `</b></p>
+                                        <span>max points `+ answer["max_points"] +`</span>
+                                    </div>
+                                    
+                                    <div id="answersText`+ questionTypeNumber +`" class="form-group">
+                                    </div>
+                                </form>
+                                `);
+    const answersContainer = document.getElementById("answersText" + questionTypeNumber);
+    answersContainer.insertAdjacentHTML('beforeend', `
+            <div class="form-group">
+                <span  id="answer-2">`+ answer["answer"] +`</span> 
+                <label for="points">Rate Question</label>
+                <input type="number" name="`+answer["id"]+`" value="`+answer["points"]+`" class="form-check-input" min="0" max="`+answer["max_points"]+`" required>
+             </div>
+                                             `)
+
 }

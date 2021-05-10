@@ -26,15 +26,22 @@ function submitRateTest() {
 }
 
 function submitQuestionText(id){
+    let form = $("#"+id).serializeArray();
 
-    const origin = $(location).attr("origin");
+    let data = {};
+    data["answerId"] = form[0].name;
+    data["points"] = form[0].value;
+    console.log(data);
+    let origin = $(location).attr('origin');
 
     $.ajax({
         method: "POST",
-        url: origin + "",
+        url: origin + "/Final/router/exam/rateAnswersText",
+        // url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/exam/rateAnswersText",
         data: data,
         dataType: "text",
         success: function(data){
+            console.log("setnute");
         }
     });
 

@@ -22,6 +22,7 @@ class Teacher{
 
 
             if(password_verify($data["password"],$result["password"])==true){
+                $_SESSION["student"]=false;
                 $_SESSION["teacher"]=true;
                 $_SESSION["logged_id"]=$result["id"];
                 return "verified";
@@ -50,6 +51,7 @@ class Teacher{
             $stm = $this->connection->prepare($sql);
             $stm->execute([$data["nickname"],$hashedPSW]);
 
+            $_SESSION["student"]=false;
             $_SESSION["teacher"]=true;
             $_SESSION["logged_id"]=$this->connection->lastInsertId();
             return "registered";
