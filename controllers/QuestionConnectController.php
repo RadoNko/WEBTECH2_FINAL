@@ -206,6 +206,97 @@ class QuestionConnectController{
 
         return $data;
     }
+
+    private function getExamId($studentExamId){
+        
+        try{
+
+            $sql = "SELECT exam_fk
+                    FROM Student_Exam
+                    WHERE id = ?";
+
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute([$studentExamId]);
+
+            return $stmnt->fetchColumn();
+        }
+        catch(PDOException $e){
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage()."
+                    </div>";
+        }
+
+    }
+
+    private function findStudentExamQuestions($studentExamId){
+        
+        $examId = $this->getExamId($studentExamId);
+
+        try{
+
+            $sql = "SELECT qtc.id, qtc.name AS 'question', qtc.max_points AS 'max_points', SUM(atc.points) AS 'earned_points'
+                    FROM QuestionTypeConnect qtc
+                    JOIN AnswerTypeConnect atc ON qtc.id = atc.question_type_fk
+                    WHERE exam_fk = ?
+                    GROUP BY qtc.id";
+
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute([$examId]);
+
+            return $stmnt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $e){
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage()."
+                    </div>";
+        }
+    }
+    
+    private function getStudentExamQuestionAnswers($question_fk){
+
+        try{
+
+            $sql = "SELECT lo.connected_to, otc.answer
+                    FROM LeftOption lo 
+                    JOIN OptionTypeConnect otc ON lo.connected_to = otc.id
+                    WHERE otc.question_type_fk = ?
+                    AND otc.is_left = 0
+                    ORDER BY lo.option_type_fk";
+
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute([$question_fk]);
+
+            return $stmnt->fetchAll(PDO::FETCH_ASSOC);
+        
+        }
+        catch(PDOException $e){
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage()."
+                    </div>";
+        }
+    }
+
+    public function getStudentExamAnswers($studentExamId){
+        
+        $questions = $this->findStudentExamQuestions($studentExamId);
+
+        // questions with options (left side) and answers (right side)
+        $data = [];
+
+        foreach($questions as $question){
+
+            $data[$question["question"]]["id"] = $question["id"];
+            $data[$question["question"]]["max_points"] = $question["max_points"];
+            $data[$question["question"]]["earned_points"] = $question["earned_points"];
+            $data[$question["question"]]["options"] = $this->getQuestionOptions($question["id"]);
+            $data[$question["question"]]["answers"] = $this->getStudentExamQuestionAnswers($question["id"]);
+        }
+
+        return $data;
+    }
 }
 
 ?>

@@ -20,7 +20,7 @@ class ExamController
     }
 
 
-    /* 
+    /*
         READ ME YA CUNT
 
         Each question controller is called to get its question(s) for exam.
@@ -138,11 +138,27 @@ class ExamController
 
         $exam = [];
 
+        $questionConnectController = new QuestionConnectController();
+        $questionMultipleController = new QuestionMultipleController();
+
+        $answersConnect = $questionConnectController->getStudentExamAnswers($student_exam_fk);
+        $answersMultiple = $questionMultipleController->getStudentExamAnswers($student_exam_fk);
+
         $answerMathController = new AnswerMathController();
         $answersMath = $answerMathController->getAnswerWithQuestion($student_exam_fk);
 
         $answerDrawingController = new AnswerDrawingController();
         $answersDrawing = $answerDrawingController->getAnswerWithQuestion($student_exam_fk);
+
+        if(!empty($answersConnect)){
+
+            $exam["QuestionTypeConnect"] = $answersConnect;
+        }
+
+        if(!empty($answersMultiple)){
+
+            $exam["QuestionTypeMultiple"] = $answersMultiple;
+        }
 
         if (!empty($answersMath)) {
             $exam["AnswerTypeMath"] = $answersMath;

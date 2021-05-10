@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-session_start();
 require_once("../controllers/QuestionText.php");
 require_once("../controllers/Teacher.php");
 require_once("../controllers/Student.php");
@@ -23,7 +19,6 @@ require_once("../controllers/AnswerDrawingController.php");
 use Pecee\SimpleRouter\SimpleRouter as Router;
 
 Router::post("Final/router/question/addNewQuestionText", function() {
-    echo "here";
     $input = input()->all();
     $questionText=new QuestionText();
     $questionText->addQuestion($input);

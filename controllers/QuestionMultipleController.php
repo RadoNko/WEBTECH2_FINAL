@@ -152,6 +152,96 @@ class QuestionMultipleController{
 
         return $data;
     }
+
+    private function getExamId($studentExamId){
+        
+        try{
+
+            $sql = "SELECT exam_fk
+                    FROM Student_Exam
+                    WHERE id = ?";
+
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute([$studentExamId]);
+
+            return $stmnt->fetchColumn();
+        }
+        catch(PDOException $e){
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage()."
+                    </div>";
+        }
+
+    }
+
+    private function findStudentExamQuestions($studentExamId){
+        
+        $examId = $this->getExamId($studentExamId);
+
+        try{
+
+            $sql = "SELECT qtm.id, qtm.name AS 'question', qtm.max_points, SUM(atm.points) AS 'earned_points'
+                    FROM QuestionTypeMultiple qtm
+                    JOIN AnswerTypeMultiple atm ON qtm.id = atm.question_type_fk
+                    WHERE exam_fk = ?
+                    GROUP BY qtm.id";
+
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute([$examId]);
+
+            return $stmnt->fetchAll(PDO::FETCH_ASSOC);
+        }
+        catch(PDOException $e){
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage()."
+                    </div>";
+        }
+
+    }
+
+    public function getStudentExamAnswers($studentExamId){
+
+        $questions = $this->findStudentExamQuestions($studentExamId);
+
+        // questions with answers
+        $data = [];
+
+        foreach($questions as $question){
+
+            try{
+
+                $sql = "SELECT 
+                            otm.id,
+                            otm.answer,
+                            CASE
+                                WHEN omc.option_type_fk IS NULL THEN 'n'
+                                ELSE 'y'
+                            END AS 'choice'
+                        FROM OptionTypeMultiple otm
+                        LEFT JOIN OptionMarkedAsCorrect omc ON otm.id = omc.option_type_fk
+                        WHERE question_type_fk = ?";
+
+                $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $stmnt = $this->conn->prepare($sql);
+                $stmnt->execute([$question["id"]]);
+
+                $data[$question["question"]]["id"] = $question["id"];
+                $data[$question["question"]]["max_points"] = $question["max_points"];
+                $data[$question["question"]]["earned_points"] = $question["earned_points"];
+                $data[$question["question"]]["answers"] = $stmnt->fetchAll(PDO::FETCH_ASSOC);
+            
+            }
+            catch(PDOException $e){
+                echo "<div class='alert alert-danger' role='alert'>
+                            Sorry, there was an error. " . $e->getMessage()."
+                        </div>";
+            }
+        }
+
+        return $data;
+    }
 }
 
 ?>
