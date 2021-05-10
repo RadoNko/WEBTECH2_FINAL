@@ -32,6 +32,7 @@ class ExamController
     */
     public function getExam($examId)
     {
+        $examId = $_SESSION["exam_id"];
 
         $exam = [];
 

@@ -18,7 +18,7 @@ class Student{
 
     public function isTestCode($code){
         try{
-            $sql = "SELECT * FROM Exam WHERE code=?";
+            $sql = "SELECT * FROM Exam WHERE code=? AND is_active = 1";
             $stm = $this->connection->prepare($sql);
             $stm->execute([$code["testCode"]]);
             $count = $stm->rowCount();
