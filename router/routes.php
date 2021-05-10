@@ -45,6 +45,7 @@
         $answerConnectController->insertAnswers($input["questionId"], $input["studentExamId"], $input["pairs"]);
     });
 
-    //                             /id has to be here cuz Router is domyleny bez toho
-    Router::get("Final/router/exam/id/{id}", "ExamController@getExam");
+    Router::get("Final/router/exam/{id}", "ExamController@getExam");
+
+    Router::get("Final/router/studentExam/{id}/answers", "ExamController@getStudentExamAnswers");
 ?>
