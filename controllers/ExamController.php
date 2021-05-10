@@ -34,4 +34,27 @@ class ExamController{
         
         return json_encode($exam, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
+
+    public function getStudentExamAnswers($studentExamId){
+
+        $exam = [];
+
+        $questionConnectController = new QuestionConnectController();
+        $questionMultipleController = new QuestionMultipleController();
+
+        $answersConnect = $questionConnectController->getStudentExamAnswers($studentExamId);
+        $answersMultiple = $questionMultipleController->getStudentExamAnswers($studentExamId);
+
+        if(!empty($answersConnect)){
+
+            $exam["QuestionTypeConnect"] = $answersConnect;
+        }
+
+        if(!empty($answersMultiple)){
+
+            $exam["QuestionTypeMultiple"] = $answersMultiple;
+        }
+        
+        return json_encode($exam, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    }
 }
