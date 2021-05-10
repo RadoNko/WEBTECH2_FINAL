@@ -110,7 +110,7 @@ function verifyTeacherLogin(){
             if(data==="wrongPassword"){
                 document.getElementById("teacherLogin").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Nesprávne heslo</div>`);
             }else
-                location.href = origin;
+                location.href = "/Final/php/examOverview.php";
         }
     });
 }
@@ -123,7 +123,7 @@ function logOut(){
         url: origin+"/Final/router/logins/destroySession",
         data: {},
         success: function (data) {
-            location.href = origin;
+            location.href = "/Final/loginKanda.php";
         }
     });
 }
