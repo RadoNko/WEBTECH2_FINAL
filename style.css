@@ -137,6 +137,20 @@ form:nth-child(even){
     @apply rounded;
 }
 
+/*.purple-button-big{*/
+/*    @apply */
+/*    @apply bg-purple-500;*/
+/*    @apply hover:bg-purple-700;*/
+/*    @apply focus:bg-purple-700;*/
+/*    @apply text-white;*/
+/*    @apply font-bold;*/
+/*    @apply py-1;*/
+/*    @apply px-2;*/
+/*    @apply border;*/
+/*    @apply border-purple-700;*/
+/*    @apply rounded;*/
+/*}*/
+
 .btn-primary{
     @apply purple-button;
 }
