@@ -19,10 +19,6 @@
             height: 10vw;
             transform: translate(33%, -100%);
         }
-        #login-buttons{
-            color: red;
-            background: red;
-        }
     </style>
 </head>
 
@@ -50,8 +46,8 @@
                         </div>';
         } else {
             echo "    <div id='loginButtons' class='w-full text-center'>
-                        <button class='btn-primary text-2xl break-normal w-5/12' onclick=location.href='/Final/login/student'>I'm Studen</button>
-                        <button class='btn-primary text-2xl break-normal w-5/12' onclick=location.href='/Final/login/teacher'>I'm Teacher</button>
+                        <button class='btn-primary text-2xl break-normal w-max' onclick=location.href='/Final/login/student'>I'm Student</button>
+                        <button class='btn-primary text-2xl break-normal w-max' onclick=location.href='/Final/login/teacher'>I'm Teacher</button>
                     </div>";
         }
         ?>
