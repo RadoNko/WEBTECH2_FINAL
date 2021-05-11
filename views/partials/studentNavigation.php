@@ -15,43 +15,28 @@
     <style>
         :root{
             --clr-neon: #17CF97;
-            --clr-bg: gray;
         }
         #countdown{
             display: inline-block;
             color: var(--clr-neon);
-            /*border: currentColor 0.125em solid;*/
-            /*border-radius: 0.25em;*/
-            /*box-shadow: inset 0 0 0.5em 0 var(--clr-neon), 0 0 0.5em 0 var(--clr-neon);*/
-
             padding: 0.25em 1em;
             text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
-
             position: relative;
         }
         #countdown::before{
             content: attr(title);
             position: absolute;
-            /*background: var(--clr-bg);*/
             top: 100%;
-            /*left: 0;*/
             width: 100%;
             height: 100%;
-
-            /*transform: perspective(1em) rotateX(40deg) scale(1, 0.35);*/
             transform: perspective(1em) rotateX(180deg) scale(1, 0.75);
-
-            /*transform: rotateX(180deg);*/
             filter: blur(0.1em);
             opacity: 0.7;
-        }
-        .glow{
-
         }
 
     </style>
   <div class="grid ">
-    <p title="10:20" id="countdown" class="font-bold text-5xl justify-self-center">10:20</p>
+    <p title="00:00:00" id="countdown" class="font-bold text-4xl justify-self-center break-words">00:00:00</p>
   </div>
   <button onclick="logOut()" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500 self-end">Logout</button>
 </header>

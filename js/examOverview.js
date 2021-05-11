@@ -134,20 +134,24 @@ $(document).ready(function () {
   });
 
   $("#createExamButton").click(function (e) {
+    console.log("clicked")
     let data = {};
     data["name"] = $("#nameInput").val();
     data["time"] = $("#timeInput").val();
     data["code"] = Math.random().toString(36).substring(2, 7);
+    const origin = $(location).attr("origin");
     $.ajax({
       method: "POST",
       url: origin + "/Final/router/exam",
       data: data,
-      dataType: "json",
+      dataType: "text",
       success: function (response) {
+        console.log(response)
         $("#createExamModal").modal("hide");
         console.log("test");
-        window.location.href = origin + "/Final/php/examOverview.php";
+        location.href = "/Final/views/createTest.php";
       },
+
     });
   });
 });

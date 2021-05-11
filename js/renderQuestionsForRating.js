@@ -24,31 +24,6 @@ $(document).ready(function () {
     });
 });
 
-function onReady(studentExamId){
-    let origin = $(location).attr("origin");
-    $.ajax({
-        method: "GET",
-        url: origin + "/Final/router/rateExam/" + studentExamId,
-        dataType: "json",
-        success: function (data) {
-
-            $.each(data, function (questionType, questions) {
-                $.each(questions, function (question, answers) {
-
-                    // call render function for question type
-                    window["render" + questionType](question, answers);
-                });
-            });
-            //init static math expressions
-            const MQ = MathQuill.getInterface(2);
-            const mathExpressions = document.getElementsByClassName('math-expression')
-            for (const expression of mathExpressions){
-                MQ.StaticMath(expression)
-            }
-        },
-    });
-}
-
 function renderAnswerTypeDrawing(question, answer){
     const exam = document.getElementById("examContainer");
     const questionType = "questionTypeDrawing";

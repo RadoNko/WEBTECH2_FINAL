@@ -106,10 +106,11 @@ Router::post("Final/router/exam/rateAnswersText", function () {
     $answerDrawingController->setScore($input["points"], $input["answerId"]);
 });
 
+Router::get("Final/router/exam", "ExamController@getAll");
 
     Router::get("Final/router/exam/{id}", "ExamController@getExam");
 
-    Router::get("Final/router/exam", "ExamController@getAll");
+
 
     //get exam of student with filled answers
     Router::get("Final/router/rateExam/{id}", "ExamController@getRateExam");

@@ -10,11 +10,11 @@ $(document).ready(function () {
       dataType: "text",
       success: function (data) {
         if (data < 0) {
-          $("#countdown").text("End now !");
-          // finish exam
           submitExamAnswers();
+          logOut();
         } else {
           $("#countdown").text(new Date(data * 1000).toISOString().substr(11, 8));
+          $("#countdown").prop("title", new Date(data * 1000).toISOString().substr(11, 8));
         }
         var date = new Date(null);
         date.setSeconds(data); // specify value for SECONDS here
