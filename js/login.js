@@ -4,7 +4,6 @@ function saveTest(code){
 }
 
 function verifyTestCode(){
-    console.log("verify")
     testCode=null;
     var code={
         "testCode": document.getElementById("testCode").value
@@ -78,21 +77,29 @@ function registerNewTeacher(){
     var nickname=document.getElementById("teacherRegistrationNickname").value;
     var psw=document.getElementById("teacherRegistrationPassword").value;
     var psw2=document.getElementById("teacherRegistrationPasswordAgain").value;
-    if(psw===psw2){
-        const origin = $(location).attr("origin");
-        $.ajax({
-            method: "POST",
-            url: origin + "/Final/router/logins/registerNewTeacher",
-            data: {nickname:nickname,password:psw},
-            success: function(data){
-                if(data==="alreadyRegistered"){
-                    document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Účet už existuje</div>`);
-                }else
-                    location.href = origin + '/Final/views/examOverview.php';
-            }
-        });
-    }else{
-        document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Heslá sa nezhodujú</div>`);
+    if(nickname===null || nickname==="")
+        document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Vyžaduje sa meno</div>`);
+    else if(psw===null || psw==="")
+        document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Vyžaduje sa heslo</div>`);
+    else if(psw2===null || psw2==="")
+        document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Vyžaduje sa heslo</div>`);
+    else {
+        if (psw === psw2) {
+            const origin = $(location).attr("origin");
+            $.ajax({
+                method: "POST",
+                url: origin + "/Final/router/logins/registerNewTeacher",
+                data: {nickname: nickname, password: psw},
+                success: function (data) {
+                    if (data === "alreadyRegistered") {
+                        document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Účet už existuje</div>`);
+                    } else
+                        location.href = origin + '/Final/views/examOverview.php';
+                }
+            });
+        } else {
+            document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Heslá sa nezhodujú</div>`);
+        }
     }
 }
 
