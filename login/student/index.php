@@ -22,34 +22,40 @@ error_reporting(E_ALL);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student</title>
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="/Final/tailwind.css">
 </head>
-<body>
-
+<body class="logoColourBackground">
+<main class="login-main absolute bg-gray-600 w-1/6 h-1/3 top-1/2 left-1/2 rounded-md">
+    <div class="login-icon-container absolute rounded-full opacity-90 bg-gray-700 flex items-center justify-center">
+        <img class="login-icon opacity-100" src="/Final/img/person1.svg" alt="Prson Icon">
+    </div>
+    <h1 class="text-center block text-5xl px-2 py-1 mt-1 text-white font-semibold pb-4">Login</h1>
     <?php
-        session_start();
-        if(!isset($_SESSION["student"]) || $_SESSION["student"]==false){
-            echo'  <div id="studentLogin" class="form-group">
-        <h4>Zadajte kód testu</h4>
-        <input id="testCode" name="testCode" placeholder="Code is...">
-        <button type="button" class="btn btn-primary" onclick="verifyTestCode()">Overiť kód</button>
+    session_start();
+    if(!isset($_SESSION["student"]) || $_SESSION["student"]==false){
+        echo'  <div id="studentLogin" class="form-group text-center">
+        <h4 class="text-center block text-xl px-2 py-1 mt-1 text-white font-semibold">Zadajte kód testu</h4>
+        <input class="text-2xl text-center" id="testCode" name="testCode" placeholder="Code is...">
+        <button type="button" class="purple-button text-2xl" onclick="verifyTestCode()">Overiť kód</button>
         </div>
     
-        <div style="display:none;" id="studentDetails" class="form-group">
+        <div style="display:none;" id="studentDetails" class="form-group text-center bg-gray-600 pb-4 rounded-md">
             <h4>Ais ID</h4>
-            <input id="aisID" type="number" name="aisID" required>
+            <input class="text-2xl text-center" id="aisID" type="number" name="aisID" required>
             <h4>Meno</h4>
-            <input id="studentName" type="text" name="studentName" required>
+            <input class="text-2xl text-center" id="studentName" type="text" name="studentName" required>
             <h4>Priezvisko</h4>
-            <input id="studentSurname" type="text" name="studentSurname" required><br><br>
-            <button type="button" class="btn btn-success" onclick="sendStudentName()">Prihlásiť sa do testu</button>
+            <input class="text-2xl text-center" id="studentSurname" type="text" name="studentSurname" required><br><br>
+            <button type="button" class="purple-button text-2xl" onclick="sendStudentName()">Prihlásiť sa do testu</button>
         </div>';
-        }
-        else{
-            header("Location: /Final/views/fillTest.php");
-        }
+    }
+    else{
+        header("Location: /Final/views/fillTest.php");
+    }
     ?>
+</main>
+
+
 <script src="../../js/login.js"></script>
 </body>
 </html>

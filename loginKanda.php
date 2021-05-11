@@ -26,13 +26,7 @@
             echo "<button class='btn btn-danger' onclick='logOut()'>Log out</button><br>";
             echo "Tu sa zobrazi test";
         } elseif ($_SESSION["teacher"] == true) {
-            echo "teacher: " . $_SESSION["logged_id"];
-            echo "<button class='btn btn-danger' onclick='logOut()'>Log out</button>";
-            echo '<div id="teacherSide">
-                        <button type="button" class="btn btn-primary" id="addQuestionMultiple" onclick="addQuestionText()">Add question</button>
-                        <h1 style="margin-left: 40%">Question type text</h1><br>
-                        <div id="mainQuestionDiv" style="margin-left: 40%">
-                        </div>';
+            header("Location: /Final/views/examOverview.php");
         } else {
             echo "    <div id='loginButtons' class='w-full text-center'>
                         <button class='btn-primary text-2xl w-max' onclick=location.href='/Final/login/student'>I'm Student</button>

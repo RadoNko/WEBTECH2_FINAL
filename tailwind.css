@@ -32423,6 +32423,21 @@ form{
   transform: translate(33%, -100%);
 }
 
+.login-main{
+  transform: translate(-50%, -50%);
+  padding-top: 5vw;
+}
+
+.login-icon{
+  width: 62%;
+}
+
+.login-icon-container{
+  width: 10vw;
+  height: 10vw;
+  transform: translate(33%, -100%);
+}
+
 @media (min-width: 640px) {
   .sm\:container {
     width: 100%;
