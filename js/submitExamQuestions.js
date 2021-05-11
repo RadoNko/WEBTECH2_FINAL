@@ -47,12 +47,6 @@ function submitQuestionMath(id){
     data["points"] = form[0].value;
     data["question"] = form[1].value;
 
-    let question={
-        "question":form[0].value,
-        "points":form[1].value,
-        "exam":"QuestionTypeMath"
-    }
-
     const origin = $(location).attr("origin");
 
     $.ajax({
@@ -72,12 +66,6 @@ function submitQuestionDrawing(id){
     let data = {};
     data["question"] = form[0].value;
     data["points"] = form[1].value;
-
-    let question={
-        "question":form[0].value,
-        "points":form[1].value,
-        "exam":"QuestionTypeMath"
-    }
 
     const origin = $(location).attr("origin");
 

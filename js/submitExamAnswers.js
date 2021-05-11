@@ -72,11 +72,6 @@ function submitQuestionMath(id) {
   let questionId = id.split("questionTypeMath").pop();
   let data = {};
 
-  //TODO CHANGE ! these are dummy values for testing
-  data["examId"] = 1;
-  data["studentId"] = 1;
-  data["studentExamId"] = 1;
-
   data["questionId"] = questionId;
   data["answer"] = form[0].value;
 
@@ -93,9 +88,6 @@ function submitQuestionMath(id) {
 }
 
 function submitQuestionDrawing(id) {
-
-  let form = $("#" + id).serializeArray();
-
   const myBoard = boards.get(id)
 
   //get drawingboard content
@@ -109,22 +101,8 @@ function submitQuestionDrawing(id) {
   $(thisForm).find('input[name=image]').val(imgInput);
   $(thisForm).find('input[name=imageId]').val(id);
 
-  //we can also assume that everything goes well server-side
-  //and directly clear webstorage here so that the drawing isn't shown again after form submission
-  //but the best would be to do when the server answers that everything went well
-
-
-
-
-
-
   let questionId = id.split("questionTypeDrawing").pop();
   let data = {};
-
-  //TODO CHANGE ! these are dummy values for testing
-  data["examId"] = 1;
-  data["studentId"] = 1;
-  data["studentExamId"] = 1;
 
   data["questionId"] = questionId;
   data["answer"] = id;
@@ -138,6 +116,7 @@ function submitQuestionDrawing(id) {
     data: data,
     dataType: "text",
     success: function (data) {
+      //after succesful submit, clear picture from web storage
       myBoard.clearWebStorage();
     }
   });
