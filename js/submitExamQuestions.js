@@ -35,7 +35,7 @@ function submitExamQuestions() {
             submitQuestionDrawing(this.id);
         })
     }
-
+    location.href = "/Final/views/examOverview.php"
     resetArea();
 }
 
@@ -178,6 +178,7 @@ function submitQuestionMultiple(id) {
           data: data,
           dataType: "text",
           success: function(data){
+
           }
       });
 }
