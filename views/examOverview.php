@@ -6,6 +6,7 @@ error_reporting(E_ALL);
 
 
 session_start();
+$_SESSION["exam_id"] = -1;
 ?>
 
 <!DOCTYPE html>
