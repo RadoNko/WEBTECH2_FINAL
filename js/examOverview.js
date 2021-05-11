@@ -21,17 +21,17 @@ $(document).ready(function () {
             let teacherName = teacher ? teacher.username : "undefined";
             items.push(
               "<li class='list-group-item list-group-item-action' id='" +
-                val["id"] +
-                "'><div class='d-flex w-100 justify-content-between'><h5 class='mb-1'>" +
-                val["name"] +
-                "</h5><small><button type='button' class='btn btn-outline-dark activity-button'>" +
-                active +
-                "</button>" +
-                "</small></div><small>Teacher username: " +
-                teacherName +
-                "</small><br><small>Code: " +
-                val["code"] +
-                "</small></li>"
+              val["id"] +
+              "'><div class='d-flex w-100 justify-content-between'><h5 class='mb-1'>" +
+              val["name"] +
+              "</h5><small><button type='button' class='btn btn-outline-dark activity-button'>" +
+              active +
+              "</button>" +
+              "</small></div><small>Teacher username: " +
+              teacherName +
+              "</small><br><small>Code: " +
+              val["code"] +
+              "</small></li>"
             );
           });
           $("<ul/>", {
@@ -53,8 +53,8 @@ $(document).ready(function () {
       );
       $("#toggleExamBody").text(
         "Are You sure you want to stop exam with name: '" +
-          $(this).parent().prev().text() +
-          "'? If You make this exam inactive, students will not be able to start this test anymore. Do You wish to proceed?"
+        $(this).parent().prev().text() +
+        "'? If You make this exam inactive, students will not be able to start this test anymore. Do You wish to proceed?"
       );
       $("#toggleExamButton").text("STOP!");
     } else {
@@ -63,8 +63,8 @@ $(document).ready(function () {
       );
       $("#toggleExamBody").text(
         "Are You sure you want to start exam with name: '" +
-          $(this).parent().prev().text() +
-          "'? If You make this exam active, students will be able to start working on this exam. Do You wish to proceed?"
+        $(this).parent().prev().text() +
+        "'? If You make this exam active, students will be able to start working on this exam. Do You wish to proceed?"
       );
       $("#toggleExamButton").text("START!");
     }
@@ -146,12 +146,9 @@ $(document).ready(function () {
       data: data,
       dataType: "text",
       success: function (response) {
-        console.log(response)
         $("#createExamModal").modal("hide");
-        console.log("test");
         location.href = "/Final/views/createTest.php";
       },
-
     });
   });
 });
