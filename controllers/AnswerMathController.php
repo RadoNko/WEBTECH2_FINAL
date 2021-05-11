@@ -12,7 +12,7 @@ class AnswerMathController{
         $this->conn = (new Database())->getConnection();
     }
 
-    public function insertAnswer($student_exam_fk, $question_fk, $answer){
+    public function insertAnswer($question_fk, $answer){
         $student_exam_fk = $_SESSION["student_exam_id"];
         try{
             $sql = "INSERT INTO AnswerTypeMath(question_type_fk, answer, student_exam_fk) VALUES(?, ?, ?)";
@@ -29,7 +29,7 @@ class AnswerMathController{
 
     }
 
-    public function getAnswerWithQuestion($student_exam_fk){
+    public function getAnswerWithQuestion(){
         $student_exam_fk = $_SESSION["student_exam_id"];
         //SELECT * FROM `AnswerTypeMath` INNER JOIN QuestionTypeMath ON AnswerTypeMath.question_type_fk = QuestionTypeMath.id WHERE AnswerTypeMath.student_exam_fk = 1
         try{

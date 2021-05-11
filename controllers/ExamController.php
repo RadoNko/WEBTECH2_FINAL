@@ -171,10 +171,10 @@ class ExamController
         $answersMultiple = $questionMultipleController->getStudentExamAnswers($student_exam_fk);
 
         $answerMathController = new AnswerMathController();
-        $answersMath = $answerMathController->getAnswerWithQuestion($student_exam_fk);
+        $answersMath = $answerMathController->getAnswerWithQuestion();
 
         $answerDrawingController = new AnswerDrawingController();
-        $answersDrawing = $answerDrawingController->getAnswerWithQuestion($student_exam_fk);
+        $answersDrawing = $answerDrawingController->getAnswerWithQuestion();
 
         $questionTextController = new QuestionText();
         $questionsText = $questionTextController->getAnswerWithQuestion($student_exam_fk);

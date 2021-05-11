@@ -73,7 +73,7 @@ Router::post("Final/router/exam/answer/connect", function(){
         $answerMathController = new AnswerMathController();
         $input = input()->all();
         
-        $answerMathController->insertAnswer($input["studentExamId"], $input["questionId"], $input["answer"]);
+        $answerMathController->insertAnswer($input["questionId"], $input["answer"]);
     });
 Router::get("Final/router/exam/time/left", "ExamController@timeLeft");
 
@@ -83,7 +83,7 @@ Router::put("Final/router/exam/toggle/{id}", "ExamController@toggle");
 
         $answerDrawingController = new AnswerDrawingController();
         $input = input()->all();
-        $answerDrawingController->insertAnswer($input["studentExamId"], $input["questionId"], $input["img"]);
+        $answerDrawingController->insertAnswer($input["questionId"], $input["img"]);
     });
 
     //setting exam score

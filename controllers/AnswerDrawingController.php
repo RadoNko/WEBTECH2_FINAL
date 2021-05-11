@@ -16,7 +16,7 @@ class AnswerDrawingController{
         $this->conn = (new Database())->getConnection();
     }
 
-    public function insertAnswer($student_exam_fk, $question_fk, $img){
+    public function insertAnswer($question_fk, $img){
         $student_exam_fk = $_SESSION["student_exam_id"];
 
         //see http://j-query.blogspot.fr/2011/02/save-base64-encoded-canvas-image-to-png.html
@@ -59,7 +59,7 @@ class AnswerDrawingController{
 
     }
 
-    public function getAnswerWithQuestion($student_exam_fk){
+    public function getAnswerWithQuestion(){
         $student_exam_fk = $_SESSION["student_exam_id"];
         try{
             $stmt = $this->conn->prepare("SELECT * FROM AnswerTypePicture INNER JOIN QuestionTypePicture ON AnswerTypePicture.question_type_fk = QuestionTypePicture.id WHERE AnswerTypePicture.student_exam_fk =:student_exam_fk");
