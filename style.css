@@ -232,9 +232,11 @@ form{
 /*}*/
 [id^="connectAnswers"] {
     width: 45%;
-    background: purple;
+    @apply bg-purple-500;
+    @apply text-white;
 }
 li {
+    @apply m-1;
     list-style: none;
     font-size: 20px;
 }

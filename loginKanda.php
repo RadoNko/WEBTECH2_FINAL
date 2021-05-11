@@ -28,7 +28,7 @@
         } elseif ($_SESSION["teacher"] == true) {
             header("Location: /Final/views/examOverview.php");
         } else {
-            echo "    <div id='loginButtons' class='w-full text-center'>
+            echo "    <div id='loginButtons' class='w-full text-center pt-10'>
                         <button class='btn-primary text-2xl w-max' onclick=location.href='/Final/login/student'>I'm Student</button>
                         <button class='btn-primary text-2xl w-max' onclick=location.href='/Final/login/teacher'>I'm Teacher</button>
                     </div>";

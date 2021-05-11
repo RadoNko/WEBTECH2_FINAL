@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="../mathquill-0.10.1/mathquill.css"/>
     <link rel="stylesheet" href="../drawingboard.js/drawingboard.min.css">
     <style>
-
     </style>
 
 </head>

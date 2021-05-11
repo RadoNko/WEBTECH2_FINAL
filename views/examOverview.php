@@ -26,8 +26,8 @@ session_start();
 
 <body class="grid grid-cols-12 bg-gray-200 min-h-screen">
 <?php include "partials/teacherNavigation.php" ?>
-<main class="col-span-10 flex justify-center pt-10">
-    <div class="w-4/5 h-full bg-gray-100 text-xl shadow-2xl pb-96">
+<main class="col-span-10 flex justify-center pt-10 pb-96">
+    <div class="w-4/5 h-full bg-gray-100 text-xl shadow-2xl">
         <button id="addNewExamButton">
             <svg width="40px" height="40px" aria-hidden="true" focusable="false" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path fill="currentColor" d="M416 208H272V64c0-17.67-14.33-32-32-32h-32c-17.67 0-32 14.33-32 32v144H32c-17.67 0-32 14.33-32 32v32c0 17.67 14.33 32 32 32h144v144c0 17.67 14.33 32 32 32h32c17.67 0 32-14.33 32-32V304h144c17.67 0 32-14.33 32-32v-32c0-17.67-14.33-32-32-32z"></path>

@@ -33,16 +33,16 @@
             content: attr(title);
             position: absolute;
             /*background: var(--clr-bg);*/
-            top: 120%;
-            left: 0;
+            top: 100%;
+            /*left: 0;*/
             width: 100%;
             height: 100%;
 
             /*transform: perspective(1em) rotateX(40deg) scale(1, 0.35);*/
-            transform: perspective(1em) rotateX(180deg) scale(1, 0.35);
+            transform: perspective(1em) rotateX(180deg) scale(1, 0.75);
 
             /*transform: rotateX(180deg);*/
-            /*filter: blur(1em);*/
+            filter: blur(0.1em);
             opacity: 0.7;
         }
         .glow{

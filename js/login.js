@@ -88,7 +88,7 @@ function registerNewTeacher(){
                 if(data==="alreadyRegistered"){
                     document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Účet už existuje</div>`);
                 }else
-                    location.href = origin + '/Final/';
+                    location.href = origin + '/Final/views/examOverview.php';
             }
         });
     }else{

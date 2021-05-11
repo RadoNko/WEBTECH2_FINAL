@@ -100,7 +100,7 @@ function renderQuestionTypeMath(question, answers){
     let questionTypeNumber = answers["id"];
     exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber +`' >
                                     <div class="form-group">
-                                        <p><span class="math-expression">` + question + `</span></p>
+                                        <p><span class="math-expression font-semibold">` + question + `</span></p>
                                         <span class="max-points">`+ answers["points"] +`</span>
                                     </div>
                                     <div id="answersMath`+ questionTypeNumber +`" class="form-group">
