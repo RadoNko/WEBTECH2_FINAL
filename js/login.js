@@ -77,6 +77,7 @@ function registerNewTeacher(){
     var nickname=document.getElementById("teacherRegistrationNickname").value;
     var psw=document.getElementById("teacherRegistrationPassword").value;
     var psw2=document.getElementById("teacherRegistrationPasswordAgain").value;
+
     if(nickname===null || nickname==="")
         document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='alert alert-danger' role='alert'>Vyžaduje sa meno</div>`);
     else if(psw===null || psw==="")
