@@ -33,7 +33,6 @@ class ExamController
     public function getExam($examId)
     {
         $examId = $_SESSION["exam_id"];
-
         $exam = [];
 
         $questionConnectController = new QuestionConnectController();
@@ -100,9 +99,33 @@ class ExamController
         }
     }
 
+    public function timeLeft()
+    {
+        try {
+            $sql = "SELECT time FROM Exam where id = ?";
+
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute([$_SESSION["exam_id"]]);
+
+            $minutesToFinish = $stmnt->fetchAll(PDO::FETCH_ASSOC)[0]['time'];
+
+            $sql = "SELECT start_time FROM Student_Exam WHERE student_fk = ?";
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute([$_SESSION["logged_id"]]);
+
+            $finishUntil = strtotime($stmnt->fetchAll(PDO::FETCH_ASSOC)[0]['start_time']) + ($minutesToFinish * 60);
+
+            return json_encode($finishUntil - time(), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+        } catch (PDOException $e) {
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage() . "
+                    </div>";
+        }
+    }
+
     public function getAll()
     {
-
         try {
             $sql = "SELECT id, name, teacher_fk, code, is_active FROM Exam";
 
