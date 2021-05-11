@@ -1,5 +1,5 @@
 <?php
-include "../../Database.php";
+include "Database.php";
 showErrors();
 $conn = (new Database())->createConnection("Projekt");
 $stm = $conn -> query( "SELECT id from Exam WHERE is_active = '1'");
