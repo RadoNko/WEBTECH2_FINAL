@@ -49,5 +49,6 @@
         })
     }
 </script>
+    <script src="../js/submitExamAnswers.js"></script>
 </body>
 </html>

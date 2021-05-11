@@ -18,5 +18,6 @@
 <script>
   let myBoard = new DrawingBoard.Board('drawing-demo');
 </script>
+    <script src="../js/submitExamAnswers.js"></script>
 </body>
 </html>
