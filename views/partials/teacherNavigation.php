@@ -1,8 +1,3 @@
-<?php
-if (session_status() != 2){
-    session_start();
-}
-?>
 <header class="h-screen col-span-2 bg-gray-600 flex flex-col justify-between sticky top-0 shadow-2xl">
     <div class="flex-col">
         <div class="flex flex-row items-center w-full logoColourBackground p-4">
@@ -22,13 +17,11 @@ if (session_status() != 2){
                 echo "<a href='/Final/views/createTest.php' class='block px-2 py-1 mt-1 text-white font-semibold rounded opacity-50'>Create {$testName} </a>";
             }
             ?>
-
             <a href="/Final/views/fillTest.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded opacity-50">Debug Page Render Test</a>
             <a href="/Final/views/rateTest.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded opacity-50">Debug Page Rate Test</a>
 
         </div>
     </div>
-
     <button onclick="logOut()" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500 self-end">Logout</button>
 </header>
 

@@ -7,7 +7,7 @@ require_once("Database.php");
 class TeacherController
 {
 
-    private PDO $conn;
+    private $conn;
 
     public function __construct()
     {

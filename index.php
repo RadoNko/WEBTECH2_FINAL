@@ -1,3 +1,9 @@
+<?php
+if (session_status() != 2){
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +18,6 @@
 <body>
 
 <!--    --><?php
-            session_start();
             if($_SESSION["student"]==true){
                 echo "student: ".$_SESSION["logged_id"];
                 echo "<button class='btn btn-success' onclick='logOut()'>Submit test</button><br>";

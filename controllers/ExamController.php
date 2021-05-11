@@ -14,7 +14,7 @@ require_once ("AnswerMathController.php");
 class ExamController
 {
 
-    private PDO $conn;
+    private $conn;
 
     public function __construct()
     {

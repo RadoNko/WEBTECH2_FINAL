@@ -1,5 +1,11 @@
+<?php
+if (session_status() != 2){
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,7 +23,6 @@
     </div>
     <h1 class="text-center block text-5xl px-2 py-1 mt-1 text-white font-semibold pb-4">Login</h1>
     <?php
-    session_start();
     if(!isset($_SESSION["teacher"]) ||$_SESSION["teacher"]==false){
         echo'  <div id="teacherLogin" class="form-group text-center">
             <input class="text-2xl text-center" id="teacherNickname" name="teacherNickname" placeholder="Váš login...">

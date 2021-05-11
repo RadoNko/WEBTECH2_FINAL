@@ -1,14 +1,9 @@
-<?php
-if (session_status() != 2){
-    session_start();
-}
-?>
 <header class="h-screen col-span-2 bg-gray-600 flex flex-col justify-between sticky top-0 shadow-2xl">
   <div class="flex-col">
     <div class="flex flex-row items-center w-full logoColourBackground p-4">
       <div>
         <p class="text-white">Logged In:</p>
-          <p class="text-white"><?php session_start(); echo $_SESSION["logged_id"]; ?></p>
+          <p class="text-white"><?php echo $_SESSION["logged_id"]; ?></p>
       </div>
     </div>
     <div id="myDIV" class="px-6 pt-4 pb-8">

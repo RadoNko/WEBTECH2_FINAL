@@ -1,7 +1,8 @@
 <?php
-session_start();
+if (session_status() != 2){
+    session_start();
+}
 // TODO this is only testing code, remove if not needed
-echo "ggoog";
 echo "loggedId: " . $_SESSION["logged_id"] . "<br>";
 echo "examId: " . $_SESSION["exam_id"] . "<br>";
 // END

@@ -1,22 +1,15 @@
 <?php
+if (session_status() != 2){
+    session_start();
+}
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-
-
-//$sql="SELECT id FROM Exam WHERE code=?";
-//$stm = $connection->prepare($sql);
-//$stm->execute(["abc"]);
-//$examID=$stm->fetch();
-//echo $examID["id"];
-//
-//$sql = "INSERT INTO Student_Exam (student_fk, exam_fk,is_finished) VALUES (?,?,?)";
-//$stm = $connection->prepare($sql);
-//$stm->execute(["123",$examID["id"],0]);
 ?>
 
 <!DOCTYPE html>
-<html lang="sk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -31,7 +24,6 @@ error_reporting(E_ALL);
     </div>
     <h1 class="text-center block text-5xl px-2 py-1 mt-1 text-white font-semibold pb-4">Login</h1>
     <?php
-    session_start();
     if(!isset($_SESSION["student"]) || $_SESSION["student"]==false){
         echo'  <div id="studentLogin" class="form-group text-center">
         <h4 class="text-center block text-xl px-2 py-1 mt-1 text-white font-semibold">Zadajte kód testu</h4>

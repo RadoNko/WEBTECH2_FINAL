@@ -1,3 +1,9 @@
+<?php
+if (session_status() != 2){
+    session_start();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +16,6 @@
 </head>
 <body class="grid grid-cols-12 bg-gray-200 min-h-screen">
     <?php
-    session_start();
     if ($_SESSION["teacher"]){
         include "partials/teacherNavigation.php";
     }

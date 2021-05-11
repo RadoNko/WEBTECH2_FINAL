@@ -6,7 +6,7 @@ if (session_status() != 2){
 require_once "Database.php";
 
 class AnswerMathController{
-    private PDO $conn;
+    private $conn;
 
     public function __construct(){
         $this->conn = (new Database())->getConnection();

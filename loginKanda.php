@@ -1,4 +1,10 @@
-<html lang="sk">
+<?php
+if (session_status() != 2){
+    session_start();
+}
+?>
+
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -20,7 +26,6 @@
 
 
         <?php
-        session_start();
         if ($_SESSION["student"] == true) {
             echo "student: " . $_SESSION["logged_id"];
             echo "<button class='btn btn-danger' onclick='logOut()'>Log out</button><br>";

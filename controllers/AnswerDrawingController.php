@@ -10,7 +10,7 @@ error_reporting(E_ALL);
 require_once "Database.php";
 
 class AnswerDrawingController{
-    private PDO $conn;
+    private $conn;
 
     public function __construct(){
         $this->conn = (new Database())->getConnection();

@@ -3,11 +3,10 @@ if (session_status() != 2){
     session_start();
 }
 
-require_once("Database.php");
+require_once "Database.php";
 
 class AnswerMultipleController{
-
-    private PDO $conn;
+    private $conn;
 
     public function __construct(){
         $this->conn = (new Database())->getConnection();
