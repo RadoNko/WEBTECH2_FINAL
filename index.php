@@ -14,15 +14,16 @@ if (session_status() != 2){
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="tailwind.css">
 </head>
 <body>
 
 <!--    --><?php
-            if($_SESSION["student"]==true){
+            if(isset($_SESSION["student"]) && $_SESSION["student"]==true){
                 echo "student: ".$_SESSION["logged_id"];
                 echo "<button class='btn btn-success' onclick='logOut()'>Submit test</button><br>";
                 echo"Tu sa zobrazi test";
-            }elseif($_SESSION["teacher"]==true){
+            }elseif(isset($_SESSION["teacher"]) && $_SESSION["teacher"]==true){
                 echo "teacher: ".$_SESSION["logged_id"];
                 echo "<button class='btn btn-danger' onclick='logOut()'>Log out</button>";
                 echo '<div id="teacherSide">

@@ -1,7 +1,7 @@
 <?php
-include "Database.php";
+include "../controllers/Database.php";
 $testID = $_POST['test_id'];
-$conn = (new Database())->createConnection("Projekt");
+$conn = (new Database())->getConnection();
 $stm = $conn -> query( "SELECT student_fk from Student_Exam WHERE exam_fk = '$testID'");
 $allStudent_fk = $stm -> fetchAll( PDO::FETCH_ASSOC );
 
@@ -21,16 +21,16 @@ foreach($allStudent_fk as $student_fk){
 
 echo json_encode($result);
 
-//$student_exam_fk = $_POST['student_exam_fk'];
-$student_exam_fk = 3;
+$student_exam_fk = $_POST['student_exam_fk'];
+//$student_exam_fk = 3;
 
 //$conn = (new Database())->createConnection("Projekt");
 $stm = $conn -> query( "SELECT points_earned FROM Student_Exam WHERE id='$student_exam_fk'");
 $stm = $stm ->fetchAll(PDO::FETCH_ASSOC);
 $points_earned = $stm[0]['points_earned'];
 
-//$added_points = $_POST['points'];
-$added_points = 2;
+$added_points = $_POST['points'];
+//$added_points = 2;
 
 $points_earned += $added_points;
 $conn -> query("UPDATE Student_Exam SET points_earned='$points_earned' WHERE id ='$student_exam_fk'");

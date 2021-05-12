@@ -1,11 +1,10 @@
 <?php
 session_start();
-$_SESSION["logged_id"] = "45645";
 
-include "Database.php";
-if (isset($_SESSION["logged_id"])){
-    $studentID = $_SESSION['logged_id'];
-    $conn = (new Database())->createConnection("Projekt");
+include "../controllers/Database.php";
+if (isset($_SESSION["student_id"])){
+    $studentID = $_SESSION["student_id"];
+    $conn = (new Database())->getConnection();
     $stm = $conn->prepare("UPDATE Student_Exam SET left_website='1' WHERE student_fk = '$studentID'");
     $stm->execute();
     echo  "Success!";

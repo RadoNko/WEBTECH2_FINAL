@@ -1,7 +1,7 @@
 <?php
-include "Database.php";
+include "../controllers/Database.php";
 showErrors();
-$conn = (new Database())->createConnection("Projekt");
+$conn = (new Database())->getConnection();
 $stm = $conn -> query( "SELECT id from Exam WHERE is_active = '1'");
 $activeTests = $stm -> fetchAll( PDO::FETCH_ASSOC );
 

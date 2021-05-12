@@ -11,7 +11,7 @@ function studentLeft(){
     //let studentID = "45645";
     $.ajax({
         type: "POST",
-        url: '/Final/controllers/changeStudentLeft.php',
+        url: '/Final/php/changeStudentLeft.php',
         data: {/*studentId: studentID*/},
         success: function () {
                 console.log("SUCCESS!");

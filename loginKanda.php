@@ -26,11 +26,11 @@ if (session_status() != 2){
 
 
         <?php
-        if ($_SESSION["student"] == true) {
+        if(isset($_SESSION["student"]) && $_SESSION["student"]==true){
             echo "student: " . $_SESSION["logged_id"];
             echo "<button class='btn btn-danger' onclick='logOut()'>Log out</button><br>";
             echo "Tu sa zobrazi test";
-        } elseif ($_SESSION["teacher"] == true) {
+        }elseif(isset($_SESSION["teacher"]) && $_SESSION["teacher"]==true){
             header("Location: /Final/views/examOverview.php");
         } else {
             echo "    <div id='loginButtons' class='w-full text-center pt-10'>
