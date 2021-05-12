@@ -1,0 +1,20 @@
+#addNewExamButton {
+  height: 40px;
+  width: 40px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: black;
+}
+#addNewExamButton:focus {
+  outline: 0px;
+}
+#addNewExamButton:hover > svg {
+  transform: scale(1.05);
+}
+
+#addNewExamButton > svg {
+  outline: none;
+  transition: transform 0.2s linear;
+}

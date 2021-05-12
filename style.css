@@ -1,0 +1,305 @@
+
+/* npx tailwindcss-cli@latest build style.css -o tailwind.css */   /*build after changes in style.css file*/
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+body{
+    counter-reset: form;
+}
+form{
+    padding: 1rem 5rem;
+}
+
+form::before{
+    @apply font-semibold;
+    position: absolute;
+    transform: translate(-100%);
+    padding-right: 1.5rem;
+    content: counter(form) ")";
+    counter-increment: form;
+}
+form:nth-child(even){
+   @apply bg-gray-200;
+}
+
+.logoColourText{
+    color: #17CF97;;
+}
+
+.logoColourBackground{
+    background-color: #17CF97;;
+}
+
+.inputStyle{
+    @apply border-2;
+    @apply border-gray-400;
+    @apply bg-gray-200;
+    @apply rounded;
+    @apply mb-0.5;
+    @apply hover:bg-gray-100;
+    @apply hover:shadow-sm;
+    @apply focus:bg-gray-100;
+    @apply focus:shadow-sm;
+}
+
+.a4-width{
+    width: 21cm;
+}
+
+.a4-height{
+    height: 29.7cm;
+}
+
+.form-group h3{
+    @apply font-semibold;
+}
+
+.form-group textarea,
+.math-answer{
+    @apply inputStyle;
+    display: block;
+    width: 100%;
+}
+.form-group input{
+    @apply inputStyle;
+}
+
+.green-button{
+    background-color: #17CF97;
+    @apply hover:bg-green-700;
+    @apply focus:bg-green-700;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-1;
+    @apply px-2;
+    @apply border;
+    @apply border-green-700;
+    @apply rounded;
+}
+
+.green-button-small{
+    background-color: #17CF97;
+    @apply text-sm;
+    @apply hover:bg-green-700;
+    @apply focus:bg-green-700;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-0.5;
+    @apply px-1;
+    @apply border;
+    @apply border-green-700;
+    @apply rounded;
+}
+
+.red-button{
+    @apply bg-red-500;
+    @apply hover:bg-red-700;
+    @apply focus:bg-red-700;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-1;
+    @apply px-2;
+    @apply border;
+    @apply border-red-700;
+    @apply rounded;
+}
+
+.red-button-small{
+    @apply bg-red-500;
+    @apply text-sm;
+    @apply hover:bg-red-700;
+    @apply focus:bg-red-700;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-0.5;
+    @apply px-1;
+    @apply border;
+    @apply border-red-700;
+    @apply rounded;
+}
+
+.btn-danger{
+    @apply red-button-small;
+}
+
+.purple-button{
+    @apply bg-purple-500;
+    @apply hover:bg-purple-700;
+    @apply focus:bg-purple-700;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-1;
+    @apply px-2;
+    @apply border;
+    @apply border-purple-700;
+    @apply rounded;
+}
+
+.red-warning-small{
+    @apply bg-red-500;
+    @apply text-sm;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-0.5;
+    @apply px-1;
+    @apply border;
+    @apply border-red-700;
+    @apply rounded;
+}
+
+/*.purple-button-big{*/
+/*    @apply */
+/*    @apply bg-purple-500;*/
+/*    @apply hover:bg-purple-700;*/
+/*    @apply focus:bg-purple-700;*/
+/*    @apply text-white;*/
+/*    @apply font-bold;*/
+/*    @apply py-1;*/
+/*    @apply px-2;*/
+/*    @apply border;*/
+/*    @apply border-purple-700;*/
+/*    @apply rounded;*/
+/*}*/
+
+.btn-primary{
+    @apply purple-button;
+}
+
+.purple-button-small{
+    @apply bg-purple-500;
+    @apply text-sm;
+    @apply hover:bg-purple-700;
+    @apply focus:bg-purple-700;
+    @apply text-white;
+    @apply font-bold;
+    @apply py-0.5;
+    @apply px-1;
+    @apply border;
+    @apply border-purple-700;
+    @apply rounded;
+}
+
+.btn-info{
+    @apply purple-button-small;
+}
+
+.form-control{
+    display: block;
+}
+
+.form-check-inline {
+    display: inline;
+}
+
+form{
+    counter-reset: choices pairs;
+}
+[id^="answersMultiple"] > label::before{
+    position: absolute;
+    transform: translate(-100%);
+    padding-right: 0.5rem;
+    content: counter(choices, lower-alpha) ")";
+    counter-increment: choices;
+}
+
+[id^="answersPairs"] > .form-row::before{
+    position: absolute;
+    transform: translate(-100%);
+    padding-right: 0.5rem;
+    content: counter(pairs) ":";
+    counter-increment: pairs;
+}
+
+.col{
+    display: inline;
+}
+.col input{
+    display: inline;
+}
+[id^="answersConnect"] > div{
+    display: flex;
+    justify-content: space-between;
+}
+[id^="connectOptions"]{
+    width: 45%;
+}
+/*[id^="connectAnswers"]>li:before{*/
+/*    display: block;*/
+/*    content: "-->";*/
+/*    width: 33%;*/
+/*}*/
+[id^="connectAnswers"] {
+    width: 45%;
+    @apply bg-purple-500;
+    @apply text-white;
+}
+li {
+    @apply m-1;
+    list-style: none;
+    font-size: 20px;
+}
+[id^="connectOptions"] li{
+    position: relative;
+
+}
+[id^="connectOptions"] li:after{
+    position: absolute;
+    right: 0;
+    content:url("/Final/img/iconmonstr-arrow-right-thin.svg");
+    transform: translate(150%, 0%);
+    width: 10%;
+}
+/*[id^="connectAnswers"]{*/
+/*    display: block;*/
+/*    width: 33%;*/
+/*    list-style: square;*/
+/*}*/
+form{
+    position: relative;
+}
+
+.max-points:before{
+    content: "Points: ";
+    left: 10px;
+}
+
+.max-points{
+    width: auto;
+    padding-right: 0.5rem;
+    height: 2rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-align: center;
+    vertical-align: middle;
+    font-weight: bold;
+}
+.math-expression{
+    font-weight: bold;
+}
+.login-main{
+    transform: translate(-50%, -50%);
+    padding-top: 5vw;
+}
+.login-icon{
+    width: 62%;
+}
+.login-icon-container{
+    width: 10vw;
+    height: 10vw;
+    transform: translate(33%, -100%);
+}
+.login-main{
+    transform: translate(-50%, -50%);
+    padding-top: 5vw;
+}
+.login-icon{
+    width: 62%;
+}
+.login-icon-container{
+    width: 10vw;
+    height: 10vw;
+    transform: translate(33%, -100%);
+}
