@@ -1,5 +1,5 @@
 <?php
-include "Database.php";
+include "../Database.php";
 $testID = $_POST['test_id'];
 $conn = (new Database())->createConnection("Projekt");
 $stm = $conn -> query( "SELECT student_fk from Student_Exam WHERE exam_fk = '$testID'");

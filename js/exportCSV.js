@@ -1,7 +1,7 @@
 function exportCSV(test_id) {
     $.ajax({
         type: "POST",
-        url: '/Final/controllers/getcsvData.php',
+        url: '../getcsvData.php',
         data: {test_id: test_id},
         success: function (data) {
             console.log("Export CSV: SUCCESS!");
