@@ -2,6 +2,11 @@
 if (session_status() != 2){
     session_start();
 }
+
+if(!isset($_SESSION["teacher"]) || $_SESSION["teacher"] == false){
+    header("Location: /Final/loginKanda.php");
+}
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
