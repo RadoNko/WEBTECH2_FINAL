@@ -21,6 +21,7 @@ if (session_status() != 2){
     }
     else if ($_SESSION["student"]){
         include "partials/studentNavigation.php";
+        echo "<script src='../js/submitExamAnswers.js'></script>";
     }
     else{
         header("Location: /Final/loginKanda.php");
@@ -54,6 +55,5 @@ if (session_status() != 2){
         })
     }
 </script>
-    <script src="../js/submitExamAnswers.js"></script>
 </body>
 </html>
