@@ -2,6 +2,11 @@
 if (session_status() != 2){
     session_start();
 }
+
+if(!isset($_SESSION["teacher"]) || $_SESSION["teacher"] == false){
+    header("Location: /Final/loginKanda.php");
+}
+
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
@@ -21,7 +26,7 @@ $_SESSION["exam_id"] = -1;
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
     <link rel="stylesheet" href="/Final/tailwind.css">
-    <link rel="stylesheet" href="/Final/php/examOverview.css">
+    <link rel="stylesheet" href="examOverview.css">
     <title>Exam overview</title>
 </head>
 
