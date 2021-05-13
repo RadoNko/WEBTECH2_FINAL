@@ -187,11 +187,12 @@ class QuestionMultipleController{
                     FROM QuestionTypeMultiple qtm
                     JOIN AnswerTypeMultiple atm ON qtm.id = atm.question_type_fk
                     WHERE exam_fk = ?
+                    AND atm.student_exam_fk = ?
                     GROUP BY qtm.id";
 
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmnt = $this->conn->prepare($sql);
-            $stmnt->execute([$examId]);
+            $stmnt->execute([$examId, $_SESSION["student_exam_id"]]);
 
             return $stmnt->fetchAll(PDO::FETCH_ASSOC);
         }

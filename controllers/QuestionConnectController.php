@@ -12,28 +12,6 @@ class QuestionConnectController{
         $this->conn = (new Database())->getConnection();
     }
 
-    private function insertExam($exam){
-        
-        try{
-
-            $sql = "INSERT INTO Exam(name)
-                                VALUES(?)";
-
-            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $stmnt = $this->conn->prepare($sql);
-            $stmnt->execute([$exam]);
-
-            return $this->conn->lastInsertId();
-
-        }
-        catch(PDOException $e){
-            echo "<div class='alert alert-danger' role='alert'>
-                        Sorry, there was an error. " . $e->getMessage()."
-                    </div>";
-        }
-
-    }
-
     private function insertParentQuestion($question, $exam, $points){
 
         try{
@@ -241,11 +219,12 @@ class QuestionConnectController{
                     FROM QuestionTypeConnect qtc
                     JOIN AnswerTypeConnect atc ON qtc.id = atc.question_type_fk
                     WHERE exam_fk = ?
+                    AND atc.student_exam_fk = ?
                     GROUP BY qtc.id";
 
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmnt = $this->conn->prepare($sql);
-            $stmnt->execute([$examId]);
+            $stmnt->execute([$examId, $_SESSION["student_exam_id"]]);
 
             return $stmnt->fetchAll(PDO::FETCH_ASSOC);
         }
