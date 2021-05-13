@@ -20,7 +20,7 @@ if (session_status() != 2){
     <div id="drawing-demo" class="w-full h-full"></div>
 </main>
 
-
+<script src="../js/surveilance.js"></script>
 <script>
   let myBoard = new DrawingBoard.Board('drawing-demo');
 </script>

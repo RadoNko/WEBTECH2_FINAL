@@ -39,7 +39,7 @@ if (session_status() != 2){
 
     </main>
 
-
+<script src="../js/surveilance.js"></script>
 <script>
     let MQ = MathQuill.getInterface(2);
     const answerSpans = document.getElementsByClassName('math-answer')
