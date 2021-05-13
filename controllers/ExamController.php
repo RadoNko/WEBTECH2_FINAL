@@ -224,7 +224,7 @@ class ExamController
                     WHERE id = ?";
             
             $stmnt = $this->conn->prepare($sql);
-            $stmnt->execute($student_exam_fk);
+            $stmnt->execute([$student_exam_fk]);
             
         }
         catch (PDOException $e) {
