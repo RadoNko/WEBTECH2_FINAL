@@ -28,7 +28,7 @@ function SaveAsPdf() {
 
             //console.log('File url: ' + fileURL);
 
-            var fileName = "Document.pdf";
+            var fileName = "Test.pdf";
 
             if (navigator.appVersion.toString().indexOf('.NET') > 0) {
                 // This is for IE browsers, as the alternative does not work
