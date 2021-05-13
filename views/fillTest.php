@@ -29,6 +29,5 @@
     <script src="../js/submitExamAnswers.js"></script>
     <script src="../js/initializeMathFields.js"></script>
     <script src="../js/surveilance.js"></script>
-    <script src="../js/exportCSV.js"></script>
 </body>
 </html>

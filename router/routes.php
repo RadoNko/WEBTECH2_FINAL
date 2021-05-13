@@ -187,7 +187,6 @@ Router::get("Final/router/exam", "ExamController@getAll");
         return json_encode($result);
     });
 
-    Router::get("Final/router/exam/{id}", "Exam@getExam");
 
     Router::post("Final/router/exam/insertTextAnswer", function () {
         $input = input()->all();

@@ -39,7 +39,7 @@
             </div>';
     }
     else{
-        header("Location: /Final/php/examOverview.php");
+        header("Location: /Final/views/examOverview.php");
         echo "už si prihlaseny";
     }
     ?>

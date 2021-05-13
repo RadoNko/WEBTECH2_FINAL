@@ -35,8 +35,9 @@ function submitExamQuestions() {
             submitQuestionDrawing(this.id);
         })
     }
-    location.href = "/Final/views/examOverview.php"
     resetArea();
+    setTimeout(function () { window.location.href = "/Final/views/examOverview.php"}, 1000);
+
 }
 
 //fullajtar
@@ -190,5 +191,5 @@ function resetArea(){
     $("button[id^='add']").show();
 
     // clear question container
-    $("#mainQuestionDiv").html("");
+    $("#questionContainer").html("");
 }
