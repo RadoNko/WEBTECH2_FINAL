@@ -29,7 +29,6 @@ if (session_status() != 2){
         if(isset($_SESSION["student"]) && $_SESSION["student"]==true){
             echo "student: " . $_SESSION["logged_id"];
             echo "<button class='btn btn-danger' onclick='logOut()'>Log out</button><br>";
-            echo "Tu sa zobrazi test";
         }elseif(isset($_SESSION["teacher"]) && $_SESSION["teacher"]==true){
             echo "<script>window.location.href = '/Final/views/examOverview.php'; </script>";
 

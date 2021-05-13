@@ -133,8 +133,19 @@ $(document).ready(function () {
     }
   });
 
+  $(document).on("click", ".list-group-item", function () {
+    const origin = $(location).attr("origin");
+    $.ajax({
+      type: "GET",
+      url: origin + "/Final/views/showStudentStatus.php",
+      data: { exam_id: $(this).attr('id') },
+      success: function (response) {
+        $("#statusExamBody").html(response);
+        $("#statusExamModal").modal("show");
+      }
+    });
+  })
   $("#createExamButton").click(function (e) {
-    console.log("clicked")
     let data = {};
     data["name"] = $("#nameInput").val();
     data["time"] = $("#timeInput").val();

@@ -18,36 +18,34 @@ function submitExamQuestions() {
         });
     }
 
-    if(questionTypeTextIds.length > 0){ //kanda
-        questionTypeTextIds.each(function(){
+    if (questionTypeTextIds.length > 0) { //kanda
+        questionTypeTextIds.each(function () {
             submitQuestionText(this.id);
         })
     }
 
-    if(questionTypeMathIds.length > 0){ //fullajtar
-        questionTypeMathIds.each(function(){
+    if (questionTypeMathIds.length > 0) { //fullajtar
+        questionTypeMathIds.each(function () {
             submitQuestionMath(this.id);
         })
     }
 
-    if(questionTypeDrawingIds.length > 0){ //fullajtar
-        questionTypeDrawingIds.each(function(){
+    if (questionTypeDrawingIds.length > 0) { //fullajtar
+        questionTypeDrawingIds.each(function () {
             submitQuestionDrawing(this.id);
         })
     }
 
-    /*$('#successModal').modal('show');
-
-    setTimeout(function(){
-        
+    $('#successModal').modal('show');
+    setTimeout(function () {
         window.location.href = "/Final/views/examOverview.php";
-    }, 3000);*/
+    }, 3000);
 
 }
 
 //fullajtar
-function submitQuestionMath(id){
-    let form = $("#"+id).serializeArray();
+function submitQuestionMath(id) {
+    let form = $("#" + id).serializeArray();
 
     let data = {};
     data["points"] = form[0].value;
@@ -60,14 +58,14 @@ function submitQuestionMath(id){
         url: origin + "/Final/router/question/math",
         data: data,
         dataType: "text",
-        success: function(data){
+        success: function (data) {
         }
     });
 }
 
 //fullajtar
-function submitQuestionDrawing(id){
-    let form = $("#"+id).serializeArray();
+function submitQuestionDrawing(id) {
+    let form = $("#" + id).serializeArray();
 
     let data = {};
     data["question"] = form[0].value;
@@ -80,26 +78,26 @@ function submitQuestionDrawing(id){
         url: origin + "/Final/router/question/drawing",
         data: data,
         dataType: "text",
-        success: function(data){
+        success: function (data) {
         }
     });
 }
 
 //kanda
-function submitQuestionText(id){
+function submitQuestionText(id) {
 
-    let form = $("#"+id).serializeArray();
+    let form = $("#" + id).serializeArray();
 
     let data = {};
     data["question"] = form[0].value;
     data["points"] = form[1].value;
 
     // let answers = [];
-    let question={
-        "question":form[0].value,
-        "answer":form[2].value,
-        "points":form[1].value,
-        "exam":"QuestionTypeText"
+    let question = {
+        "question": form[0].value,
+        "answer": form[2].value,
+        "points": form[1].value,
+        "exam": "QuestionTypeText"
     }
     const origin = $(location).attr("origin");
 
@@ -107,8 +105,8 @@ function submitQuestionText(id){
         method: "POST",
         url: origin + "/Final/router/question/addNewQuestionText",
         data: question,
-        success: function(data){
-        
+        success: function (data) {
+
         }
     });
 }
@@ -143,13 +141,13 @@ function submitQuestionConnect(id) {
     console.log(form)
 
     $.ajax({
-          method: "POST",
-          url: origin + "/Final/router/question/connect",
-          data: data,
-          dataType: "text",
-          success: function(data){
-          }
-      });
+        method: "POST",
+        url: origin + "/Final/router/question/connect",
+        data: data,
+        dataType: "text",
+        success: function (data) {
+        }
+    });
 }
 
 //kovacik
@@ -179,12 +177,12 @@ function submitQuestionMultiple(id) {
     let origin = $(location).attr("origin");
 
     $.ajax({
-          method: "POST",
-          url: origin + "/Final/router/question/multiple",
-          data: data,
-          dataType: "text",
-          success: function(data){
+        method: "POST",
+        url: origin + "/Final/router/question/multiple",
+        data: data,
+        dataType: "text",
+        success: function (data) {
 
-          }
-      });
+        }
+    });
 }
