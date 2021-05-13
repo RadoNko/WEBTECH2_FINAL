@@ -127,9 +127,6 @@ Router::post("Final/router/exam", function () {
 
 Router::get("Final/router/teacher", "TeacherController@getAll");
 
-// set session based on ip and gps permission
-//Router::post("Forward_the_Foundation/question/multiple", "QuestionMultipleController@insertQuestionAndAnswers");
-
 Router::post("Final/router/logins/verifyTestCode", function () {
     $input = input()->all();
     $student = new Student();
@@ -186,8 +183,6 @@ Router::post("Final/router/logins/verifyTeacherLogin", function () {
     $result = $teacher->verifyTeacherLogin($input);
     return json_encode($result);
 });
-
-Router::get("Final/router/exam/{id}", "Exam@getExam");
 
 Router::post("Final/router/exam/insertTextAnswer", function () {
     $input = input()->all();

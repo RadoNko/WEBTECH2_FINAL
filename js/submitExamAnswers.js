@@ -206,12 +206,17 @@ function submitQuestionMultiple(id) {
 function updateStudentStatus(){
 
   let origin = $(location).attr('origin');
-  
+
   $.ajax({
     method: "PUT",
     url: origin + "/Final/router/exam/updateStudentStatus",
     dataType: "text",
     success: function (data) {
+      console.log("SUCC");
+    },
+    error: function(data){
+
+      console.log("NEJDE :(((");
     }
   });
 }
