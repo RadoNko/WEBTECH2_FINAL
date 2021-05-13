@@ -1,8 +1,9 @@
 <?php
-include "../controllers/Database.php";
+include "../../Database.php";
 showErrors();
-$conn = (new Database())->getConnection();
-$stm = $conn -> query( "SELECT id from Exam WHERE is_active = '1'");
+$conn = (new Database())->createConnection("Projekt");
+$exam_id = $_POST['exam_id'];
+$stm = $conn -> query( "SELECT id from Exam WHERE is_active = '1' AND code = '$exam_id'");
 $activeTests = $stm -> fetchAll( PDO::FETCH_ASSOC );
 
 
