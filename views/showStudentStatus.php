@@ -17,12 +17,14 @@ $activeTests = $stm->fetchAll( PDO::FETCH_ASSOC );
 $resultAll = array();
 
 foreach ($activeTests as $item) {
-    $stm = $conn -> query( "SELECT student_fk,is_finished FROM Student_Exam WHERE exam_fk = '$exam_id'" );
+//    $stm = $conn -> query( "SELECT student_fk,is_finished FROM Student_Exam WHERE exam_fk = '$exam_id'" );
+    $stm = $conn -> query( "SELECT id,student_fk,is_finished FROM Student_Exam WHERE exam_fk = '$exam_id'" );
     $result = $stm->fetchAll(PDO::FETCH_ASSOC);
     if($stm->rowCount() > 0){
         if (sizeof($result) > 0){
             foreach ($result as $resultItem){
                 $tmp = array();
+                $student_exam_fk=$resultItem['id'];
                 $studentFK = $resultItem['student_fk'];
                 $isFinished = $resultItem['is_finished'];
                 $stm = $conn -> query( "SELECT name,surname FROM Student WHERE ais_id = '$studentFK'" );
@@ -30,7 +32,10 @@ foreach ($activeTests as $item) {
                 if ($isFinished == 1){
                     $isFinished ="Finished";
                 }else $isFinished = "Not finished";
-                if ($resultItem != null) array_push($resultAll,["Name" => $student[0]['name'], "Surname" => $student[0]['surname'],"State" => $isFinished]);
+//                if ($resultItem != null) array_push($resultAll,["Name" => $student[0]['name'], "Surname" => $student[0]['surname'],"State" => $isFinished]);
+                  if ($resultItem != null) array_push($resultAll,["Name" => $student[0]['name'], "Surname" => $student[0]['surname'],"State" => $isFinished,"studentExamId"=>$student_exam_fk]);
+
+
             }
             printTable($resultAll,"1");
         }
@@ -50,25 +55,32 @@ function printTable($rows,$id=""){
     echo "<tr>";
     foreach ($rows[0] as $key => $value){
         // TODO treba spraviť klikateľné, po kliku to ukáže exam daného žiaka
-        echo "<th>";
-        echo $key;
-        echo "</th>";
+        if($key!="studentExamId") {
+            echo "<th>";
+            echo $key;
+            echo "</th>";
+        }
     }
     echo "</tr>";
     echo "</thead>";
     echo "<tbody>";
 
-    foreach ($rows as $row) {
+    foreach ($rows as $index=> $row) {
+        $studentExamFK=$row["studentExamId"];
+//        array_pop($row);
         echo "<tr>";
         foreach ($row as $key => $column){
-            if ($column == "Finished") {
-                echo "<td style='background-color:#00FF00' >".$column."</td>";
-            }else if ($column == "Not finished") {
-                echo "<td style='background-color:#FF0000' >".$column."</td>";
-            }else echo "<td>".$column."</td>";
+            if($key!="studentExamId"){
+                if ($column == "Finished") {
+                    echo "<td style='background-color:#00FF00'><a href='rateTest.php?studentExamFK=".$studentExamFK."'>".$column."</a></td>";
+                }else if ($column == "Not finished") {
+                    echo "<td style='background-color:#FF0000' >".$column."</td>";
+                }else echo "<td>".$column."</td>";
+            }
         }
 
         echo "</tr>";
+
     }
     echo "</tbody>";
     echo "</table>";

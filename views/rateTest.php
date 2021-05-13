@@ -2,6 +2,7 @@
 if (session_status() != 2){
     session_start();
 }
+$_SESSION["student_exam_fk"]=$_GET["studentExamFK"];
 ?>
 
 <!DOCTYPE html>

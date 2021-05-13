@@ -155,6 +155,7 @@ class ExamController
     public function getRateExam($student_exam_fk){
 
         $exam = [];
+        $student_exam_fk=$_SESSION["student_exam_id"];
 
         $questionConnectController = new QuestionConnectController();
         $questionMultipleController = new QuestionMultipleController();

@@ -36,7 +36,6 @@ function submitQuestionText(id){
     $.ajax({
         method: "POST",
         url: origin + "/Final/router/exam/rateAnswersText",
-        // url: "http://147.175.98.72/skuska/WEBTECH2_FINAL/router/exam/rateAnswersText",
         data: data,
         dataType: "text",
         success: function(data){
