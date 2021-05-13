@@ -48,7 +48,7 @@ class AnswerMathController{
     public function setScore($points, $answerId){ //score set manually by teacher
 
         try{
-            $stmt = $this->conn->prepare("UPDATE AnswerTypeMath SET points =:points WHERE id =:answerId");
+            $stmt = $this->conn->prepare("UPDATE AnswerTypeMath SET points =:points WHERE question_type_fk =:answerId");
             $stmt->bindParam(":points", $points); //TODO add PDO:: for float
             $stmt->bindParam(":answerId", $answerId, PDO::PARAM_INT);
             $stmt->execute();

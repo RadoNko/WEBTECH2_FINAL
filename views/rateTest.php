@@ -2,6 +2,7 @@
 if (session_status() != 2){
     session_start();
 }
+$_SESSION["student_exam_id"]=$_GET["studentExamFK"];
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +27,7 @@ if (session_status() != 2){
         <div id="examContainer">
         </div>
         <button type="button" class="green-button mb-4 w-full" id="submitQuestionConnect" onclick="submitRateTest()">Rate test</button>
+        <button type="button" class="green-button mb-4 w-full" onclick="SaveAsPdf()">Export to PDF</button>
     </div>
 </main>
 
@@ -34,5 +36,7 @@ if (session_status() != 2){
 
 <script src="../js/renderQuestionsForRating.js"></script>
 <script src="../js/submitExamRating.js"></script>
+<script src="../js/printPDF.js"></script>
+
 </body>
 </html>

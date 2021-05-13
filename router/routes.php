@@ -155,6 +155,7 @@ Router::post("Final/router/logins/destroySession", function () {
     $_SESSION["teacher"] = false;
     $_SESSION["logged_id"] = -1;
     $_SESSION["student_exam_id"] = -1;
+    $_SESSION["exam_id"] = -1;  //novo pridane
     if (isset($_SESSION["username"])){
         $_SESSION["username"] = false;
     }

@@ -24,7 +24,7 @@ if (session_status() != 2){
         <div class="w-4/5 h-full bg-gray-100 text-xl shadow-2xl">
             <div id="examContainer">
             </div>
-            <button type="button" class="green-button mb-4 w-full" id="submitQuestionConnect" onclick="submitExamAnswers();logOut()">Submit test</button>
+            <button type="button" class="green-button mb-4 w-full" id="submitQuestionConnect" onclick="submitExamAnswers();logOut();">Submit test</button>
         </div>
     </main>
 

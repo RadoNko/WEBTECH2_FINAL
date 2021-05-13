@@ -79,17 +79,17 @@ class Student{
 
     public function insertStudentExam($data){
         try{
+            //ziskaj FK idčka testu do nasledujuceho insertu
+            $examID=$this->getExamID($data["testCode"]["testCode"]);
+
             //kontrola či sa student neloguje znova na ten isty test
-            $sql = "SELECT * FROM Student_Exam WHERE student_fk=?";
+            $sql = "SELECT * FROM Student_Exam WHERE student_fk=? AND exam_fk=?";
             $stm = $this->connection->prepare($sql);
-            $stm->execute([$data["id"]]);
+            $stm->execute([$data["id"], $examID]);
             $count = $stm->rowCount();
             if($count!=0){
                 return "alreadyFinished";
             }
-
-            //ziskaj FK idčka testu do nasledujuceho insertu
-            $examID=$this->getExamID($data["testCode"]["testCode"]);
 
             $sql = "INSERT INTO Student_Exam (student_fk, exam_fk,is_finished, left_website) VALUES (?,?,?,?)";
             $stm = $this->connection->prepare($sql);

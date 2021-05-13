@@ -13,6 +13,7 @@
 <body>
     <div id="examContainer">
     </div>
+
     <script src="../js/renderQuestionsForRating.js"></script>
 </body>
 </html>

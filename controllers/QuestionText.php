@@ -77,7 +77,7 @@ class QuestionText
     {
         $sql = "SELECT correct_answer, max_points FROM QuestionTypeText WHERE id=? AND exam_fk = ?";
         $stm = $this->conn->prepare($sql);
-        $stm->execute([$data["questionId"], $data["examId"]]);
+        $stm->execute([$data["questionId"], $_SESSION["exam_id"]]);
         return $stm->fetch(PDO::FETCH_ASSOC);
     }
 
@@ -99,11 +99,13 @@ class QuestionText
 
             if ($result["correct_answer"] == $answer) {
                 //odpovede sedia -> dostane max body
-                $stm->execute([$data["questionId"], $answer, $data["studentExamId"], $result["max_points"]]);
+//                $stm->execute([$data["questionId"], $answer, $data["studentExamId"], $result["max_points"]]);
+                $stm->execute([$data["questionId"], $answer, $_SESSION["student_exam_id"], $result["max_points"]]);
                 return $this->conn->lastInsertId();
             } else {
                 //odpovede nesedia -> dostane holy bačov
-                $stm->execute([$data["questionId"], $answer, $data["studentExamId"], 0]);
+//                $stm->execute([$data["questionId"], $answer, $data["studentExamId"], 0]);
+                $stm->execute([$data["questionId"], $answer, $_SESSION["student_exam_id"], 0]);
                 return $this->conn->lastInsertId();
             }
 
@@ -133,10 +135,8 @@ class QuestionText
     public function setScore($points, $answerId){ //score set manually by teacher
 
         try{
-            $stmt = $this->conn->prepare("UPDATE AnswerTypeText SET points =:points WHERE id =:answerId");
-            $stmt->bindParam(":points", $points); //TODO add PDO:: for float
-            $stmt->bindParam(":answerId", $answerId, PDO::PARAM_INT);
-            $stmt->execute();
+            $stmt = $this->conn->prepare("UPDATE AnswerTypeText SET points =? WHERE question_type_fk =?");
+            $stmt->execute([$points,$answerId]);
 
             //return $this->conn->lastInsertId();
         }
