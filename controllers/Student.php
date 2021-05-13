@@ -99,6 +99,7 @@ class Student{
             $_SESSION["student_exam_id"]=$this->connection->lastInsertId();
             $_SESSION["teacher"]=false;
             $_SESSION["logged_id"]=$data["id"];
+            $_SESSION["exam_id"] = $examID;
 
             return "studentExamInserted";
         }
