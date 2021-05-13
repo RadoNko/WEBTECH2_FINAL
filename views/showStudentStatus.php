@@ -1,8 +1,12 @@
 <?php
-include "../../Database.php";
+include "../controllers/Database.php";
 showErrors();
-$conn = (new Database())->createConnection("Projekt");
+$conn = (new Database())->getConnection();
 $exam_id = $_POST['exam_id'];
+if (!isset($_SESSION['teacher']) || $_SESSION["teacher"] == false){
+    echo "<script>window.location.href = '/Final/index.php'; </script>";
+}
+
 $stm = $conn -> query( "SELECT id from Exam WHERE is_active = '1' AND code = '$exam_id'");
 $activeTests = $stm -> fetchAll( PDO::FETCH_ASSOC );
 
