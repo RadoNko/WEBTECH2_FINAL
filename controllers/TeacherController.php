@@ -31,7 +31,7 @@ class TeacherController
                     </div>";
         }
     }
-    function verifyTeacherLogin($data){
+    public function verifyTeacherLogin($data){
         try{
             $sql = "SELECT id,password,username FROM Teacher WHERE username=?";
             $stm = $this->conn->prepare($sql);
@@ -56,7 +56,7 @@ class TeacherController
         }
     }
 
-    function registerTeacher($data){
+    public function registerTeacher($data){
         try{
             $stm = $this->conn->prepare("SELECT username FROM Teacher WHERE username=?");
             $stm->execute([$data["nickname"]]);

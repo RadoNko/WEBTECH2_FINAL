@@ -30,7 +30,7 @@ function addQuestionMultiple(){
                                             <input class="form-check-input" type="radio" name="answer`+ questionTypeNumber +`Radio1" id="noRadio" value="0">
                                             <label class="form-check-label" for="noRadio">No</label>
                                         </div>
-                                        <input type="text" name="answer`+ questionTypeNumber +`Text1" class="form-control" placeholder="Answer is...">
+                                        <input type="text" name="answer`+ questionTypeNumber +`Text1" class="form-control" placeholder="Answer is..." required>
                                         
                                     </div>
                                 </form>

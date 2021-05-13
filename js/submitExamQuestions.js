@@ -35,8 +35,14 @@ function submitExamQuestions() {
             submitQuestionDrawing(this.id);
         })
     }
-    location.href = "/Final/views/examOverview.php"
-    resetArea();
+
+    /*$('#successModal').modal('show');
+
+    setTimeout(function(){
+        
+        window.location.href = "/Final/views/examOverview.php";
+    }, 3000);*/
+
 }
 
 //fullajtar
@@ -102,7 +108,7 @@ function submitQuestionText(id){
         url: origin + "/Final/router/question/addNewQuestionText",
         data: question,
         success: function(data){
-            resetArea();
+        
         }
     });
 }
@@ -181,14 +187,4 @@ function submitQuestionMultiple(id) {
 
           }
       });
-}
-
-
-function resetArea(){
-
-    // show all available question buttons
-    $("button[id^='add']").show();
-
-    // clear question container
-    $("#mainQuestionDiv").html("");
 }

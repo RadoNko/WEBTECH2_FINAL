@@ -17,44 +17,6 @@ class QuestionText
         $this->conn = (new Database())->getConnection();
     }
 
-
-    private function insertExam($exam)
-    {
-
-        try {
-
-            $sql = "INSERT INTO Exam(name) VALUES(?)";
-
-            $stm = $this->conn->prepare($sql);
-            $stm->execute([$exam]);
-
-            return $this->conn->lastInsertId();
-
-        } catch (PDOException $e) {
-            echo "<div class='alert alert-danger' role='alert'>
-                        Sorry, there was an error. " . $e->getMessage() . "
-                    </div>";
-        }
-
-    }
-
-//    private function insertAnswer($question_fk,$answer,$student_exam_fk, $points){
-//
-//        try{
-//            $sql = "INSERT INTO AnswerTypeText(question_type_fk, answer, student_exam_fk, points) VALUES(?, ?, ?,?)";
-//            $stm = $this->connection->prepare($sql);
-//            $stm->execute([$question_fk,$answer,$student_exam_fk,$points]);
-//
-//            //return $this->conn->lastInsertId();
-//        }
-//        catch(PDOException $e){
-//            echo "<div class='alert alert-danger' role='alert'>
-//                        Sorry, there was an error. " . $e->getMessage()."
-//                    </div>";
-//        }
-//
-//    }
-
     private function insertQuestion($name, $correct_answer, $exam, $points)
     {
 
@@ -79,14 +41,13 @@ class QuestionText
     public function addQuestion($data)
     {
 
-//        $examId = $this->insertExam(1);
-
         foreach ($data as $key => $value) {
 
             if ($key === "question") {
                 $questionId = $this->insertQuestion($data["question"], $data["answer"], $_SESSION["exam_id"], $data["points"]);
             }
         }
+
         return json_encode($questionId);
     }
 

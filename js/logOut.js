@@ -5,7 +5,7 @@ function logOut(){
         url: origin+"/Final/router/logins/destroySession",
         data: {},
         success: function (data) {
-            location.href = "/Final/loginKanda.php";
+            location.href = "/Final/index.php";
         }
     });
 }

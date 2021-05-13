@@ -96,6 +96,9 @@ function registerNewTeacher(){
                         document.getElementById("teacherRegistration").insertAdjacentHTML('beforeend', `<div class='red-warning-small mt-4' role='alert'>Účet už existuje</div>`);
                     } else
                         location.href = origin + '/Final/views/examOverview.php';
+                },
+                error: function(data){
+                    console.log(data);
                 }
             });
         } else {
@@ -131,7 +134,7 @@ function logOut(){
         url: origin+"/Final/router/logins/destroySession",
         data: {},
         success: function (data) {
-            location.href = "/Final/loginKanda.php";
+            location.href = "/Final/index.php";
         }
     });
 }

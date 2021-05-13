@@ -44,8 +44,8 @@ if (session_status() != 2){
             </div>';
     }
     else{
-        header("Location: /Final/php/examOverview.php");
-        echo "už si prihlaseny";
+        echo "<script>window.location.href = '/Final/views/examOverview.php'; </script>";
+        //header("Location: /Final/php/examOverview.php");
     }
     ?>
 </main>
