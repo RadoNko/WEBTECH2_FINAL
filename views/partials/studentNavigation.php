@@ -37,6 +37,7 @@
   <div class="grid ">
     <p title="00:00:00" id="countdown" class="font-bold text-4xl justify-self-center break-words">00:00:00</p>
   </div>
+  <a href="../views/about.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500 self-end">About</a>
   <button onclick="logOut()" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500 self-end">Logout</button>
 </header>
 
