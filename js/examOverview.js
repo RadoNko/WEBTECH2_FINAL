@@ -43,6 +43,23 @@ $(document).ready(function () {
     },
   });
 
+
+  $(document).on("click", ".list-group-item", function () {
+    const origin = $(location).attr("origin");
+    if (!$("#toggleExamModal").hasClass("show")) {
+      $.ajax({
+        type: "POST",
+        url: origin + "/Final/views/showStudentStatus.php",
+        data: { exam_id: $(this).attr('id') },
+        async: false,
+        success: function (response) {
+          $("#statusExamBody").html(response);
+          $("#statusExamModal").modal("show");
+        }
+      });
+    }
+  })
+
   // Action to show modal on activity button click
   $(document).on("click", ".activity-button", function () {
     let active = $(this).text() == "active" ? "active" : "inactive";
@@ -133,18 +150,6 @@ $(document).ready(function () {
     }
   });
 
-  $(document).on("click", ".list-group-item", function () {
-    const origin = $(location).attr("origin");
-    $.ajax({
-      type: "POST",
-      url: origin + "/Final/views/showStudentStatus.php",
-      data: { exam_id: $(this).attr('id') },
-      success: function (response) {
-        $("#statusExamBody").html(response);
-        $("#statusExamModal").modal("show");
-      }
-    });
-  })
   $("#createExamButton").click(function (e) {
     let data = {};
     data["name"] = $("#nameInput").val();
