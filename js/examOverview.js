@@ -136,7 +136,7 @@ $(document).ready(function () {
   $(document).on("click", ".list-group-item", function () {
     const origin = $(location).attr("origin");
     $.ajax({
-      type: "GET",
+      type: "POST",
       url: origin + "/Final/views/showStudentStatus.php",
       data: { exam_id: $(this).attr('id') },
       success: function (response) {
