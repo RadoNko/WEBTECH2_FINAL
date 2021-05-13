@@ -24,8 +24,7 @@ class AnswerDrawingController{
         $data = base64_decode($img);
 
         //create the image png file with the given name
-        echo "/home/xkrsek/public_html/Final/drawings/'. str_replace(' ', '_', $student_exam_fk.'-'.$question_fk).'.png'";
-        file_put_contents('/home/xkrsek/public_html/Final/drawings/'. str_replace(' ', '_', $student_exam_fk.'-'.$question_fk).'.png', $data);
+        file_put_contents(dirname(__FILE__).'/Final/drawings/'. str_replace(' ', '_', $student_exam_fk.'-'.$question_fk).'.png', $data);
 
         try{
             $sql = "INSERT INTO AnswerTypePicture(question_type_fk, student_exam_fk) VALUES(?, ?)";
