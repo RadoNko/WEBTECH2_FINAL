@@ -9,7 +9,6 @@
     <div id="myDIV" class="px-6 pt-4 pb-8">
       <a href="/Final/views/fillTest.php" class="block px-2 py-1 text-white font-semibold rounded hover:bg-gray-500">Show exam</a>
       <a href="/Final/views/formula-sheet.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500">Formula sheets</a>
-      <a href="/Final/views/drawing-demo.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded hover:bg-gray-500">Drawing tool</a>
     </div>
   </div>
     <style>
