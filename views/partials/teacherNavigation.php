@@ -3,7 +3,16 @@
         <div class="flex flex-row items-center w-full logoColourBackground p-4">
             <div>
                 <p class="text-white">Logged In:</p>
-                <p class="text-white"><?php echo $_SESSION["username"]; ?></p>
+                <p class="text-white">
+                <?php
+                    if(isset($_SESSION["username"]) && $_SESSION["username"] == true){
+                        echo $_SESSION["username"];
+                    }
+                    else{
+                        echo "<script>window.location.href = '/Final/index.php'; </script>";
+                    }
+                ?>
+                </p>
             </div>
         </div>
         <div id="myDIV" class="px-6 pt-4 pb-8">

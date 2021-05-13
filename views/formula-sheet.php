@@ -24,7 +24,7 @@ if (session_status() != 2){
         echo "<script src='../js/submitExamAnswers.js'></script>";
     }
     else{
-        header("Location: /Final/loginKanda.php");
+        header("Location: /Final/index.php");
         exit();
     }
 
