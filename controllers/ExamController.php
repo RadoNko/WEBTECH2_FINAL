@@ -212,4 +212,27 @@ class ExamController
 
         return json_encode($stmnt, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     }
+
+    public function updateStudentStatus(){
+
+        $student_exam_fk = $_SESSION["student_exam_id"];
+
+        try{
+
+            $sql = "UPDATE Student_Exam
+                    SET is_finished = 1
+                    WHERE id = ?";
+            
+            $stmnt = $this->conn->prepare($sql);
+            $stmnt->execute($student_exam_fk);
+            
+        }
+        catch (PDOException $e) {
+            echo "<div class='alert alert-danger' role='alert'>
+                        Sorry, there was an error. " . $e->getMessage() . "
+                    </div>";
+        }
+
+
+    }
 }

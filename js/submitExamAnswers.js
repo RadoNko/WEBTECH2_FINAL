@@ -203,11 +203,23 @@ function submitQuestionMultiple(id) {
   });
 }
 
-/*  checks for question types in test and sends each question to its submit function
-    
-    !!!!!!:  update table Student_Exam
-*/
+function updateStudentStatus(){
+
+  let origin = $(location).attr('origin');
+  
+  $.ajax({
+    method: "PUT",
+    url: origin + "/Final/router/exam/updateStudentStatus",
+    dataType: "text",
+    success: function (data) {
+    }
+  });
+}
+
+
 function submitExamAnswers() {
+
+  updateStudentStatus();
   let questionTypeConnectIds = $("[id^='questionTypeConnect']");
   let questionTypeMultipleIds = $("[id^='questionTypeMultiple']");
   let questionTypeMathIds = $("[id^='questionTypeMath']"); //fullajtar
