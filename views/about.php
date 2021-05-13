@@ -139,7 +139,7 @@
         </table>
     </div>
 
-    <div>
+    <div class="w-50 mx-auto">
         <h4>Creating exam</h4>
         <p>Teacher can create a new exam with a "+" sign after signup (on page "Exam overview"), where he inserts the exam name and time limit.
         After clicking "Create" button, the teacher can choose from 5 different question types to add to the exam. 
