@@ -158,6 +158,18 @@
         and students can log in using that exam code. Teacher can also deactivate an active exam.
         </p>
 
+        <h4>End exam</h4>
+        <p>Exam can be finished in one of two ways. One way of finishing exam is to click submit button. This action is irreversible and for each student on particular exam can be done only once. Second option of finishing exam is to let clock of the timer, set by teacher, run out. After this time all students even partially answered questions will be submited. In both submit options student will be kicked out of test and redirected on login page.
+        </p>
+
+        <h4>Define multiple exams, activ/deactiv</h4>
+        <p>Teacher has possibility of defining multiple exams. Each exam has its own timer and unique code. With this code can students log into this exam. After exam creation exam is deactivated. So students can not log in to work on this exam. Teacher has to click on button on examOverview website next to that particular exam and activate it by accepting modal window.
+        </p>
+        
+        <h4>Docker</h4>
+        <p>We also provide this project in docker containerized format. The application has two containers. One for web application, second one is for database. for the database part we need dump to create correct database on startup. This dump file is in mysql-dump folder. We initialize our database with user. This user is used by our web application to connect. Username is user and password is password. This user is initialized in .docker-compose.yml file. Configuration file about this connection is in .php/config.php. Our web application does use pecee/simple-router. To enable this functionality on linux was needed configuration. To be exact it was to allow override on /var/www/ directory. For simplicity we copied whole apache2.conf into docker vm. This configuration file can be found inside of .conf/ folder. This application starts with docker-compose up --build. If You would like to see database from Your host computer, we recommend using mysql workbench. But it is also possible to connect with commandline command "mysql -h 127.0.0.1 -P 3306 -u user -p" and enter password.
+        </p>
+
         <h4>Exam notifications</h4>
         <p>
         </p>
@@ -168,6 +180,10 @@
 
         <h4>Exports to pdf / csv</h4>
         <p>
+        </p>
+
+        <h4>Database</h4>
+        <p>Database design was choosen to have more than needed tables. This option was chosen to support all neccessery functionality and be easily understandable. All question tables are different questions made inside of exam by teacher. Answers are answers provided by student. Student_Exam is table of progress of student in particular exam. Student is table that saves already signed students. This is to prevent student from enrolling to exam with same aisid but different name or surname. Also to not enable student with provided aisid to enroll second time to already finished exam.
         </p>
     </div>
     
