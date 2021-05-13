@@ -35,7 +35,6 @@ function submitExamQuestions() {
             submitQuestionDrawing(this.id);
         })
     }
-
     $('#successModal').modal('show');
     setTimeout(function () {
         window.location.href = "/Final/views/examOverview.php";
