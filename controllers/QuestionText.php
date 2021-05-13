@@ -77,7 +77,7 @@ class QuestionText
     {
         $sql = "SELECT correct_answer, max_points FROM QuestionTypeText WHERE id=? AND exam_fk = ?";
         $stm = $this->conn->prepare($sql);
-        $stm->execute([$data["questionId"], $data["examId"]]);
+        $stm->execute([$data["questionId"], $_SESSION["exam_id"]]);
         return $stm->fetch(PDO::FETCH_ASSOC);
     }
 
