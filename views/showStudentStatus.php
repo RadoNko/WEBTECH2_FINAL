@@ -2,7 +2,7 @@
 include "../controllers/Database.php";
 showErrors();
 $conn = (new Database())->getConnection();
-$exam_id = $_POST['exam_id'];
+$exam_id = $_GET['exam_id'];
 if (!isset($_SESSION['teacher']) || $_SESSION["teacher"] == false){
     echo "<script>window.location.href = '/Final/index.php'; </script>";
 }
