@@ -28,9 +28,7 @@ $(document).ready(function () {
 function submitQuestionText(id) {
 
   let form = $("#" + id).serializeArray();
-
   let questionId = id.split("questionTypeText").pop();
-
   let data = {};
 
   // CHANGE ! these are dummy values for testing
@@ -55,12 +53,12 @@ function submitQuestionText(id) {
 
   const origin = $(location).attr("origin");
 
-
   $.ajax({
     method: "POST",
     url: origin + "/Final/router/exam/insertTextAnswer",
     data: data,
     dataType: "text",
+    async: false,
     success: function (data) {
     }
   });
@@ -82,6 +80,7 @@ function submitQuestionMath(id) {
     url: origin + "/Final/router/exam/insertAnswersMath",
     data: data,
     dataType: "text",
+    async: false,
     success: function (data) {
     }
   });
@@ -115,6 +114,7 @@ function submitQuestionDrawing(id) {
     url: origin + "/Final/router/exam/insertAnswersDrawing",
     data: data,
     dataType: "text",
+    async: false,
     success: function (data) {
       //after succesful submit, clear picture from web storage
       myBoard.clearWebStorage();
@@ -157,6 +157,7 @@ function submitQuestionConnect(id) {
     url: origin + "/Final/router/exam/answer/connect",
     data: data,
     dataType: "text",
+    async: false,
     success: function (data) {
 
     }
@@ -198,12 +199,13 @@ function submitQuestionMultiple(id) {
     url: origin + "/Final/router/exam/answer/multiple",
     data: data,
     dataType: "text",
+    async: false,
     success: function (data) {
     }
   });
 }
 
-function updateStudentStatus(){
+function updateStudentStatus() {
 
   let origin = $(location).attr('origin');
 
@@ -214,7 +216,7 @@ function updateStudentStatus(){
     success: function (data) {
       console.log("SUCC");
     },
-    error: function(data){
+    error: function (data) {
 
       console.log("NEJDE :(((");
     }
