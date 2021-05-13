@@ -261,15 +261,17 @@ class QuestionConnectController{
         try{
 
             $sql = "SELECT lo.connected_to, otc.answer
-                    FROM LeftOption lo 
-                    JOIN OptionTypeConnect otc ON lo.connected_to = otc.id
+                    FROM OptionTypeConnect otc
+                    JOIN LeftOption lo ON otc.id = lo.connected_to
+                    JOIN AnswerTypeConnect atc ON lo.answer_type_fk = atc.id
                     WHERE otc.question_type_fk = ?
                     AND otc.is_left = 0
+                    AND atc.student_exam_fk = ?
                     ORDER BY lo.option_type_fk";
 
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmnt = $this->conn->prepare($sql);
-            $stmnt->execute([$question_fk]);
+            $stmnt->execute([$question_fk, $_SESSION["student_exam_id"]]);
 
             return $stmnt->fetchAll(PDO::FETCH_ASSOC);
         

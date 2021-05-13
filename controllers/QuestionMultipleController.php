@@ -215,19 +215,21 @@ class QuestionMultipleController{
             try{
 
                 $sql = "SELECT 
-                            otm.id,
-                            otm.answer,
-                            CASE
-                                WHEN omc.option_type_fk IS NULL THEN 'n'
-                                ELSE 'y'
-                            END AS 'choice'
+                        otm.id,
+                        otm.answer,
+                        CASE
+                            WHEN omc.option_type_fk IS NULL THEN 'n'
+                            ELSE 'y'
+                        END AS 'choice'
                         FROM OptionTypeMultiple otm
                         LEFT JOIN OptionMarkedAsCorrect omc ON otm.id = omc.option_type_fk
-                        WHERE question_type_fk = ?";
+                        JOIN AnswerTypeMultiple atm ON omc.answer_type_fk = atm.id
+                        WHERE otm.question_type_fk = ?
+                        AND atm.student_exam_fk = ?";
 
                 $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 $stmnt = $this->conn->prepare($sql);
-                $stmnt->execute([$question["id"]]);
+                $stmnt->execute([$question["id"], $_SESSION["student_exam_id"]]);
 
                 $data[$question["question"]]["id"] = $question["id"];
                 $data[$question["question"]]["max_points"] = $question["max_points"];
