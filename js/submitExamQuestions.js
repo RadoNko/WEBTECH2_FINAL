@@ -1,45 +1,61 @@
 // checks for question types in test and sends each question to its submit function
 function submitExamQuestions() {
-    let questionTypeConnectIds = $("[id^='questionTypeConnect']"); //kovacik
-    let questionTypeMultipleIds = $("[id^='questionTypeMultiple']"); //kovacik
-    let questionTypeTextIds = $("[id^='questionTypeText']"); //kanda
-    let questionTypeMathIds = $("[id^='questionTypeMath']"); //fullajtar
-    let questionTypeDrawingIds = $("[id^='questionTypeDrawing']"); //fullajtar
 
-    if (questionTypeConnectIds.length > 0) { //kovacik
-        questionTypeConnectIds.each(function () {
-            submitQuestionConnect(this.id);
-        });
+    let valid = true;
+    $("input, textarea").each(function(){
+
+        if(this.value.length < 1){
+
+            valid = false;
+        }
+    })
+
+    if(valid){
+
+        let questionTypeConnectIds = $("[id^='questionTypeConnect']"); //kovacik
+        let questionTypeMultipleIds = $("[id^='questionTypeMultiple']"); //kovacik
+        let questionTypeTextIds = $("[id^='questionTypeText']"); //kanda
+        let questionTypeMathIds = $("[id^='questionTypeMath']"); //fullajtar
+        let questionTypeDrawingIds = $("[id^='questionTypeDrawing']"); //fullajtar
+
+        if (questionTypeConnectIds.length > 0) { //kovacik
+            questionTypeConnectIds.each(function () {
+                submitQuestionConnect(this.id);
+            });
+        }
+
+        if (questionTypeMultipleIds.length > 0) { //kovacik
+            questionTypeMultipleIds.each(function () {
+                submitQuestionMultiple(this.id);
+            });
+        }
+
+        if (questionTypeTextIds.length > 0) { //kanda
+            questionTypeTextIds.each(function () {
+                submitQuestionText(this.id);
+            })
+        }
+
+        if (questionTypeMathIds.length > 0) { //fullajtar
+            questionTypeMathIds.each(function () {
+                submitQuestionMath(this.id);
+            })
+        }
+
+        if (questionTypeDrawingIds.length > 0) { //fullajtar
+            questionTypeDrawingIds.each(function () {
+                submitQuestionDrawing(this.id);
+            })
+        }
+        $('#successModal').modal('show');
+        setTimeout(function () {
+            window.location.href = "/Final/views/examOverview.php";
+        }, 3000);
     }
+    else{
 
-    if (questionTypeMultipleIds.length > 0) { //kovacik
-        questionTypeMultipleIds.each(function () {
-            submitQuestionMultiple(this.id);
-        });
+        $('#validModal').modal('show');
     }
-
-    if (questionTypeTextIds.length > 0) { //kanda
-        questionTypeTextIds.each(function () {
-            submitQuestionText(this.id);
-        })
-    }
-
-    if (questionTypeMathIds.length > 0) { //fullajtar
-        questionTypeMathIds.each(function () {
-            submitQuestionMath(this.id);
-        })
-    }
-
-    if (questionTypeDrawingIds.length > 0) { //fullajtar
-        questionTypeDrawingIds.each(function () {
-            submitQuestionDrawing(this.id);
-        })
-    }
-    $('#successModal').modal('show');
-    setTimeout(function () {
-        window.location.href = "/Final/views/examOverview.php";
-    }, 3000);
-
 }
 
 //fullajtar

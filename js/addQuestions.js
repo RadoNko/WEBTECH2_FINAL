@@ -23,7 +23,7 @@ function addQuestionMultiple(){
 
                                         <label>Is this answer correct ?</label>
                                         <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="answer`+ questionTypeNumber +`Radio1" value="1">
+                                            <input class="form-check-input" type="radio" name="answer`+ questionTypeNumber +`Radio1" value="1" checked>
                                             <label class="form-check-label">Yes</label>
                                         </div>
                                         <div class="form-check form-check-inline">
@@ -53,7 +53,7 @@ function addAnswerQuestionMultiple(number){
     // add another answer
     answers.insertAdjacentHTML('beforeend',`<label>Is this answer correct ?</label>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="answer`+number+`Radio`+answerNumber+`" value="1">
+                                                <input class="form-check-input" type="radio" name="answer`+number+`Radio`+answerNumber+`" value="1" checked>
                                                 <label class="form-check-label">Yes</label>
                                             </div>
                                             <div class="form-check form-check-inline">
