@@ -179,7 +179,7 @@
         </p>
 
         <h4 class="mt-4 font-semibold text-2xl">Grading exam</h4>
-        <p>To rate exam, we have to be logged in as teacher and click on element which contains exam description (title, teacher username, code) on page "Exam overview". After clicking there a modal window is opened with title "Show status of exam", in this modal window we can see students which participated in exam. If "State" is "Finished" we can click on "Finished" and we will be redirected. Now we can see student's answers and rate his answers, on this page is also located export to pdf.
+        <p>To rate exam, we have to be logged in as teacher and click on element which contains exam description (title, teacher username, code) on page "Exam overview". After clicking there a modal window is opened with title "Show status of exam", in this modal window we can see students which participated in exam. If "State" is "Finished" we can click on "Finished" and we will be redirected. Now we can see student's answers and rate his answers, on this page is also located export to pdf. If student sent empty drawing, no file will be uploaded therefore no image will load in grading.
         </p>
 
         <h4 class="mt-4 font-semibold text-2xl">Exports to pdf / csv</h4>
