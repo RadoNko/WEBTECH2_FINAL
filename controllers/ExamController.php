@@ -144,8 +144,6 @@ class ExamController
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $stmnt = $this->conn->prepare($sql);
             $stmnt->execute([$examId]);
-
-            return json_encode($stmnt->fetchAll(PDO::FETCH_ASSOC), JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
         } catch (PDOException $e) {
             echo "<div class='alert alert-danger' role='alert'>
                         Sorry, there was an error. " . $e->getMessage() . "
