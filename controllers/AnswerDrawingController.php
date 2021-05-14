@@ -42,12 +42,12 @@ class AnswerDrawingController{
     public function setScore($points, $questionId){ //score set manually by teacher
 
         try{
-            $stmt = $this->conn->prepare("UPDATE AnswerTypePicture SET points =:points WHERE id =:questionId");
+            $stmt = $this->conn->prepare("UPDATE AnswerTypePicture SET points =:points WHERE question_type_fk =:questionId");
             $stmt->bindParam(":points", $points); //TODO add PDO:: for float
             $stmt->bindParam(":questionId", $questionId, PDO::PARAM_INT);
             $stmt->execute();
 
-            //return $this->conn->lastInsertId();
+            return $this->conn->lastInsertId();
         }
         catch(PDOException $e){
             echo "<div class='alert alert-danger' role='alert'>
