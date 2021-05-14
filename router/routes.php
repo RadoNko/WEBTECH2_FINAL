@@ -77,8 +77,6 @@ Router::post("Final/router/exam/insertAnswersMath", function () {
 });
 Router::get("Final/router/exam/time/left", "ExamController@timeLeft");
 
-Router::put("Final/router/exam/toggle/{id}", "ExamController@toggle");
-
 Router::post("Final/router/exam/insertAnswersDrawing", function () {
 
     $answerDrawingController = new AnswerDrawingController();
