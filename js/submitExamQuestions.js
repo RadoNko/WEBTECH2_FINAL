@@ -59,7 +59,7 @@ function submitExamQuestions() {
         $('#validModal').modal('show');
     }
     resetArea();
-    setTimeout(function () { window.location.href = "/Final/views/examOverview.php" }, 1000);
+    setTimeout(function () { window.location.href = "/Final/views/examOverview.php" }, 3000);
 }
 
 //fullajtar

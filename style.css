@@ -261,7 +261,7 @@ form{
 }
 
 .max-points:before{
-    content: "Points: ";
+    content: "Max points: ";
     left: 10px;
 }
 
