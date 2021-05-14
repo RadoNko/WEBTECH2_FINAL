@@ -8,14 +8,24 @@ window.onload = function() {
 
 function studentLeft(){
     console.log("Student left");
-    //let studentID = "45645";
+    let left = true;
+    var studentID;
     $.ajax({
         type: "POST",
         url: '/Final/php/changeStudentLeft.php',
         data: {/*studentId: studentID*/},
-        success: function () {
-                console.log("SUCCESS!");
+        success: function (data) {
+                studentID = data;
+            $.ajax({
+                type: "POST",
+                url: '/Final/views/examOverview.php',
+                data: {studentID: studentID},
+                success: function () {
+                    console.log("SUCCESS! examOverview.php ajax call");
+                }
+            });
         }
     });
+
 
 }

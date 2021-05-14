@@ -1,4 +1,5 @@
 <?php
+include "../controllers/Database.php";
 if (session_status() != 2){
     session_start();
 }
@@ -23,6 +24,7 @@ $_SESSION["exam_id"] = -1;
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="/Final/tailwind.css">
     <link rel="stylesheet" href="examOverview.css">
     <title>Exam overview</title>
@@ -104,8 +106,43 @@ $_SESSION["exam_id"] = -1;
             </div>
         </div>
     </div>
+
 </main>
+
 <script src="/Final/js/examOverview.js"></script>
 </body>
 
 </html>
+<?php
+$conn = (new Database())->getConnection();
+if (isset($_POST['studentID']) && $_POST['studentID'] != null){
+    $studentID = $_POST['studentID'];
+
+    $stm = $conn->query("SELECT * FROM Student WHERE ais_id = '$studentID'");
+    $result = $stm ->fetchAll(PDO::FETCH_ASSOC);
+    if (sizeof($result)>0){
+        $name = $result[0]['name'];
+        $surname = $result[0]['surname'];
+        $full = $name." ".$surname;
+        echo "<script>document.getElementById('myDIV').insertAdjacentHTML('afterend', `<div class='alert'>
+    <span class='closebtn' onclick='this.parentElement.style.display=\'none\';'>&times;</span>Student
+    <strong>$full</strong> left the test.
+</div>`)</script>";
+    }
+}else {
+    $studentID = 45646;
+    $stm = $conn->query("SELECT * FROM Student WHERE ais_id = '$studentID'");
+    $result = $stm ->fetchAll(PDO::FETCH_ASSOC);
+    if (sizeof($result)>0){
+        $name = $result[0]['name'];
+        $surname = $result[0]['surname'];
+        $full = ucfirst($name)." ".ucfirst($surname);
+        echo "<script>document.getElementById('myDIV').insertAdjacentHTML('afterend', `<div class='alert'>
+    <span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>Student
+    <strong>$full</strong> has left the test.
+</div>`)</script>";
+    }
+}
+
+
+?>
