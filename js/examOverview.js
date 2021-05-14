@@ -130,7 +130,7 @@ $(document).ready(function () {
       $("#createExamButton").prop("disabled", true);
       $("#nameHelp").show();
     } else if ($(this).val().length > 0 && $("#timeInput").val().length > 0) {
-      if (existingExams != undefined) {
+      if (existingExams != undefined && existingExams.length > 0) {
         // do not allow exam with existing name
         if (
           existingExams.find((exam) => exam.name == $(this).val()) == undefined
