@@ -129,7 +129,9 @@ if (isset($_POST['studentID']) && $_POST['studentID'] != null){
     <strong>$full</strong> left the test.
 </div>`)</script>";
     }
-}else {
+}
+/*
+else {
     $studentID = 45646;
     $stm = $conn->query("SELECT * FROM Student WHERE ais_id = '$studentID'");
     $result = $stm ->fetchAll(PDO::FETCH_ASSOC);
@@ -143,6 +145,7 @@ if (isset($_POST['studentID']) && $_POST['studentID'] != null){
 </div>`)</script>";
     }
 }
+*/
 
 
 ?>
