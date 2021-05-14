@@ -1,8 +1,8 @@
-function exportCSV(test_id) {
+function exportCSV(test_code) {
     $.ajax({
         type: "POST",
         url: '/Final/php/getcsvData.php',
-        data: {test_id: test_id},
+        data: {test_code: test_code},
         success: function (data) {
             console.log("Export CSV: SUCCESS!");
             data = JSON.parse(data);
@@ -65,6 +65,7 @@ function exportToCsv(filename, rows) {
         }
     }
 }
+/*
 window.onload = function() {
 
 
@@ -73,3 +74,4 @@ window.onload = function() {
     console.log("ONLOAD");
     exportCSV(1);
 };
+*/
