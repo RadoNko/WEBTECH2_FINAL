@@ -4,7 +4,7 @@ if (session_status() != 2){
 }
 
 if(!isset($_SESSION["teacher"]) || $_SESSION["teacher"] == false){
-    header("Location: /Final/loginKanda.php");
+    header("Location: /Final/login.php");
 }
 
 ini_set('display_errors', 1);
