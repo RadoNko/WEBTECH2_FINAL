@@ -42,7 +42,7 @@ function renderAnswerTypeDrawing(question, answer) {
                                 `);
     const answersContainer = document.getElementById("answersDrawing" + questionTypeNumber);
     answersContainer.insertAdjacentHTML('beforeend', `<div class="form-check">
-                                                                    <img class="w-full h-96" id='drawingDiv`+ questionType + questionTypeNumber + `' src="/Final/drawings/` + answer["student_exam_fk"] + `-` + answer["question_type_fk"] + `.png " alt="Image Not Found">
+                                                                    <img class="w-full h-auto" id='drawingDiv`+ questionType + questionTypeNumber + `' src="/Final/drawings/` + answer["student_exam_fk"] + `-` + answer["question_type_fk"] + `.png " alt="Image Not Found">
                                                                     <label class="block pdf" for="points">Rate Question</label>
                                                                     <input type="number" name="`+ answer["id"] + `" points+ value="` + answer["points"] + `" class="form-check-input pdf" min="0" max="` + answer["max_points"] + `" required>
 
@@ -62,7 +62,7 @@ function renderQuestionTypeMultiple(question, answers) {
     exam.insertAdjacentHTML('beforeend', `<form class='question' id='` + questionType + questionTypeNumber + `' >
                                     <div class="form-group">
                                         <p><b>` + question + `</b></p>
-                                        <span>`+ answers["earned_points"] + ` / ` + answers["max_points"] + `</span>
+                                        <span>`+ parseFloat(answers["earned_points"]).toFixed(2) + ` / ` + answers["max_points"] + `</span>
                                     </div>
                                     <div id="answersMultiple`+ questionTypeNumber + `" class="form-group">
                                         

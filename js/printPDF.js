@@ -22,8 +22,8 @@ function SaveAsPdf() {
 
     var params = {
         key: api_key,
-       // url: url
-        html : document.getElementById("examContainer").innerHTML
+        // url: url
+        html: document.getElementById("examContainer").innerHTML
     }
 
     var xhr = new XMLHttpRequest();
