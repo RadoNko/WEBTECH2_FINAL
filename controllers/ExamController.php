@@ -26,6 +26,7 @@ class ExamController
         $examId = $_SESSION["exam_id"];
         $exam = [];
 
+
         $questionConnectController = new QuestionConnectController();
         $questionMultipleController = new QuestionMultipleController();
 

@@ -189,7 +189,6 @@ Router::post("Final/router/exam/insertTextAnswer", function () {
     $input = input()->all();
     $question = new QuestionText();
     return json_encode($question->insertAnswers($input));
-//    return json_encode($input);
 });
 
 Router::put("Final/router/exam/updateStudentStatus", "ExamController@updateStudentStatus");

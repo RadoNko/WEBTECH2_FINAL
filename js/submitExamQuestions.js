@@ -58,6 +58,8 @@ function submitExamQuestions() {
 
         $('#validModal').modal('show');
     }
+    resetArea();
+    setTimeout(function () { window.location.href = "/Final/views/examOverview.php" }, 1000);
 }
 
 //fullajtar
