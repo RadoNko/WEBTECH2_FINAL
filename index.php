@@ -41,6 +41,7 @@ if (session_status() != 2){
         ?>
     </main>
     <script src="js/addTextQuestion.js"></script>
+    <script src="js/logOut.js"></script>
     <script src="js/login.js"></script>
 </body>
 

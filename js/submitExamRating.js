@@ -1,23 +1,28 @@
+$("#close-modal").click(function () {
+    $("#open-modal").css('visibility', 'hidden');
+})
+
 // checks for question types in test and sends each question to its submit function
 function submitRateTest() {
+    $("#open-modal").css('visibility', 'visible');
     let questionTypeTextIds = $("[id^='questionTypeText']"); //kanda
     let questionTypeMathIds = $("[id^='questionTypeMath']"); //fullajtar
     let questionTypeDrawingIds = $("[id^='questionTypeDrawing']"); //fullajtar
 
-    if(questionTypeTextIds.length > 0){ //kanda
-        questionTypeTextIds.each(function(){
+    if (questionTypeTextIds.length > 0) { //kanda
+        questionTypeTextIds.each(function () {
             submitQuestionText(this.id);
         })
     }
 
-    if(questionTypeMathIds.length > 0){ //fullajtar
-        questionTypeMathIds.each(function(){
+    if (questionTypeMathIds.length > 0) { //fullajtar
+        questionTypeMathIds.each(function () {
             submitQuestionMath(this.id);
         })
     }
 
-    if(questionTypeDrawingIds.length > 0){ //fullajtar
-        questionTypeDrawingIds.each(function(){
+    if (questionTypeDrawingIds.length > 0) { //fullajtar
+        questionTypeDrawingIds.each(function () {
             submitQuestionDrawing(this.id);
         })
     }
@@ -25,8 +30,8 @@ function submitRateTest() {
     //resetArea();
 }
 
-function submitQuestionText(id){
-    let form = $("#"+id).serializeArray();
+function submitQuestionText(id) {
+    let form = $("#" + id).serializeArray();
 
     let data = {};
     data["answerId"] = form[0].name;
@@ -38,14 +43,14 @@ function submitQuestionText(id){
         url: origin + "/Final/router/exam/rateAnswersText",
         data: data,
         dataType: "text",
-        success: function(data){
+        success: function (data) {
         }
     });
 
 }
 
-function submitQuestionMath(id){
-    let form = $("#"+id).serializeArray();
+function submitQuestionMath(id) {
+    let form = $("#" + id).serializeArray();
 
     let data = {};
     data["answerId"] = form[0].name;
@@ -58,13 +63,13 @@ function submitQuestionMath(id){
         url: origin + "/Final/router/exam/rateAnswersMath",
         data: data,
         dataType: "text",
-        success: function(data){
+        success: function (data) {
         }
     });
 }
 
-function submitQuestionDrawing(id){
-    let form = $("#"+id).serializeArray();
+function submitQuestionDrawing(id) {
+    let form = $("#" + id).serializeArray();
 
     let data = {};
     data["answerId"] = form[0].name;
@@ -77,7 +82,7 @@ function submitQuestionDrawing(id){
         url: origin + "/Final/router/exam/rateAnswersDrawing",
         data: data,
         dataType: "text",
-        success: function(data){
+        success: function (data) {
         }
     });
 }
