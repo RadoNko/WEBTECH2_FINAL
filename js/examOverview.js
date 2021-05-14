@@ -28,7 +28,7 @@ $(document).ready(function () {
               "</h5><small><button type='button' class='btn btn-outline-dark activity-button'>" +
               active +
               "</button>" +
-                "<button type='button' class='btn btn-outline-dark' onClick='exportCSV("+code+")'>export to CSV</button>"+
+              "<button type='button' class='btn btn-outline-dark' onClick=exportCSV('" + code + "')>export to CSV</button>" +
               "</small></div><small>Teacher username: " +
               teacherName +
               "</small><br><small>Code: " +
@@ -176,25 +176,24 @@ function exportCSV(test_code) {
   $.ajax({
     type: "POST",
     url: '/Final/php/getcsvData.php',
-    data: {test_code: test_code},
+    data: { test_code: test_code },
     success: function (data) {
-      console.log("Export CSV: SUCCESS!");
       console.log(data);
       data = JSON.parse(data);
 
       //console.log(data[0].student[1].points_earned);
-      let allStudents =[['AIS ID','NAME','SURNAME','POINTS']];
-      for (let i = 0; i<data.length; i++){
+      let allStudents = [['AIS ID', 'NAME', 'SURNAME', 'POINTS']];
+      for (let i = 0; i < data.length; i++) {
         let ais_id = data[i].student[0].ais_id;
         let name = data[i].student[0].name;
         let surname = data[i].student[0].surname;
         let points = data[i].student[1].points_earned;
-        allStudents.push([ais_id,name,surname,points]);
+        allStudents.push([ais_id, name, surname, points]);
       }
-      let name = 'test'+test_code+'results.csv';
+      let name = 'test' + test_code + 'results.csv';
       exportToCsv(name, allStudents);
     },
-    error : function (error){
+    error: function (error) {
       console.log(error);
     }
   });
