@@ -26,19 +26,19 @@ error_reporting(E_ALL);
     <?php
     if(!isset($_SESSION["student"]) || $_SESSION["student"]==false){
         echo'  <div id="studentLogin" class="form-group text-center">
-        <h4 class="text-center block text-xl px-2 py-1 mt-1 text-white font-semibold">Zadajte kód testu</h4>
+        <h4 class="text-center block text-xl px-2 py-1 mt-1 text-white font-semibold">Insert exam code</h4>
         <input class="text-2xl text-center" id="testCode" name="testCode" placeholder="Code is...">
-        <button type="button" class="purple-button text-2xl" onclick="verifyTestCode()">Overiť kód</button>
+        <button type="button" class="purple-button text-2xl" onclick="verifyTestCode()">Verify code</button>
         </div>
     
         <div style="display:none;" id="studentDetails" class="form-group text-center bg-gray-600 pb-4 rounded-md">
             <h4>Ais ID</h4>
             <input class="text-2xl text-center" id="aisID" type="number" name="aisID" required>
-            <h4>Meno</h4>
+            <h4>Name</h4>
             <input class="text-2xl text-center" id="studentName" type="text" name="studentName" required>
-            <h4>Priezvisko</h4>
+            <h4>Surname</h4>
             <input class="text-2xl text-center" id="studentSurname" type="text" name="studentSurname" required><br><br>
-            <button type="button" class="purple-button text-2xl" onclick="sendStudentName()">Prihlásiť sa do testu</button>
+            <button type="button" class="purple-button text-2xl" onclick="sendStudentName()">Start the test</button>
         </div>';
     }
     else{

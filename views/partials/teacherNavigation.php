@@ -26,9 +26,6 @@
                 echo "<a href='/Final/views/createTest.php' class='block px-2 py-1 mt-1 text-white font-semibold rounded opacity-50'>Create {$testName} </a>";
             }
             ?>
-            <a href="/Final/views/fillTest.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded opacity-50">Debug Page Render Test</a>
-            <a href="/Final/views/rateTest.php" class="block px-2 py-1 mt-1 text-white font-semibold rounded opacity-50">Debug Page Rate Test</a>
-
         </div>
     </div>
     <div>
