@@ -1,6 +1,14 @@
 
-
 function SaveAsPdf() {
+    var all = document.getElementsByClassName("mq-selectable");
+    for (var i = 0; i < all.length; i++) {
+        all[i].style.display = 'none';
+    }
+    var all = document.getElementsByClassName("form-check-input");
+    for (var i = 0; i < all.length; i++) {
+        all[i].style.display = 'none';
+    }
+
     var api_endpoint = "https://selectpdf.com/api2/convert/";
     var api_key = "8658be42-b9e6-49ce-aefb-3f7691e503a2";
 
@@ -8,7 +16,8 @@ function SaveAsPdf() {
 
     var params = {
         key: api_key,
-        url: url
+       // url: url
+        html : document.getElementById("examContainer").innerHTML
     }
 
     var xhr = new XMLHttpRequest();
