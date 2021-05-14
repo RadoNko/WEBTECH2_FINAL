@@ -2,15 +2,17 @@
 function submitExamQuestions() {
 
     let valid = true;
-    $("input, textarea").each(function(){
-
-        if(this.value.length < 1){
-
-            valid = false;
+    $("input, textarea").each(function () {
+        if (this.value.length < 1) {
+            if (!$(this).parent().hasClass("mq-textarea")) {
+                valid = false;
+            }
+        }
+        else {
         }
     })
 
-    if(valid){
+    if (valid) {
 
         let questionTypeConnectIds = $("[id^='questionTypeConnect']"); //kovacik
         let questionTypeMultipleIds = $("[id^='questionTypeMultiple']"); //kovacik
@@ -52,7 +54,7 @@ function submitExamQuestions() {
             window.location.href = "/Final/views/examOverview.php";
         }, 3000);
     }
-    else{
+    else {
 
         $('#validModal').modal('show');
     }
