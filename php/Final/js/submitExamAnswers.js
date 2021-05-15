@@ -1,6 +1,6 @@
 $(document).ready(function () {
   let origin = $(location).attr("origin");
-  setInterval(getTimeout, 1000);
+  setInterval(getTimeout, 2000);
 
   // function to check if user should not end his test already
   function getTimeout() {
