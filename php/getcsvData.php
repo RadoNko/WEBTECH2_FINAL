@@ -3,13 +3,13 @@ include "../controllers/Database.php";
 if (isset($_POST['test_code'])){
     $testCode = $_POST['test_code'];
     $conn = (new Database())->getConnection();
-    /*
+
     $stm = $conn -> query("SELECT id from Exam WHERE code='$testCode'");
     $testID = $stm ->fetchAll(PDO::FETCH_ASSOC);
-    var_dump($testID);
-*/
-
-    $testID = $testCode;
+    //echo $testID[0]['id'];
+    //echo $testCode;
+    //var_dump($testID);
+    $testID = $testID[0]['id'];
     $stm = $conn -> query( "SELECT student_fk from Student_Exam WHERE exam_fk = '$testID'");
     $allStudent_fk = $stm -> fetchAll( PDO::FETCH_ASSOC );
 

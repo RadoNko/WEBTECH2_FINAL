@@ -1,10 +1,13 @@
 function exportCSV(test_code) {
+
     $.ajax({
         type: "POST",
         url: '/Final/php/getcsvData.php',
         data: {test_code: test_code},
         success: function (data) {
+
             console.log("Export CSV: SUCCESS!");
+            console.log("Here"+test_code);
             data = JSON.parse(data);
             console.log(data);
             //console.log(data[0].student[1].points_earned);

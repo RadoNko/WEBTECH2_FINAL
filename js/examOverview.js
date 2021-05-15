@@ -19,7 +19,8 @@ $(document).ready(function () {
             let active = val["is_active"] == 0 ? "inactive" : "active";
             let teacher = teachers.find((t) => t.id === val["teacher_fk"]);
             let teacherName = teacher ? teacher.username : "undefined";
-            let code = val["code"];
+            let code = val["code"].toString();
+
             items.push(
               "<li class='list-group-item list-group-item-action' id='" +
               val["id"] +
@@ -28,7 +29,7 @@ $(document).ready(function () {
               "</h5><small><button type='button' class='btn btn-outline-dark activity-button'>" +
               active +
               "</button>" +
-                "<button type='button' class='btn btn-outline-dark' onClick='exportCSV("+code+")'>export to CSV</button>"+
+                "<button type='button' class='btn btn-outline-dark' onclick='exportCSV(\""+code+"\")'>export to CSV</button>"+
               "</small></div><small>Teacher username: " +
               teacherName +
               "</small><br><small>Code: " +
@@ -178,8 +179,9 @@ function exportCSV(test_code) {
     url: '/Final/php/getcsvData.php',
     data: {test_code: test_code},
     success: function (data) {
-      console.log("Export CSV: SUCCESS!");
-      console.log(data);
+
+      //console.log("Export CSV: SUCCESS!");
+      //console.log(data);
       data = JSON.parse(data);
 
       //console.log(data[0].student[1].points_earned);
