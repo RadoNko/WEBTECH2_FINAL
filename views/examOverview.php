@@ -113,39 +113,3 @@ $_SESSION["exam_id"] = -1;
 </body>
 
 </html>
-<?php
-$conn = (new Database())->getConnection();
-if (isset($_POST['studentID']) && $_POST['studentID'] != null){
-    $studentID = $_POST['studentID'];
-
-    $stm = $conn->query("SELECT * FROM Student WHERE ais_id = '$studentID'");
-    $result = $stm ->fetchAll(PDO::FETCH_ASSOC);
-    if (sizeof($result)>0){
-        $name = $result[0]['name'];
-        $surname = $result[0]['surname'];
-        $full = $name." ".$surname;
-        echo "<script>document.getElementById('myDIV').insertAdjacentHTML('afterend', `<div class='alert'>
-    <span class='closebtn' onclick='this.parentElement.style.display=\'none\';'>&times;</span>Student
-    <strong>$full</strong> left the test.
-</div>`)</script>";
-    }
-}
-/*
-else {
-    $studentID = 45646;
-    $stm = $conn->query("SELECT * FROM Student WHERE ais_id = '$studentID'");
-    $result = $stm ->fetchAll(PDO::FETCH_ASSOC);
-    if (sizeof($result)>0){
-        $name = $result[0]['name'];
-        $surname = $result[0]['surname'];
-        $full = ucfirst($name)." ".ucfirst($surname);
-        echo "<script>document.getElementById('myDIV').insertAdjacentHTML('afterend', `<div class='alert'>
-    <span class='closebtn' onclick=\"this.parentElement.style.display='none';\">&times;</span>Student
-    <strong>$full</strong> has left the test.
-</div>`)</script>";
-    }
-}
-*/
-
-
-?>
