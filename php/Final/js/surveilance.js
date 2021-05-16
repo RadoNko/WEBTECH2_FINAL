@@ -1,4 +1,4 @@
-window.onload = function() {
+window.onload = function () {
     document.addEventListener("visibilitychange", () => {
 
         //console.log(document.hidden);
@@ -6,16 +6,14 @@ window.onload = function() {
     });
 };
 
-function studentLeft(){
-    console.log("Student left");
-    //let studentID = "45645";
+function studentLeft() {
+    let left = true;
+    var studentID;
     $.ajax({
         type: "POST",
         url: '/Final/php/changeStudentLeft.php',
-        data: {/*studentId: studentID*/},
-        success: function () {
-                console.log("SUCCESS!");
+        data: {/*studentId: studentID*/ },
+        success: function (data) {
         }
     });
-
 }

@@ -55,11 +55,8 @@ function submitExamQuestions() {
         }, 3000);
     }
     else {
-
         $('#validModal').modal('show');
     }
-    resetArea();
-    setTimeout(function () { window.location.href = "/Final/views/examOverview.php" }, 3000);
 }
 
 //fullajtar

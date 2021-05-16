@@ -183,7 +183,7 @@
         </p>
 
         <h4 class="mt-4 font-semibold text-2xl">Exports to pdf / csv</h4>
-        <p>To export PDF file, we have to be logged in as teacher and click on any test. Then we have to choose some finished test which will redirect us to the rating page. At the very bottom under the submit button there is an Export to PDF button. To export results as CSV file , go to exam overview page and press export CSV button of a test you would like exported.
+        <p>To export PDF file, we have to be logged in as teacher and click on any test. Then we have to choose some finished test which will redirect us to the rating page. At the very bottom under the submit button there is an Export to PDF button.
         </p>
 
         <h4 class="mt-4 font-semibold text-2xl">Database</h4>
