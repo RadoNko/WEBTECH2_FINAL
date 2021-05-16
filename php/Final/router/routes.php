@@ -98,7 +98,6 @@ $answerDrawingController->setScore($input["points"], $input["answerId"]);
 });
 
 Router::post("Final/router/exam/rateAnswersText", function () {
-//Router::post("skuska/WEBTECH2_FINAL/router/exam/rateAnswersText", function () {
 $answerDrawingController = new QuestionText();
 $input = input()->all();
 $answerDrawingController->setScore($input["points"], $input["answerId"]);
